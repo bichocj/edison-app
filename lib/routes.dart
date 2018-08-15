@@ -4,6 +4,6 @@ import 'package:flutterapp/screens/login/login_screen.dart';
 
 final routes = {
   '/login':         (BuildContext context) => new LoginScreen(),
-  '/home':         (BuildContext context) => new HomeScreen(),
+  '/home':         (BuildContext context) => new SearchList(),
   '/' :          (BuildContext context) => new LoginScreen(),
 };

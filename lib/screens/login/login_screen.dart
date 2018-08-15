@@ -118,8 +118,8 @@ class LoginScreenState extends State<LoginScreen>
             ],
           ),
         ),
-        loginBtn
-        // _isLoading ? new CircularProgressIndicator() : loginBtn
+        //loginBtn
+        _isLoading ? new CircularProgressIndicator() : loginBtn
       ],
       // crossAxisAlignment: CrossAxisAlignment.center,
     );
