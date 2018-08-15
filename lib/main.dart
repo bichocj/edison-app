@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
-
-import 'Login/login.dart';
+import 'package:flutterapp/auth.dart';
+import 'package:flutterapp/routes.dart';
 
 void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
-  MyApp({Key key}) : super(key : key);
 
+  
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      title: 'Edison App',
+      title: 'My Login App',
       theme: new ThemeData(
-        primarySwatch: Colors.lightBlue,
+        primarySwatch: Colors.red,
       ),
-      home: new LoginPage()
+      routes: routes,
     );
   }
+
+
 }
