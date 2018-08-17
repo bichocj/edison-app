@@ -60,8 +60,12 @@ class _SearchListState extends State<SearchList> implements ClientListScreenCont
   }
 
   @override
-  void onClientListSuccess(List<Client> clients){
-    int i=0;
+  void onClientListSuccess(List<Client> clients){    
+    _list.clear();
+    for(Client client in clients){
+      _list.add('${client.name} ${client.lastname}');
+    }
+    
   }
 
   @override
