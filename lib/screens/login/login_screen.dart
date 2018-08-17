@@ -1,10 +1,12 @@
 import 'dart:ui';
+import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutterapp/auth.dart';
 import 'package:flutterapp/data/database_helper.dart';
 import 'package:flutterapp/models/user.dart';
 import 'package:flutterapp/screens/login/login_screen_presenter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -25,10 +27,19 @@ class LoginScreenState extends State<LoginScreen>
 
   LoginScreenPresenter _presenter;
 
+  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+	SharedPreferences _sharedPreferences;
+
+
   LoginScreenState() {
     _presenter = new LoginScreenPresenter(this);
     var authStateProvider = new AuthStateProvider();
     authStateProvider.subscribe(this);
+    _fetchSessionAndNavigate();
+  }
+
+  _fetchSessionAndNavigate() async {
+      _sharedPreferences = await _prefs;
   }
 
   void _submit() {
@@ -145,7 +156,9 @@ class LoginScreenState extends State<LoginScreen>
     // _showSnackBar(user.toString());
     setState(() => _isLoading = false);
     // var db = new DatabaseHelper();
-    // await db.saveUser(user);
+    // await db.saveUser(user);    
+    _sharedPreferences.setString('auth_token', token);
+
     var authStateProvider = new AuthStateProvider();
     authStateProvider.notify(AuthState.LOGGED_IN);
   }

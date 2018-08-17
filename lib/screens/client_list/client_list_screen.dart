@@ -1,23 +1,9 @@
-/*
+import 'dart:async';
 import 'package:flutter/material.dart';
-
-class HomeScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return new Scaffold(
-      appBar: new AppBar(title: new Text("Home"),),
-      body: new Center(
-        child: new Text("Welcome home!"),
-      ),
-    );
-  }
-
-}
-*/
-
-import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 // import 'client_detail.dart';
+import 'package:flutterapp/screens/client_list/client_list_screen_presenter.dart';
+import 'package:flutterapp/models/client.dart';
 
 class SearchList extends StatefulWidget {
   static String tag = 'clients';
@@ -29,7 +15,7 @@ class SearchList extends StatefulWidget {
 
 }
 
-class _SearchListState extends State<SearchList> {
+class _SearchListState extends State<SearchList> implements ClientListScreenContract{
   Widget appBarTitle = new Text(
     "Lista de Clientes", style: new TextStyle(color: Colors.white),);
   Icon actionIcon = new Icon(Icons.search, color: Colors.white,);
@@ -39,6 +25,13 @@ class _SearchListState extends State<SearchList> {
   bool _isSearching;
   String _searchText = "";
 
+  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+	SharedPreferences _sharedPreferences;
+
+
+  ClientListScreenPresenter _presenter;
+
+
   _SearchListState() {
     _searchQuery.addListener(() {
       if (_searchQuery.text.isEmpty) {
@@ -46,14 +39,34 @@ class _SearchListState extends State<SearchList> {
           _isSearching = false;
           _searchText = "";
         });
-      }
-      else {
+      }else {
         setState(() {
           _isSearching = true;
           _searchText = _searchQuery.text;
         });
       }
     });
+
+    _fetchSessionAndNavigate();
+  }
+
+  _fetchSessionAndNavigate() async {
+		_sharedPreferences = await _prefs;
+		String authToken = _sharedPreferences.getString('auth_token');
+    print(authToken);
+    print(authToken);
+    _presenter = new ClientListScreenPresenter(this, authToken);
+    _presenter.requestClientList();
+  }
+
+  @override
+  void onClientListSuccess(List<Client> clients){
+    int i=0;
+  }
+
+  @override
+  void onClientListError(String errorTxt){
+    int i=0;
   }
 
   @override
@@ -91,12 +104,12 @@ class _SearchListState extends State<SearchList> {
   }
 
   List<ChildItem> _buildList() {
-    return _list.map((contact) => new ChildItem(contact)).toList();
+    return _list.map((contact) => new ChildItem(contact, this._presenter)).toList();
   }
 
   List<ChildItem> _buildSearchList() {
     if (_searchText.isEmpty) {
-      return _list.map((contact) => new ChildItem(contact))
+      return _list.map((contact) => new ChildItem(contact, this._presenter))
           .toList();
     }
     else {
@@ -107,7 +120,7 @@ class _SearchListState extends State<SearchList> {
           _searchList.add(name);
         }
       }
-      return _searchList.map((contact) => new ChildItem(contact))
+      return _searchList.map((contact) => new ChildItem(contact, this._presenter))
           .toList();
     }
   }
@@ -163,8 +176,9 @@ class _SearchListState extends State<SearchList> {
 
 class ChildItem extends StatelessWidget {
   final String name;
+  final ClientListScreenPresenter _presenter;
 
-  ChildItem(this.name);
+  ChildItem(this.name, this._presenter);
 
   @override
   Widget build(BuildContext context) {
@@ -173,6 +187,7 @@ class ChildItem extends StatelessWidget {
         trailing: const Icon(Icons.arrow_right),
         onTap: () {
           // Navigator.of(context).pushNamed(ClientDetail.tag);
+          this._presenter.requestClientList();
         }
     );
   }
