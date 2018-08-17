@@ -8,8 +8,8 @@ import 'dart:convert';
 
 class RestDatasource {
   NetworkUtil _netUtil = new NetworkUtil();
-  //static final BASE_URL = "https://edison-prod.herokuapp.com";
-  static final BASE_URL = "http://172.20.10.2:8000";
+  static final BASE_URL = "https://edison-prod.herokuapp.com";
+  //static final BASE_URL = "http://172.20.10.2:8000";
   static final LOGIN_URL = BASE_URL + "/accounts/api/login/";
   static final CLIENTS_URL = BASE_URL + "/clients/api/clients/";
   static final _API_KEY = "somerandomkey";

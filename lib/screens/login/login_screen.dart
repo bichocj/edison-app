@@ -3,8 +3,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutterapp/auth.dart';
-import 'package:flutterapp/data/database_helper.dart';
-import 'package:flutterapp/models/user.dart';
 import 'package:flutterapp/screens/login/login_screen_presenter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
