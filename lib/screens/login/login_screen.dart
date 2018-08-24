@@ -92,6 +92,7 @@ class LoginScreenState extends State<LoginScreen>
           new Padding(
             padding: const EdgeInsets.all(8.0),
             child: new TextFormField(
+              obscureText: true,
               onSaved: (val) => _password = val,
               decoration: new InputDecoration(labelText: "Ingrese su contraseña"),
               validator: (val){

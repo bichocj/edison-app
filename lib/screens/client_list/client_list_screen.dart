@@ -21,7 +21,7 @@ class _SearchListState extends State<SearchList> implements ClientListScreenCont
   Icon actionIcon = new Icon(Icons.search, color: Colors.white,);
   final key = new GlobalKey<ScaffoldState>();
   final TextEditingController _searchQuery = new TextEditingController();
-  List<String> _list;
+  List<Client> _list;
   bool _isSearching;
   String _searchText = "";
 
@@ -60,11 +60,13 @@ class _SearchListState extends State<SearchList> implements ClientListScreenCont
   }
 
   @override
-  void onClientListSuccess(List<Client> clients){    
-    _list.clear();
+  void onClientListSuccess(List<Client> clients){
+   /* _list.clear();
     for(Client client in clients){
-      _list.add('${client.name} ${client.lastname}');
-    }
+      _list.add(' ${client.id} ${client.name} ${client.lastname}');
+    }*/
+   print(clients);
+   _list = clients;
     
   }
 
@@ -82,17 +84,6 @@ class _SearchListState extends State<SearchList> implements ClientListScreenCont
 
   void init() {
     _list = List();
-    _list.add("Alison Perez");
-    _list.add("Alberto Plaza");
-    _list.add("Arturo Anibal");
-    _list.add("Bruno Armando");
-    _list.add("Brizette Jimenez");
-    _list.add("Carlos Gutierrez");
-    _list.add("Deysi Hinostroza");
-    _list.add("Laura Huarcallo");
-    _list.add("Walter Hilar");
-    _list.add("Jhon Pampa");
-    _list.add("Ximena Hoyos");
   }
 
   @override
@@ -117,11 +108,11 @@ class _SearchListState extends State<SearchList> implements ClientListScreenCont
           .toList();
     }
     else {
-      List<String> _searchList = List();
+      List<Client> _searchList = List();
       for (int i = 0; i < _list.length; i++) {
-        String name = _list.elementAt(i);
+        String name = _list.elementAt(i).name;
         if (name.toLowerCase().contains(_searchText.toLowerCase())) {
-          _searchList.add(name);
+          _searchList.add( _list.elementAt(i));
         }
       }
       return _searchList.map((contact) => new ChildItem(contact, this._presenter))
@@ -179,19 +170,19 @@ class _SearchListState extends State<SearchList> implements ClientListScreenCont
 }
 
 class ChildItem extends StatelessWidget {
-  final String name;
+  final Client _client;
   final ClientListScreenPresenter _presenter;
 
-  ChildItem(this.name, this._presenter);
+  ChildItem(this._client, this._presenter);
 
   @override
   Widget build(BuildContext context) {
     return new ListTile(
-        title: new Text(this.name),
+        title: new Text(this._client.name + this._client.lastname),
         trailing: const Icon(Icons.arrow_right),
         onTap: () {
-          // Navigator.of(context).pushNamed(ClientDetail.tag);
-          this._presenter.requestClientList();
+          Navigator.of(context).pushNamed('/detail');
+          //this._presenter.requestClientList();
         }
     );
   }

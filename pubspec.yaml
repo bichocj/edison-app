@@ -22,6 +22,19 @@ flutter:
   uses-material-design: true
   assets:
     - assets/login.png
+    - assets/account.png
+    - assets/bg.jpeg
+    - assets/bg.jpg
+    - assets/profile.png
+    - assets/profile1.png
+
+fonts:
+- family: Poppins
+  fonts:
+  - asset: assets/fonts/Poppins-SemiBold.ttf
+    weight: 600
+  - asset: assets/fonts/Poppins-Regular.ttf
+    weight: 400
 
   # To add assets to your application, add an assets section, like this:
   # assets:
