@@ -1,19 +1,18 @@
-class ClientDetail {
+class ClientDetailModel {
   int _id;
   String _name;
   String _lastname;
   String _dni;
-  //Class Bussiness
   String _address;
   int _cellphone;
   String _phone;
   String _address_of_payment;
   String _reference;
 
-  ClientDetail(this._id, this._name, this._lastname, this._dni, this._address,
+  ClientDetailModel(this._id, this._name, this._lastname, this._dni, this._address,
       this._cellphone, this._phone, this._address_of_payment, this._reference);
 
-  ClientDetail.map(dynamic obj) {
+  /*ClientDetailModel.map(dynamic obj) {
     this._id = obj["id"];
     this._name = obj["name"];
     this._lastname = obj["lastname"];
@@ -23,7 +22,7 @@ class ClientDetail {
     this._phone = obj["phone"];
     this._address_of_payment = obj["address_of_payment"];
     this._reference = obj["reference"];
-  }
+  }*/
 
   int get id => _id;
   String get name => _name;

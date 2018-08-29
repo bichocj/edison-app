@@ -5,6 +5,7 @@ import 'package:flutterapp/models/user.dart';
 import 'package:flutterapp/models/client.dart';
 import 'package:flutterapp/models/client_detail.dart';
 import 'package:flutterapp/models/client_credit.dart';
+import 'package:flutterapp/models/profile.dart';
 import 'dart:io';
 import 'dart:convert';
 
@@ -13,9 +14,10 @@ class RestDatasource {
   static final BASE_URL = "https://edison-prod.herokuapp.com";
   //static final BASE_URL = "http://172.20.10.2:8000";
   static final LOGIN_URL = BASE_URL + "/accounts/api/login/";
-  static final CLIENTS_URL = BASE_URL + "/clients/api/clients/";
-  static final CLIENT_DETAIL_URL = BASE_URL + "/clients/api/clients/1/";
-  static final CLIENT_CREDIT_URL = BASE_URL + "/credits/api/credit/1/";
+  static final PROFILE_URL = BASE_URL + "/accounts/api/users/me/";
+  static final CLIENTS_URL = BASE_URL + "/clients/api/clients/?zone_from=";
+  static final CLIENT_DETAIL_URL = BASE_URL + "/clients/api/clients/";
+  static final CLIENT_CREDIT_URL = BASE_URL + "/credits/api/credit/";
   static final _API_KEY = "somerandomkey";
 
   Future<String> login(String username, String password) {
@@ -34,27 +36,43 @@ class RestDatasource {
     });
   }
 
-  Future<List<Client>> getClients(String token){
-    return _netUtil.get(CLIENTS_URL, token).then((dynamic res) {            
+  Future<Profile> getProfile(String token){
+    return _netUtil.get(PROFILE_URL , token).then((dynamic res) {
+      print("Res getProfileasdasdasdasd");
+      print(res);
+      return new Profile(res["username"], res["email"], res["first_name"], res["last_name"], res["profile"]);
+    });
+  }
+
+  Future<List<Client>> getClients(String token, String zone){
+    return _netUtil.get(CLIENTS_URL + zone, token).then((dynamic res) {
+      print(CLIENTS_URL + zone);
       final itemsTmp = res.map((i) => new Client.map(i));      
-      final items = itemsTmp.cast<Client>(); //¿Qué hace cast?
+      final items = itemsTmp.cast<Client>();
       return items.toList();
     });
   }
 
-  Future<List<ClientDetail>> getClientDetail(String token){
-    return _netUtil.get(CLIENT_DETAIL_URL, token).then((dynamic res) {
-      final detailsTmp = res.map((obj) => new ClientDetail.map(obj));
-      final details = detailsTmp.cast<ClientDetail>();
-      return details.toList();
+  Future<ClientDetailModel> getClientDetail(String token, String clientId){
+    return _netUtil.get(CLIENT_DETAIL_URL + clientId + '/', token).then((dynamic res) {
+      print(CLIENT_DETAIL_URL + clientId);
+      print("Res getClientDetail");
+      print(res);
+      return new ClientDetailModel(res["id"], res["name"], res["lastname"], res["dni"], res["address"], res["cellphone"], res["phone"], res["address_of_payment"], res["reference"]);
+      //final detailsTmp = res.map((obj) => new ClientDetailModel.map(obj));
+      //final details = detailsTmp.cast<ClientDetailModel>();
+      //return details.toList();
     });
   }
 
   Future<List<ClientCredits>> getClientCredit(String token){
     return _netUtil.get(CLIENT_CREDIT_URL, token).then((dynamic res) {
-      final creditTmp = res.map((obj) => new ClientCredits.map(obj));
-      final credit = creditTmp.cast<ClientCredits>();
-      return credit.toList();
+      print("aqui es res");
+      print(res);
+      return res;
+      //final creditTmp = res.map((obj) => new ClientCredits.map(obj));
+      //final credit = creditTmp.cast<ClientCredits>();
+      //return credit.toList();
     });
   }
 }

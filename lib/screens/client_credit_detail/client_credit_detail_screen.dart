@@ -31,7 +31,7 @@ class _ClientCreditDetailState extends State<ClientCreditDetail> {
             new SliverList(
                 delegate: new SliverChildListDelegate(<Widget>[
               new ProfileCard(
-                image: 'assets/profile.png',
+                image: 'assets/img/profile.png',
                 height: _heightCard,
                 background: themeData.cardColor,
                 icon: Icons.chrome_reader_mode,
@@ -137,7 +137,7 @@ class _ClientCreditDetailState extends State<ClientCreditDetail> {
                   elevation: 4.0,
                   splashColor: themeData.buttonColor,
                   onPressed: () {
-                    Navigator.of(context).pushNamed('/totalCharge');
+                    Navigator.of(context).pushNamed('/accountReport');
                   },
                 ),
               ),

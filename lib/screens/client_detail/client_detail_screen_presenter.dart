@@ -2,7 +2,7 @@ import '../../data/rest_ds.dart';
 import 'package:flutterapp/models/client_detail.dart';
 
 abstract class ClientDetailScreenContract {
-  void onClientDetailSuccess(List<ClientDetail> client_detail); //Si no es List que es?
+  void onClientDetailSuccess(ClientDetailModel client_detail);
   void onClientDetailError(String errorTxt);
 }
 
@@ -12,17 +12,17 @@ class ClientDetailScreenPresenter {
   RestDatasource api = new RestDatasource();
   ClientDetailScreenPresenter(this._view, this.authToken);
 
-  requestClientDetails() {
+  requestClientDetails(clientId) {
     try{
-      api.getClientDetail(this.authToken).then((List<ClientDetail> client_detail) {
-        print(client_detail);
+      api.getClientDetail(this.authToken, clientId ).then((ClientDetailModel client_detail) {
         _view.onClientDetailSuccess(client_detail);
-      }).catchError((handleError) =>
-          _view.onClientDetailError(handleError)
+      }).catchError((handleError) => (
+          print(handleError)
+          //_view.onClientDetailError(handleError.message)
+      )
       );
     }catch(e){
       print(e.toString());
     }
   }
-
 }

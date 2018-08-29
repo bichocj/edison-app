@@ -12,10 +12,9 @@ class ClientListScreenPresenter {
   RestDatasource api = new RestDatasource();
   ClientListScreenPresenter(this._view, this.authToken);
 
-  requestClientList() {
+  requestClientList(zoneId) {
     try{
-    api.getClients(this.authToken).then((List<Client> clients) {
-      print(clients);
+    api.getClients(this.authToken, zoneId).then((List<Client> clients) {
       _view.onClientListSuccess(clients);
     }).catchError((handleError) => 
       _view.onClientListError(handleError.message)

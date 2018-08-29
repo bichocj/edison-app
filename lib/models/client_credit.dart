@@ -11,7 +11,7 @@ class ClientCredits {
   String _amount_total;
   String _created_at;
   String _updated_at;
-  int _client; //Extends from client? zazaza
+  int _client;
 
   ClientCredits(
       this._id,

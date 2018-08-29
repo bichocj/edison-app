@@ -34,7 +34,7 @@ class _ClientCreditsState extends State<ClientCredits> {
             child: new Column(
           children: <Widget>[
             new ProfileCard(
-              image: 'assets/profile.png',
+              image: 'assets/img/profile.png',
               height: _heightCard,
               background: themeData.cardColor,
               icon: Icons.chrome_reader_mode,

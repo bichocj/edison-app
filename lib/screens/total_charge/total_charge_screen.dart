@@ -6,12 +6,12 @@ import 'package:flutterapp/auth.dart';
 import 'package:flutterapp/screens/login/login_screen_presenter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class TotalCharge extends StatefulWidget {
+class AccountReport extends StatefulWidget {
   @override
   _TotalChargeState createState() => _TotalChargeState();
 }
 
-class _TotalChargeState extends State<TotalCharge> {
+class _TotalChargeState extends State<AccountReport> {
   var client_detail = {
     "name": "Jorge",
     "lastname": "Chavez Manrique",
@@ -40,14 +40,14 @@ class _TotalChargeState extends State<TotalCharge> {
                 expandedHeight: _heightImage,
                 flexibleSpace: new FlexibleSpaceBar(
                   title: new Text(
-                    'Cuotas Vencidas',
+                    'Reporte de Cuenta',
                     style: new TextStyle(color: Colors.white, fontSize: 18.0),
                   ),
                   background: new Stack(
                     fit: StackFit.expand,
                     children: <Widget>[
                       new Image.asset(
-                        'assets/bg.jpeg',
+                        'assets/img/bg.jpeg',
                         fit: BoxFit.cover,
                         height: _heightImage,
                       ),

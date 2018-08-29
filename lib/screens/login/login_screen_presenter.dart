@@ -15,6 +15,7 @@ class LoginScreenPresenter {
     try{
     api.login(username, password).then((String token) {
         _view.onLoginSuccess(token);
+
     }).catchError((handleError) => 
       _view.onLoginError(handleError.message)
     );
@@ -22,4 +23,5 @@ class LoginScreenPresenter {
       print(e.toString());  
     }
   }
+
 }
