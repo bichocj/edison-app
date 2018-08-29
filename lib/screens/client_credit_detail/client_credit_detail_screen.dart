@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-// import 'client_detail.dart';
 import 'package:flutterapp/screens/client_list/client_list_screen_presenter.dart';
 import 'package:flutterapp/models/client.dart';
 
@@ -314,7 +313,6 @@ class _InfoItem extends StatelessWidget {
                     ),
                   ],
                 )
-
               ],
             ),
           )

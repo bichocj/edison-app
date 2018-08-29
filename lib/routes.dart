@@ -8,6 +8,7 @@ import 'package:flutterapp/screens/login/login_screen.dart';
 import 'package:flutterapp/screens/profile/profile_screen.dart';
 import 'package:flutterapp/screens/splash/splash_screen.dart';
 import 'package:flutterapp/screens/other_lists/other_lists_screen.dart';
+import 'package:flutterapp/screens/client_quotes/client_quotes_screen.dart';
 
 final routes = {
   '/login':         (BuildContext context) => new LoginScreen(),
@@ -18,5 +19,6 @@ final routes = {
   '/creditDetail':       (BuildContext context) => new ClientCreditDetail(),
   '/accountReport':       (BuildContext context) => new AccountReport(),
   '/other_list':     (BuildContext context) => new OtherLists(),
+  '/quotes':     (BuildContext context) => new ClientQuotes(),
   '/' :          (BuildContext context) => new SplashScreen(),
 };

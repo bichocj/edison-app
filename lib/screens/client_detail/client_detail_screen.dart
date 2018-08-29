@@ -4,14 +4,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutterapp/screens/client_detail/client_detail_screen_presenter.dart';
 import 'package:flutterapp/models/client_detail.dart';
 import 'package:flutterapp/screens/custom_widgets/info_item.dart';
+import 'package:flutterapp/screens/client_credit/client_credits_screen.dart';
 
 class ClientDetail extends StatefulWidget {
   static String tag = 'client_detail';
-  String clientId;
-  ClientDetail({
-    Key key,
-    this.clientId
-  }) : super(key: key);
+  final String clientId;
+  ClientDetail({Key key, this.clientId}) : super(key: key);
   @override
   _ClientDetailState createState() => _ClientDetailState();
 }
@@ -49,11 +47,13 @@ class _ClientDetailState extends State<ClientDetail>
       _client_detail = client_detail;
     });
   }
+
   @override
   void onClientDetailError(String errorTxt) {
     print("error detail");
     print(errorTxt);
   }
+
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
@@ -61,7 +61,11 @@ class _ClientDetailState extends State<ClientDetail>
     return new Scaffold(
       floatingActionButton: new FloatingActionButton(
         onPressed: () {
-          Navigator.of(context).pushNamed('/credits');
+          Navigator.push(
+              context,
+              new MaterialPageRoute(
+                  builder: (BuildContext context) =>
+                  new ClientCredits(client: this._client_detail)));
         },
         backgroundColor: themeData.primaryColorDark,
         child: new Icon(
@@ -105,7 +109,8 @@ class _ClientDetailState extends State<ClientDetail>
             new InfoItem(
               icon: Icons.person,
               title: 'Nombre Completo',
-              text: "${this._client_detail.lastname}, ${this._client_detail.name}",
+              text:
+                  "${this._client_detail.lastname}, ${this._client_detail.name}",
               primaryColor: themeData.primaryColorDark,
               textColor: themeData.hintColor,
             ),
@@ -157,84 +162,10 @@ class _ClientDetailState extends State<ClientDetail>
               primaryColor: themeData.primaryColorDark,
               textColor: themeData.hintColor,
             ),
-            new Container(
-              margin: new EdgeInsets.symmetric(vertical: 32.0, horizontal: 92.0),
-              child: new RaisedButton(
-                elevation: 4.0,
-                shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-                textColor: themeData.cardColor,
-                color: themeData.primaryColor,
-                splashColor: themeData.canvasColor,
-                padding: new EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
-                child: new Row (
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    new Text('Estado de Cuenta'),
-                    new Icon(Icons.content_paste, size: 16.0)
-                  ],
-                ),
-                onPressed: () {
-                  Navigator.of(context).pushNamed('/credits');
-                },
-              ),
-            ),
+                new Padding(padding: new EdgeInsets.all(8.0))
           ])),
         ],
       ),
     );
   }
 }
-
-/*class _InfoItem extends StatelessWidget {
-  const _InfoItem(
-      {Key key,
-      this.icon,
-      this.primaryColor,
-      this.title,
-      this.text,
-      this.textColor})
-      : super(key: key);
-  final IconData icon;
-  final String title;
-  final Color primaryColor;
-  final String text;
-  final Color textColor;
-  @override
-  Widget build(BuildContext context) {
-    final ThemeData themeData = Theme.of(context);
-    return Container(
-      child: new Row(
-        children: <Widget>[
-          new Container(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: new Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                new Container(
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  width: 72.0,
-                  child: new Icon(icon, color: primaryColor),
-                ),
-                new Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    new Text(title,
-                        style: new TextStyle(
-                            color: primaryColor,
-                            fontSize: 17.0,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Poppins')),
-                    new Text(
-                      text,
-                      style: new TextStyle(color: textColor, fontSize: 15.0),
-                    )
-                  ],
-                )
-              ],
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}*/

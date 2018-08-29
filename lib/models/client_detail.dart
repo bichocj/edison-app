@@ -12,18 +12,6 @@ class ClientDetailModel {
   ClientDetailModel(this._id, this._name, this._lastname, this._dni, this._address,
       this._cellphone, this._phone, this._address_of_payment, this._reference);
 
-  /*ClientDetailModel.map(dynamic obj) {
-    this._id = obj["id"];
-    this._name = obj["name"];
-    this._lastname = obj["lastname"];
-    this._dni = obj["dni"];
-    this._address = obj["address"];
-    this._cellphone = obj["cellphone"];
-    this._phone = obj["phone"];
-    this._address_of_payment = obj["address_of_payment"];
-    this._reference = obj["reference"];
-  }*/
-
   int get id => _id;
   String get name => _name;
   String get lastname => _lastname;

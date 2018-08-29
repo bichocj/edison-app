@@ -1,22 +1,62 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutterapp/screens/client_credit_detail/client_credit_detail_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutterapp/screens/client_detail/client_detail_screen_presenter.dart';
+import 'package:flutterapp/screens/client_credit/client_credits_screen_presenter.dart';
+import 'package:flutterapp/models/client_credit.dart';
 import 'package:flutterapp/models/client_detail.dart';
 
 class ClientCredits extends StatefulWidget {
   static String tag = 'client_credits';
-  ClientCredits({Key key}) : super(key: key);
+  final ClientDetailModel client;
+  ClientCredits({Key key, this.client }) : super(key: key);
   @override
   _ClientCreditsState createState() => _ClientCreditsState();
 }
 
-class _ClientCreditsState extends State<ClientCredits> {
-  var client_basicInfo = {
-    "name": "Jorge",
-    "lastname": "Chavez Manrique",
-    "dni": "75446329",
-  };
+class _ClientCreditsState extends State<ClientCredits>
+implements ClientCreditsScreenContract{
+  List<ClientCreditModel> _credits;
+  bool _success;
+
+  ClientCreditsScreenPresenter _presenter;
+  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  SharedPreferences _sharedPreferences;
+
+  _fetchSessionAndNavigate() async {
+    _sharedPreferences = await _prefs;
+    String authToken = _sharedPreferences.getString('auth_token');
+    _presenter = new ClientCreditsScreenPresenter(this, authToken);
+    _presenter.requestClientCredit(widget.client.id);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _success = false;
+    _fetchSessionAndNavigate();
+  }
+
+  @override
+  void onClientCreditsSuccess(List<ClientCreditModel> client_credits) {
+    _credits = client_credits;
+    setState(() {
+      _success = true;
+    });
+  }
+
+  @override
+  void onClientCreditsError(String errorTxt) {
+    print("error detail");
+    print(errorTxt);
+  }
+
+  List<ListItem> _buildList() {
+    return _credits
+        .map((credit) => new ListItem(widget.client, credit, this._presenter))
+        .toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
@@ -38,9 +78,9 @@ class _ClientCreditsState extends State<ClientCredits> {
               height: _heightCard,
               background: themeData.cardColor,
               icon: Icons.chrome_reader_mode,
-              name: client_basicInfo["name"],
-              lastname: client_basicInfo["lastname"] + ',',
-              dni: client_basicInfo["dni"],
+              name: widget.client.name,
+              lastname: widget.client.lastname + ',',
+              dni: widget.client.dni,
             ),
             new Subtitle(
               text: "Estado de cuenta",
@@ -56,29 +96,15 @@ class _ClientCreditsState extends State<ClientCredits> {
                 borderRadius: new BorderRadius.circular(8.0),
               ),
               child: new Column(
-                children: <Widget>[
-                  new ListItem(
-                    text: 'Crédito Diario',
-                  ),
-                  new ListItem(
-                    text: 'Crédito Semanal',
-                  ),
-                  new ListItem(
-                    text: 'Crédito Paralelo',
-                  ),
-                  new ListItem(
-                    text: 'Crédito Quincenal',
-                  ),
-                  new ListItem(
-                    text: 'Crédito Mensual',
-                  ),
-                ],
+                children: _buildList()
               ),
             )
           ],
         )));
   }
 }
+
+
 
 class ProfileCard extends StatelessWidget {
   const ProfileCard(
@@ -202,21 +228,47 @@ class Subtitle extends StatelessWidget {
   }
 }
 
-
 class ListItem extends StatelessWidget {
-  const ListItem(
-      {Key key,
-        this.text,
-      })
-      : super(key: key);
-  final String text;
+  final ClientCreditModel _credit;
+  final ClientDetailModel _client;
+  final ClientCreditsScreenPresenter _presenter;
+  const ListItem (this._client, this._credit, this._presenter);
+
   @override
   Widget build(BuildContext context) {
+    String _creditName;
+    switch (this._credit.frequency) {
+      case  "D": {
+        _creditName = "Diario";
+      }
+      break;
+      case "P": {
+        _creditName = "Paralelo";
+      }
+      break;
+      case "S": {
+        _creditName = "Semanal";
+      }
+      break;
+      case "Q": {
+        _creditName = "Quincenal";
+      }
+      break;
+      case "M": {
+        _creditName = "Mensual";
+      }
+      break;
+    }
     return new ListTile(
-        title: new Text(text),
+        title: new Text('Crédito ${_creditName}'),
         trailing: const Icon(Icons.arrow_right),
         onTap: () {
-          Navigator.of(context).pushNamed('/creditDetail');
+          //Navigator.of(context).pushNamed('/quotes');
+          Navigator.push(
+              context,
+              new MaterialPageRoute(
+                  builder: (BuildContext context) =>
+                  new ClientCreditDetail()));
         }
     );
   }
