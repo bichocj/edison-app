@@ -56,18 +56,15 @@ class _SearchListState extends State<SearchList>
   _fetchSessionAndNavigate() async {
     _sharedPreferences = await _prefs;
     String authToken = _sharedPreferences.getString('auth_token');
-    print(authToken);
-    print(authToken);
     _presenter = new ClientListScreenPresenter(this, authToken);
-    _presenter.requestClientList("3");
+    _presenter.requestClientList(widget.zone);
   }
 
   @override
   void onClientListSuccess(List<Client> clients) {
-    print("success");
-    print(clients);
-    _list = clients;
+    print("sucessssssssss");
     setState(() {
+      _list = clients;
       _isSearching = false;
       _success = true;
     });

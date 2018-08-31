@@ -8,7 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class LoginScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
+
     return new LoginScreenState();
   }
 }
@@ -164,43 +164,9 @@ class LoginScreenState extends State<LoginScreen>
 
   @override
   void onLoginSuccess(String token) async {
-    // _showSnackBar(user.toString());
     setState(() => _isLoading = false);
-    // var db = new DatabaseHelper();
-    // await db.saveUser(user);
     _sharedPreferences.setString('auth_token', token);
-
     var authStateProvider = new AuthStateProvider();
     authStateProvider.notify(AuthState.LOGGED_IN);
-  }
-}
-
-class _CustomButton extends StatelessWidget {
-  const _CustomButton({Key key, this.icon, this.text, this.event})
-      : super(key: key);
-  final IconData icon;
-  final String text;
-  final Function event;
-  @override
-  Widget build(BuildContext context) {
-    final ThemeData themeData = Theme.of(context);
-    return new Container(
-      width: 150.0,
-      child: new RaisedButton(
-        shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-        textColor: themeData.cardColor,
-        color: themeData.primaryColor,
-        splashColor: themeData.canvasColor,
-        elevation: 4.0,
-        padding: new EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
-        child: new Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[new Text(text), new Icon(icon, size: 16.0)],
-        ),
-        onPressed: () {
-          event;
-        },
-      ),
-    );
   }
 }

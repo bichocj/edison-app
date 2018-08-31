@@ -1,21 +1,71 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutterapp/models/client_credit.dart';
+import 'package:flutterapp/models/client_detail.dart';
+import 'package:flutterapp/screens/quote_list/client_quotes_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutterapp/screens/client_list/client_list_screen_presenter.dart';
-import 'package:flutterapp/models/client.dart';
+import 'package:flutterapp/screens/custom_widgets/subtitle.dart';
 
 class ClientCreditDetail extends StatefulWidget {
-  static String tag = 'client_credit_detail';
+  static String tag = 'credit';
+  final Credit credit;
+  final ClientDetailModel client;
+  ClientCreditDetail({Key key, this.credit, this.client}) : super(key: key);
   @override
   _ClientCreditDetailState createState() => _ClientCreditDetailState();
 }
 
 class _ClientCreditDetailState extends State<ClientCreditDetail> {
-  var client_basicInfo = {
-    "name": "Jorge",
-    "lastname": "Chavez Manrique",
-    "dni": "75446329",
-  };
+  Credit _credit;
+  String _creditName;
+  String _rangeTime;
+  String _getCreditName(frequency){
+    switch (frequency) {
+      case "D" : {
+        setState(() {
+          _creditName = 'Crédito Diario';
+          _rangeTime = 'días';
+        });
+      }
+      break;
+      case "Paralelo" : {
+        setState(() {
+          _creditName = 'Crédito Paralelo';
+          _rangeTime = 'días';
+        });
+      }
+      break;
+      case "S" : {
+        setState(() {
+          _creditName = 'Crédito Semanal';
+          _rangeTime = 'semanas';
+        });
+      }
+      break;
+      case "Q" : {
+        setState(() {
+          _creditName = 'Crédito Quincenal';
+          _rangeTime = 'quincenas';
+        });
+      }
+      break;
+      case "M" : {
+        setState(() {
+          _creditName = 'Crédito Mensual';
+          _rangeTime = 'meses';
+        });
+      }
+      break;
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _credit = widget.credit;
+    _getCreditName(widget.credit.frequency);
+    print(widget.client.name);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +74,7 @@ class _ClientCreditDetailState extends State<ClientCreditDetail> {
     return new Scaffold(
       appBar: new AppBar(),
       body: new Container(
-        margin: new EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+        padding: new EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
         child: new CustomScrollView(
           slivers: <Widget>[
             new SliverList(
@@ -34,94 +84,51 @@ class _ClientCreditDetailState extends State<ClientCreditDetail> {
                 height: _heightCard,
                 background: themeData.cardColor,
                 icon: Icons.chrome_reader_mode,
-                name: client_basicInfo["name"],
-                lastname: client_basicInfo["lastname"] + ',',
-                dni: client_basicInfo["dni"],
+                name: widget.client.name,
+                lastname: widget.client.lastname + ',',
+                dni: widget.client.dni,
               ),
               new Subtitle(
-                text: "Crédito Diario",
+                text: this._creditName,
                 background: themeData.primaryColor,
                 color: themeData.cardColor,
               ),
-              new _InfoItem(
+              new InfoItem(
                 icon: Icons.monetization_on,
                 title: 'Monto del crédito',
-                text: '1600.00',
+                text: this._credit.amount,
                 primaryColor: themeData.primaryColorDark,
               ),
-              new _InfoItem(
+              new InfoItem(
                 icon: Icons.date_range,
                 title: 'Fecha del crédito',
-                text: '04/08/18',
+                text: this._credit.start_at,
                 primaryColor: themeData.primaryColorDark,
               ),
-              new _InfoItem(
+              new InfoItem(
                 icon: Icons.timer,
                 title: 'Tiempo del crédito',
-                text: '30 días',
+                text: '${this._credit.time} ${this._rangeTime}',
                 primaryColor: themeData.primaryColorDark,
               ),
-              new _InfoItem(
+              new InfoItem(
                 icon: Icons.call_missed_outgoing,
                 title: 'Taza efectiva mensual',
-                text: '0.06',
+                text: '${this._credit.rate}%',
                 primaryColor: themeData.primaryColorDark,
               ),
-              new _InfoItem(
-                icon: Icons.today,
-                title: 'Fecha de Vencimiento',
-                text: '4/08/2018',
-                primaryColor: themeData.primaryColorDark,
-              ),
-              new _InfoItem(
-                icon: Icons.account_balance_wallet,
-                title: 'Cuota',
-                text: '40.00',
-                primaryColor: themeData.primaryColorDark,
-              ),
-              new _InfoItem(
+              new InfoItem(
                 icon: Icons.toc,
                 title: 'Monto pagado',
-                text: "210.0",
+                text: '${this._credit.quotes_quantity}',
                 primaryColor: themeData.primaryColorDark,
               ),
-              new _InfoItem(
+              new InfoItem(
                 icon: Icons.confirmation_number,
                 title: 'Nro. de cuotas pagadas',
-                text: '5 cuotas',
+                text: '${this._credit.quotes_payed} cuotas',
                 primaryColor: themeData.primaryColorDark,
               ),
-              new _InfoItem(
-                icon: Icons.adjust,
-                title: 'Día de cobro',
-                text: '09/09/2018',
-                primaryColor: themeData.primaryColorDark,
-              ),
-              new _InfoItem(
-                icon: Icons.call_missed,
-                title: 'Días de atraso',
-                text: '0 días',
-                primaryColor: themeData.primaryColorDark,
-              ),
-              new _InfoItem(
-                icon: Icons.details,
-                title: 'Mora',
-                text: '0 soles',
-                primaryColor: themeData.primaryColorDark,
-              ),
-              new Container(
-                  margin: new EdgeInsets.symmetric(
-                      vertical: 16.0, horizontal: 72.0),
-                  child: new TextFormField(
-                    decoration: new InputDecoration(
-                        labelText: "Monto Cobrado",
-                        icon: new Icon(Icons.monetization_on, color: themeData.primaryColor,),
-                      labelStyle: new TextStyle(
-                        color: themeData.primaryColor
-                      )
-                    ),
-                  )),
-
               new Container(
                 margin:
                     new EdgeInsets.symmetric(vertical: 32.0, horizontal: 72.0),
@@ -129,14 +136,20 @@ class _ClientCreditDetailState extends State<ClientCreditDetail> {
                   padding:
                       new EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
                   child: new Text(
-                    'Reporte de Cuenta',
+                    'Ver cuotas',
                     style: new TextStyle(color: themeData.cardColor),
                   ),
                   color: themeData.accentColor,
                   elevation: 4.0,
                   splashColor: themeData.buttonColor,
                   onPressed: () {
-                    Navigator.of(context).pushNamed('/accountReport');
+                    Navigator.push(
+                        context,
+                        new MaterialPageRoute(
+                            builder: (BuildContext context) => new QuotesList(
+                              creditId: this._credit.id,
+                              client: this.widget.client,
+                            )));
                   },
                 ),
               ),
@@ -233,45 +246,8 @@ class ProfileCard extends StatelessWidget {
   }
 }
 
-class Subtitle extends StatelessWidget {
-  const Subtitle({
-    Key key,
-    this.text,
-    this.background,
-    this.color,
-  }) : super(key: key);
-  final String text;
-  final Color background;
-  final Color color;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: new EdgeInsets.only(top: 20.0, bottom: 0.0),
-      padding: new EdgeInsets.symmetric(vertical: 10.0),
-      decoration: new BoxDecoration(
-        color: background,
-        shape: BoxShape.rectangle,
-        borderRadius: new BorderRadius.only(
-            topLeft: Radius.circular(8.0), topRight: Radius.circular(8.0)),
-      ),
-      child: new Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          new Text(
-            text,
-            style: new TextStyle(
-              color: color,
-              fontWeight: FontWeight.bold,
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class _InfoItem extends StatelessWidget {
-  const _InfoItem(
+class InfoItem extends StatelessWidget {
+  const InfoItem(
       {Key key,
       this.icon,
       this.primaryColor,

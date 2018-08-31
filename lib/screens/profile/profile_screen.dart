@@ -45,7 +45,6 @@ class _ProfileState extends State<ProfileScreen>
       _success = true;
       _profile = profile;
     });
-    print(this._profile.profile["zone_debt"]);
     Navigator.push(
         context,
         new MaterialPageRoute(

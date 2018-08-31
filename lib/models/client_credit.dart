@@ -1,17 +1,17 @@
-class ClientCreditModel {
+class Credit {
   int _id;
   String _frequency;
   int _time;
-  int _rate;
+  dynamic _rate;
   String _amount;
   String _start_at;
   int _client;
-  int _quotes_quantity;
-  int _quotes_payed;
+  dynamic _quotes_quantity;
+  dynamic _quotes_payed;
 
-  ClientCreditModel(this._id, this._frequency, this._time, this._rate, this._amount, this._start_at, this._client, this._quotes_quantity, this._quotes_payed);
+  Credit(this._id, this._frequency, this._time, this._rate, this._amount, this._start_at, this._client, this._quotes_quantity, this._quotes_payed);
 
-  ClientCreditModel.map(dynamic obj) {
+  Credit.map(dynamic obj) {
     this._id = obj["id"];
     this._frequency = obj["frequency"];
     this._time = obj["time"];
@@ -26,12 +26,12 @@ class ClientCreditModel {
   int get id => _id;
   String get frequency => _frequency;
   int get time => _time;
-  int get rate => _rate;
+  dynamic get rate => _rate;
   String get amount => _amount;
   String get start_at => _start_at;
   int get client => _client;
-  int get quotes_quantity => _quotes_quantity;
-  int get quotes_payed => _quotes_payed;
+  dynamic get quotes_quantity => _quotes_quantity;
+  dynamic get quotes_payed => _quotes_payed;
 
   Map<String, dynamic> toMap() {
     var map = new Map<String, dynamic>();

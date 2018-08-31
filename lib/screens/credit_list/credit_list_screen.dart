@@ -1,33 +1,33 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutterapp/screens/client_credit_detail/client_credit_detail_screen.dart';
+import 'package:flutterapp/screens/credit_detail/credit_detail_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutterapp/screens/client_credit/client_credits_screen_presenter.dart';
+import 'package:flutterapp/screens/credit_list/credit_list_screen_presenter.dart';
 import 'package:flutterapp/models/client_credit.dart';
 import 'package:flutterapp/models/client_detail.dart';
 
-class ClientCredits extends StatefulWidget {
+class CreditList extends StatefulWidget {
   static String tag = 'client_credits';
   final ClientDetailModel client;
-  ClientCredits({Key key, this.client }) : super(key: key);
+  CreditList({Key key, this.client}) : super(key: key);
   @override
-  _ClientCreditsState createState() => _ClientCreditsState();
+  _CreditListState createState() => _CreditListState();
 }
 
-class _ClientCreditsState extends State<ClientCredits>
-implements ClientCreditsScreenContract{
-  List<ClientCreditModel> _credits;
+class _CreditListState extends State<CreditList>
+    implements CreditListScreenContract {
+  List<Credit> _credits;
   bool _success;
 
-  ClientCreditsScreenPresenter _presenter;
+  CreditListScreenPresenter _presenter;
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   SharedPreferences _sharedPreferences;
 
   _fetchSessionAndNavigate() async {
     _sharedPreferences = await _prefs;
     String authToken = _sharedPreferences.getString('auth_token');
-    _presenter = new ClientCreditsScreenPresenter(this, authToken);
-    _presenter.requestClientCredit(widget.client.id);
+    _presenter = new CreditListScreenPresenter(this, authToken);
+    _presenter.requestCreditList(widget.client.id);
   }
 
   @override
@@ -38,10 +38,10 @@ implements ClientCreditsScreenContract{
   }
 
   @override
-  void onClientCreditsSuccess(List<ClientCreditModel> client_credits) {
-    _credits = client_credits;
+  void onClientCreditsSuccess(List<Credit> client_credits) {
     setState(() {
       _success = true;
+      _credits = client_credits;
     });
   }
 
@@ -66,45 +66,48 @@ implements ClientCreditsScreenContract{
           title: new Text('Estado de Cuenta'),
           centerTitle: true,
         ),
-        body: new Container(
-            margin: const EdgeInsets.symmetric(
-              vertical: 16.0,
-              horizontal: 16.0,
-            ),
-            child: new Column(
-          children: <Widget>[
-            new ProfileCard(
-              image: 'assets/img/profile.png',
-              height: _heightCard,
-              background: themeData.cardColor,
-              icon: Icons.chrome_reader_mode,
-              name: widget.client.name,
-              lastname: widget.client.lastname + ',',
-              dni: widget.client.dni,
-            ),
-            new Subtitle(
-              text: "Estado de cuenta",
-              background: themeData.primaryColor,
-              color: themeData.cardColor,
-            ),
+        body: RefreshIndicator(
+            child:
             new Container(
-              margin: new EdgeInsets.only(top: 00.0, bottom: 20.0),
-              padding: new EdgeInsets.symmetric(vertical: 10.0),
-              decoration: new BoxDecoration(
-                color: themeData.cardColor,
-                shape: BoxShape.rectangle,
-                borderRadius: new BorderRadius.circular(8.0),
-              ),
-              child: new Column(
-                children: _buildList()
-              ),
-            )
-          ],
-        )));
+                margin: const EdgeInsets.symmetric(
+                  vertical: 16.0,
+                  horizontal: 16.0,
+                ),
+                child: new Column(
+                  children: <Widget>[
+                    new ProfileCard(
+                      image: 'assets/img/profile.png',
+                      height: _heightCard,
+                      background: themeData.cardColor,
+                      icon: Icons.chrome_reader_mode,
+                      name: widget.client.name,
+                      lastname: widget.client.lastname + ',',
+                      dni: widget.client.dni,
+                    ),
+                    new Subtitle(
+                      text: "Estado de cuenta",
+                      background: themeData.primaryColor,
+                      color: themeData.cardColor,
+                    ),
+                    new Container(
+                      margin: new EdgeInsets.only(top: 00.0, bottom: 20.0),
+                      padding: new EdgeInsets.symmetric(vertical: 10.0),
+                      decoration: new BoxDecoration(
+                        color: themeData.cardColor,
+                        shape: BoxShape.rectangle,
+                        borderRadius: new BorderRadius.circular(8.0),
+                      ),
+                      child: _success ? new Column(children: _buildList()) : new CircularProgressIndicator(),
+                    )
+                  ],
+                )),
+            onRefresh: (){
+              print("refresh");
+            }
+        )
+    );
   }
 }
-
-
 
 class ProfileCard extends StatelessWidget {
   const ProfileCard(
@@ -192,13 +195,12 @@ class ProfileCard extends StatelessWidget {
 }
 
 class Subtitle extends StatelessWidget {
-  const Subtitle(
-      {Key key,
-        this.text,
-        this.background,
-        this.color,
-        })
-      : super(key: key);
+  const Subtitle({
+    Key key,
+    this.text,
+    this.background,
+    this.color,
+  }) : super(key: key);
   final String text;
   final Color background;
   final Color color;
@@ -210,7 +212,8 @@ class Subtitle extends StatelessWidget {
       decoration: new BoxDecoration(
         color: background,
         shape: BoxShape.rectangle,
-        borderRadius: new BorderRadius.only(topLeft: Radius.circular(8.0), topRight: Radius.circular(8.0)),
+        borderRadius: new BorderRadius.only(
+            topLeft: Radius.circular(8.0), topRight: Radius.circular(8.0)),
       ),
       child: new Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -229,48 +232,52 @@ class Subtitle extends StatelessWidget {
 }
 
 class ListItem extends StatelessWidget {
-  final ClientCreditModel _credit;
+  final Credit _credit;
   final ClientDetailModel _client;
-  final ClientCreditsScreenPresenter _presenter;
-  const ListItem (this._client, this._credit, this._presenter);
+  final CreditListScreenPresenter _presenter;
+  const ListItem(this._client, this._credit, this._presenter);
 
   @override
   Widget build(BuildContext context) {
     String _creditName;
     switch (this._credit.frequency) {
-      case  "D": {
-        _creditName = "Diario";
-      }
-      break;
-      case "P": {
-        _creditName = "Paralelo";
-      }
-      break;
-      case "S": {
-        _creditName = "Semanal";
-      }
-      break;
-      case "Q": {
-        _creditName = "Quincenal";
-      }
-      break;
-      case "M": {
-        _creditName = "Mensual";
-      }
-      break;
+      case "D":
+        {
+          _creditName = "Diario";
+        }
+        break;
+      case "P":
+        {
+          _creditName = "Paralelo";
+        }
+        break;
+      case "S":
+        {
+          _creditName = "Semanal";
+        }
+        break;
+      case "Q":
+        {
+          _creditName = "Quincenal";
+        }
+        break;
+      case "M":
+        {
+          _creditName = "Mensual";
+        }
+        break;
     }
     return new ListTile(
         title: new Text('Crédito ${_creditName}'),
         trailing: const Icon(Icons.arrow_right),
         onTap: () {
-          //Navigator.of(context).pushNamed('/quotes');
           Navigator.push(
               context,
               new MaterialPageRoute(
-                  builder: (BuildContext context) =>
-                  new ClientCreditDetail()));
-        }
-    );
+                  builder: (BuildContext context) => new ClientCreditDetail(
+                        credit: this._credit,
+                        client: this._client,
+                      )));
+        });
   }
 }
-
