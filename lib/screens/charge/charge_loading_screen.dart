@@ -4,6 +4,8 @@ import 'package:flutterapp/models/quote.dart';
 import 'package:flutterapp/screens/custom_widgets/charge_info.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutterapp/screens/charge/charge_loading_screen_presenter.dart';
+import 'package:flutterapp/screens/charge/charge_success_screen.dart';
+import 'package:flutterapp/screens/charge/charge_fail_screen.dart';
 import 'dart:async';
 
 class ChargeLoading extends StatefulWidget {
@@ -12,7 +14,8 @@ class ChargeLoading extends StatefulWidget {
   final ClientDetailModel client;
   final dynamic charge;
   final dynamic arrear;
-  ChargeLoading({Key key, this.quote, this.client, this.charge, this.arrear})
+  final dynamic totalCharge;
+  ChargeLoading({Key key, this.quote, this.client, this.charge, this.arrear, this.totalCharge})
       : super(key: key);
   @override
   _ChargeLoadingState createState() => _ChargeLoadingState();
@@ -43,17 +46,28 @@ class _ChargeLoadingState extends State<ChargeLoading>
 
   @override
   void onChargeSuccess(Map charge) {
-    print("sucess");
-    print(charge);
-    setState(() {
-      _success = true;
-    });
+    Navigator.push(
+        context,
+        new MaterialPageRoute(
+            builder: (BuildContext context) =>
+            new ChargeSuccess(
+              charge: double.parse(widget.totalCharge).toString(),
+              quote: widget.quote,
+              client: widget.client
+            )));
   }
 
   @override
   void onChargeError(String errorTxt) {
-    print("error detail");
-    print(errorTxt);
+    Navigator.push(
+        context,
+        new MaterialPageRoute(
+            builder: (BuildContext context) =>
+            new ChargeFail(
+                charge: double.parse(widget.totalCharge).toString(),
+                quote: widget.quote,
+                client: widget.client
+            )));
   }
 
   @override
@@ -97,12 +111,8 @@ class _ChargeLoadingState extends State<ChargeLoading>
                 text: widget.client.dni,
               ),
               new ChargeInfo(
-                icon: Icons.content_paste,
-                text: "Credito diario",
-              ),
-              new ChargeInfo(
                 icon: Icons.monetization_on,
-                text: widget.charge.toString(),
+                text: "S/. ${double.parse(widget.totalCharge).toString()}",
               ),
             ],
           ),

@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'package:http/http.dart' as http;
 import 'package:flutterapp/utils/network_util.dart';
 import 'package:flutterapp/models/user.dart';
 import 'package:flutterapp/models/client.dart';
@@ -13,6 +13,7 @@ import 'dart:convert';
 class RestDatasource {
   NetworkUtil _netUtil = new NetworkUtil();
   static final BASE_URL = "https://edison-prod.herokuapp.com";
+
   //static final BASE_URL = "http://172.20.10.2:8000";
   static final LOGIN_URL = BASE_URL + "/accounts/api/login/";
   static final PROFILE_URL = BASE_URL + "/accounts/api/users/me/";
@@ -66,7 +67,10 @@ class RestDatasource {
           res["cellphone"],
           res["phone"],
           res["address_of_payment"],
-          res["reference"]);
+          res["reference"],
+          res["zone_from"],
+        res["district"]
+      );
     });
   }
 
@@ -99,19 +103,28 @@ class RestDatasource {
     });
   }
 
-  Future<Map> postCharge(
-      String token, dynamic charge, int quoteId, dynamic arrears) {
-    print("Llega a url");
-    return _netUtil.post(FEES_URL,
-        headers: {
-      "Authorization": 'token ${token}',
-    }, body: {
-      "quote": quoteId,
-      "amount_received": charge,
-      "arrears": arrears
+  Future<Map> postCharge(String token, dynamic charge, dynamic quoteId,
+      dynamic arrears) {
+    final JsonDecoder _decoder = new JsonDecoder();
+    return http.post(FEES_URL, body: {
+      "arrears": arrears.toString(),
+      "quote": quoteId.toString(),
+      "amount_received": charge.toString()
+    }, headers: {
+      'Authorization': 'token ${token}'
+    }).then((http.Response response) {
+      final String res = response.body;
+      final int statusCode = response.statusCode;
+
+      if (statusCode < 200 || statusCode > 400 || json == null) {
+        throw new Exception("Error while fetching data");
+      }
+      return _decoder.convert(res);
     }).then((res) {
+      print("este es el res");
       print(res);
       return res;
     });
   }
+
 }

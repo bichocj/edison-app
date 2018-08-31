@@ -16,7 +16,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileState extends State<ProfileScreen>
-    implements ProfileScreenContract  {
+    implements ProfileScreenContract {
   Profile _profile;
   bool _success;
 
@@ -31,12 +31,14 @@ class _ProfileState extends State<ProfileScreen>
     _presenter = new ProfileScreenPresenter(this, authToken);
     _presenter.requestProfile();
   }
+
   @override
   void initState() {
     super.initState();
     _success = false;
     _fetchSessionAndNavigate();
   }
+
   @override
   void onProfileSuccess(Profile profile) {
     print("success");
@@ -45,17 +47,18 @@ class _ProfileState extends State<ProfileScreen>
       _success = true;
       _profile = profile;
     });
-    Navigator.push(
-        context,
-        new MaterialPageRoute(
-            builder: (BuildContext context) =>
-            new SearchList(zone: '${this._profile.profile["zone_debt"]}')));
+    Navigator.of(context).pushReplacement(new MaterialPageRoute(
+        settings: const RouteSettings(name: '/home'),
+        builder: (context) => new SearchList(
+            zone: '${this._profile.profile["zone_debt"]}')));
   }
+
   @override
   void onProfileError(String errorTxt) {
     print("error detail");
     print(errorTxt);
   }
+
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
@@ -75,12 +78,13 @@ class _ProfileState extends State<ProfileScreen>
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   new Text("Bienvenido",
-                      style: new TextStyle(color: themeData.primaryColor,
-                      fontSize: 50.0, fontWeight: FontWeight.w800)),
-                  new Text("Estamos cargando tus rutas", style: new TextStyle(
-                    color: themeData.primaryColor,
-                    fontSize: 15.0
-                  )),
+                      style: new TextStyle(
+                          color: themeData.primaryColor,
+                          fontSize: 50.0,
+                          fontWeight: FontWeight.w800)),
+                  new Text("Estamos cargando tus rutas",
+                      style: new TextStyle(
+                          color: themeData.primaryColor, fontSize: 15.0)),
                   new Container(
                     height: 100.0,
                   ),

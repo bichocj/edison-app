@@ -62,7 +62,6 @@ class _SearchListState extends State<SearchList>
 
   @override
   void onClientListSuccess(List<Client> clients) {
-    print("sucessssssssss");
     setState(() {
       _list = clients;
       _isSearching = false;
@@ -81,6 +80,9 @@ class _SearchListState extends State<SearchList>
     _isSearching = false;
     _success = false;
     _list = [];
+    print("set state aqui");
+    print(widget.zone);
+    _fetchSessionAndNavigate();
   }
 
   @override
@@ -97,7 +99,7 @@ class _SearchListState extends State<SearchList>
           : new Center(
               child: CircularProgressIndicator(),
             ),
-      floatingActionButton: new FloatingActionButton(
+      /*floatingActionButton: new FloatingActionButton(
         onPressed: () {
           Navigator.of(context).pushNamed('/other_list');
         },
@@ -106,7 +108,7 @@ class _SearchListState extends State<SearchList>
           Icons.add_to_photos,
           semanticLabel: 'Add',
         ),
-      ),
+      ),*/
     );
   }
 
@@ -198,10 +200,9 @@ class ChildItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new ListTile(
-        title: new Text('${this._client.name} ${this._client.lastname}'),
+        title: new Text('${this._client.lastname}, ${this._client.name}'),
         trailing: const Icon(Icons.arrow_right),
         onTap: () {
-          //Navigator.of(context).pushNamed('/detail');
           Navigator.push(
               context,
               new MaterialPageRoute(

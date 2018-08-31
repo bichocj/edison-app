@@ -1,15 +1,15 @@
 class Quote {
   int _id;
-  int _credit;
+  dynamic _credit;
   String _charge_at;
   String _capital;
   String _interest;
   String _amount;
   bool _has_complete;
-  double _amount_debt;
+  dynamic _amount_debt;
   int _days_late;
   List _fees;
-  double _current_arrear;
+  dynamic _current_arrear;
 
   Quote(this._id, this._credit, this._charge_at, this._capital, this._interest, this._amount, this._has_complete, this._amount_debt, this._days_late, this._fees, this._current_arrear);
 
@@ -28,16 +28,16 @@ class Quote {
   }
 
   int get id => _id;
-  int get credit => _credit;
+  dynamic get credit => _credit;
   String get charge_at => _charge_at;
   String get capital => _capital;
   String get interest => _interest;
   String get amount => _amount;
   bool get has_complete => _has_complete;
-  double get amount_debt => _amount_debt;
+  dynamic get amount_debt => _amount_debt;
   int get days_late => _days_late;
   List get fees => _fees;
-  double get current_arrear => _current_arrear;
+  dynamic get current_arrear => _current_arrear;
 
 
   Map<String, dynamic> toMap() {

@@ -96,7 +96,7 @@ class _ClientCreditDetailState extends State<ClientCreditDetail> {
               new InfoItem(
                 icon: Icons.monetization_on,
                 title: 'Monto del crédito',
-                text: this._credit.amount,
+                text: 'S/.${this._credit.amount_total}',
                 primaryColor: themeData.primaryColorDark,
               ),
               new InfoItem(
@@ -113,35 +113,39 @@ class _ClientCreditDetailState extends State<ClientCreditDetail> {
               ),
               new InfoItem(
                 icon: Icons.call_missed_outgoing,
-                title: 'Taza efectiva mensual',
+                title: 'Taza efectiva',
                 text: '${this._credit.rate}%',
                 primaryColor: themeData.primaryColorDark,
               ),
               new InfoItem(
                 icon: Icons.toc,
                 title: 'Monto pagado',
-                text: '${this._credit.quotes_quantity}',
+                text: this._credit.quotes_payed != null ? 'S/. ${this._credit.quotes_payed.toStringAsFixed(2)}' : 'S/. 0.00' ,
                 primaryColor: themeData.primaryColorDark,
               ),
               new InfoItem(
                 icon: Icons.confirmation_number,
                 title: 'Nro. de cuotas pagadas',
-                text: '${this._credit.quotes_payed} cuotas',
+                text: '${this._credit.quotes_quantity} cuotas',
                 primaryColor: themeData.primaryColorDark,
               ),
               new Container(
-                margin:
-                    new EdgeInsets.symmetric(vertical: 32.0, horizontal: 72.0),
+                margin: new EdgeInsets.symmetric(horizontal: 72.0, vertical: 16.0),
                 child: new RaisedButton(
-                  padding:
-                      new EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
-                  child: new Text(
-                    'Ver cuotas',
-                    style: new TextStyle(color: themeData.cardColor),
-                  ),
-                  color: themeData.accentColor,
+                  shape: new RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(30.0)),
+                  textColor: themeData.cardColor,
+                  color: themeData.primaryColor,
+                  splashColor: themeData.canvasColor,
                   elevation: 4.0,
-                  splashColor: themeData.buttonColor,
+                  padding: new EdgeInsets.symmetric(
+                      vertical: 16.0, horizontal: 16.0),
+                  child: new Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      new Text('Ver Cuotas'),
+                    ],
+                  ),
                   onPressed: () {
                     Navigator.push(
                         context,
@@ -152,7 +156,7 @@ class _ClientCreditDetailState extends State<ClientCreditDetail> {
                             )));
                   },
                 ),
-              ),
+              )
             ])),
           ],
         ),

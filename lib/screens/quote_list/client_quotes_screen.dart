@@ -85,6 +85,16 @@ class QuoteTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
+    Color _quoteColor;
+    if(this._quote.has_complete) {
+      _quoteColor = Colors.grey;
+    } else {
+      if(this._quote.days_late == 0) {
+        _quoteColor = Colors.green;
+      } else {
+        _quoteColor = Colors.red;
+      }
+    }
     return new Container(
       margin: new EdgeInsets.all(5.0),
       decoration: new BoxDecoration(
@@ -101,13 +111,13 @@ class QuoteTitle extends StatelessWidget {
       child: new ListTile(
         leading: new CircleAvatar(
           backgroundColor:
-              this._quote.has_complete ? Colors.green : Colors.red,
+              _quoteColor
         ),
         title: new Text(
           this._quote.charge_at,
           style: new TextStyle(fontWeight: FontWeight.bold),
         ),
-        subtitle: new Text(this._quote.amount_debt.toString()),
+        subtitle: new Text("S/. ${this._quote.amount_debt.toStringAsFixed(2)}"),
         trailing: new Icon(Icons.arrow_right),
         onTap: () {
           Navigator.push(

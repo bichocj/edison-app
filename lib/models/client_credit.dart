@@ -8,8 +8,9 @@ class Credit {
   int _client;
   dynamic _quotes_quantity;
   dynamic _quotes_payed;
+  String _amount_total;
 
-  Credit(this._id, this._frequency, this._time, this._rate, this._amount, this._start_at, this._client, this._quotes_quantity, this._quotes_payed);
+  Credit(this._id, this._frequency, this._time, this._rate, this._amount, this._start_at, this._client, this._quotes_quantity, this._quotes_payed, this._amount_total);
 
   Credit.map(dynamic obj) {
     this._id = obj["id"];
@@ -21,6 +22,7 @@ class Credit {
     this._client = obj["client"];
     this._quotes_quantity = obj["quotes_quantity"];
     this._quotes_payed = obj["quotes_payed"];
+    this._amount_total = obj["amount_total"];
   }
 
   int get id => _id;
@@ -32,6 +34,7 @@ class Credit {
   int get client => _client;
   dynamic get quotes_quantity => _quotes_quantity;
   dynamic get quotes_payed => _quotes_payed;
+  String get amount_total => _amount_total;
 
   Map<String, dynamic> toMap() {
     var map = new Map<String, dynamic>();
@@ -44,6 +47,7 @@ class Credit {
     map["client"] = _client;
     map["quotes_quantity"] = _quotes_quantity;
     map["quotes_payed"] = _quotes_payed;
+    map["amount_total"] = _amount_total;
     return map;
   }
 }

@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutterapp/screens/custom_widgets/charge_info.dart';
+import 'package:flutterapp/models/client_detail.dart';
+import 'package:flutterapp/models/quote.dart';
 
 class ChargeFail extends StatelessWidget {
+  final String charge;
+  final Quote quote;
+  final ClientDetailModel client;
+  ChargeFail({Key key, this.charge, this.quote, this.client}):super(key:key);
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
@@ -55,18 +61,17 @@ class ChargeFail extends StatelessWidget {
                       ),
                     ],
                   )),
-              new ChargeInfo(icon: Icons.person, text: "Nombre sy apellidos"),
               new ChargeInfo(
-                icon: Icons.chrome_reader_mode,
-                text: "1991919191",
+                  icon: Icons.person,
+                  text: "${this.client.lastname}, ${this.client.name}"
               ),
               new ChargeInfo(
-                icon: Icons.content_paste,
-                text: "Credito diario",
+                icon: Icons.chrome_reader_mode,
+                text: this.client.dni,
               ),
               new ChargeInfo(
                 icon: Icons.monetization_on,
-                text: "Monto Abonado",
+                text: 'S/. ${this.charge}'
               ),
             ],
           ),

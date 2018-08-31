@@ -14,7 +14,7 @@ class ChargeScreenPresenter {
 
   requestCharge(charge, quoteId, arrears) {
     try{
-      api.postCharge(this.authToken, charge, quoteId, arrears).then((Map charge ) {
+      api.postCharge(this.authToken, charge, quoteId, arrears).then((dynamic charge ) {
         _view.onChargeSuccess(charge);
       }).catchError((handleError) => (
           _view.onChargeError(handleError.message)

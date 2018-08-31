@@ -22,15 +22,15 @@ class _ChargeState extends State<Charge> {
     if (form.validate()) {
       form.save();
       final _sendCharge = double.parse(_charge) - widget.quote.current_arrear;
-      Navigator.push(
-          context,
-          new MaterialPageRoute(
-              builder: (BuildContext context) => new ChargeLoading(
-                    quote: widget.quote,
-                    client: widget.client,
-                    charge: _sendCharge,
-                    arrear: widget.quote.current_arrear,
-                  )));
+      Navigator.of(context).pushReplacement(new MaterialPageRoute(
+          settings: const RouteSettings(name: '/chargeLoading'),
+          builder: (context) => new ChargeLoading(
+            quote: widget.quote,
+            client: widget.client,
+            charge: _sendCharge,
+            arrear: widget.quote.current_arrear,
+            totalCharge: _charge
+          )));
     }
   }
 

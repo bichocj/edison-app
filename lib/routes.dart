@@ -3,6 +3,7 @@ import 'package:flutterapp/screens/client_list/client_list_screen.dart';
 import 'package:flutterapp/screens/client_detail/client_detail_screen.dart';
 import 'package:flutterapp/screens/credit_list/credit_list_screen.dart';
 import 'package:flutterapp/screens/credit_detail/credit_detail_screen.dart';
+import 'package:flutterapp/screens/quote_detail/quote_detail_screen.dart';
 import 'package:flutterapp/screens/total_charge/total_charge_screen.dart';
 import 'package:flutterapp/screens/login/login_screen.dart';
 import 'package:flutterapp/screens/profile/profile_screen.dart';
@@ -21,7 +22,7 @@ final routes = {
   '/accountReport':       (BuildContext context) => new AccountReport(),
   '/other_list':     (BuildContext context) => new OtherLists(),
   '/quotes':     (BuildContext context) => new QuotesList(),
-  '/quoteDetail':     (BuildContext context) => new QuotesList(),
+  '/quoteDetail':     (BuildContext context) => new QuoteDetail(),
   '/chargeLoading': (BuildContext context) => new ChargeLoading(),
   '/' :          (BuildContext context) => new SplashScreen(),
 };

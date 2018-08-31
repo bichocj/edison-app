@@ -102,7 +102,7 @@ class _QuoteDetailState extends State<QuoteDetail> {
                           shape: new RoundedRectangleBorder(
                               borderRadius: new BorderRadius.circular(30.0)),
                           textColor: themeData.cardColor,
-                          color: themeData.primaryColor,
+                          color: double.parse(this._total) > 0 ? themeData.primaryColor : Color.fromRGBO(210, 210, 210, 1.0),
                           splashColor: themeData.canvasColor,
                           elevation: 4.0,
                           padding: new EdgeInsets.symmetric(
@@ -114,7 +114,11 @@ class _QuoteDetailState extends State<QuoteDetail> {
                             ],
                           ),
                           onPressed: () {
-                            _navigate();
+                            if (double.parse(this._total) > 0) {
+                              _navigate();
+                            } else {
+                             return null;
+                            }
                           },
                         ),
                       )
@@ -125,14 +129,14 @@ class _QuoteDetailState extends State<QuoteDetail> {
                   icon: Icons.monetization_on,
                   primaryColor: Colors.indigo,
                   title: 'Deuda',
-                  text: this._quote.amount_debt.toString(),
+                  text: 'S/. ${this._quote.amount_debt.toStringAsFixed(2)}',
                   textColor: Colors.black87,
                 ),
                 new InfoItem(
                   icon: Icons.details,
                   primaryColor: Colors.indigo,
                   title: 'Mora',
-                  text: this._quote.current_arrear.toString(),
+                  text: "S/. ${this._quote.current_arrear.toStringAsFixed(2)}",
                   textColor: Colors.black87,
                 ),
                 new Divider(),
@@ -147,29 +151,29 @@ class _QuoteDetailState extends State<QuoteDetail> {
                   icon: Icons.account_balance,
                   primaryColor: Colors.indigo,
                   title: 'Capital',
-                  text: this._quote.capital,
+                  text: "S/. ${this._quote.capital}",
                   textColor: Colors.black87,
                 ),
                 new InfoItem(
                   icon: Icons.call_missed_outgoing,
                   primaryColor: Colors.indigo,
                   title: 'Interés',
-                  text: this._quote.interest,
+                  text: 'S/. ${this._quote.interest}',
                   textColor: Colors.black87,
                 ),
                 new InfoItem(
                   icon: Icons.monetization_on,
                   primaryColor: Colors.indigo,
                   title: 'Total de Cuota',
-                  text: this._quote.amount,
+                  text: "S/. ${this._quote.amount}",
                   textColor: Colors.black87,
                 ),
                 new Divider(),
                 new InfoItem(
                   icon: Icons.today,
                   primaryColor: Colors.indigo,
-                  title: 'Días de atraso',
-                  text: this._quote.days_late.toString(),
+                  title: 'Día(s) de atraso',
+                  text: '${this._quote.days_late.toString()} día(s)',
                   textColor: Colors.black87,
                 ),
                 new Divider()
