@@ -12,7 +12,7 @@ class NetworkUtil {
   final JsonDecoder _decoder = new JsonDecoder();
 
   Future<dynamic> get(String url, String token) {
-    print('whith $token');
+    print('TOKEN network $token');
 
     return http.get(url, headers: {'Authorization': "token $token"}).then((http.Response response) {
       final String res = response.body;

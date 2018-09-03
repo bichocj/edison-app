@@ -1,4 +1,5 @@
 class User {
+  int _id;
   String _username;
   String _password;
   User(this._username, this._password);
