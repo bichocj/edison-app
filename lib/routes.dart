@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutterapp/screens/charge/charge_fail_screen.dart';
+import 'package:flutterapp/screens/charge/charge_success_screen.dart';
 import 'package:flutterapp/screens/client_list/client_list_screen.dart';
 import 'package:flutterapp/screens/client_detail/client_detail_screen.dart';
 import 'package:flutterapp/screens/credit_list/credit_list_screen.dart';
@@ -24,5 +26,7 @@ final routes = {
   '/quotes':     (BuildContext context) => new QuotesList(),
   '/quoteDetail':     (BuildContext context) => new QuoteDetail(),
   '/chargeLoading': (BuildContext context) => new ChargeLoading(),
+  '/chargeSuccess': (BuildContext context) => new ChargeSuccess(),
+  '/chargeFail': (BuildContext context) => new ChargeFail(),
   '/' :          (BuildContext context) => new SplashScreen(),
 };

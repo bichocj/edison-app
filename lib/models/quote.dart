@@ -7,11 +7,19 @@ class Quote {
   String _amount;
   bool _has_complete;
   dynamic _amount_debt;
-  int _days_late;
   List _fees;
-  dynamic _current_arrear;
 
-  Quote(this._id, this._credit, this._charge_at, this._capital, this._interest, this._amount, this._has_complete, this._amount_debt, this._days_late, this._fees, this._current_arrear);
+  Quote(
+      this._id,
+      this._credit,
+      this._charge_at,
+      this._capital,
+      this._interest,
+      this._amount,
+      this._has_complete,
+      this._amount_debt,
+      this._fees,
+      );
 
   Quote.map(dynamic obj) {
     this._id = obj["id"];
@@ -22,9 +30,7 @@ class Quote {
     this._amount = obj["amount"];
     this._has_complete = obj["has_complete"];
     this._amount_debt = obj["amount_debt"];
-    this._days_late = obj["days_late"];
     this._fees = obj["fees"];
-    this._current_arrear = obj["current_arrear"];
   }
 
   int get id => _id;
@@ -35,10 +41,7 @@ class Quote {
   String get amount => _amount;
   bool get has_complete => _has_complete;
   dynamic get amount_debt => _amount_debt;
-  int get days_late => _days_late;
   List get fees => _fees;
-  dynamic get current_arrear => _current_arrear;
-
 
   Map<String, dynamic> toMap() {
     var map = new Map<String, dynamic>();
@@ -49,9 +52,7 @@ class Quote {
     map["interest"] = _interest;
     map["amount"] = _amount;
     map["has_complete"] = _has_complete;
-    map["days_late"] = _days_late;
     map["fees"] = _fees;
-    map["current_arrear"] = _current_arrear;
     return map;
   }
 }

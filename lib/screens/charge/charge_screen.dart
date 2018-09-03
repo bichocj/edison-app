@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterapp/models/client_credit.dart';
 import 'package:flutterapp/screens/charge/charge_loading_screen.dart';
 import 'package:flutterapp/models/quote.dart';
 import 'package:flutterapp/models/client_detail.dart';
@@ -7,32 +8,47 @@ class Charge extends StatefulWidget {
   final Quote quote;
   final ClientDetailModel client;
   final String total;
-  Charge({Key key, this.quote, this.client, this.total}) : super(key: key);
+  final Credit credit;
+  Charge({Key key, this.quote, this.client, this.total, this.credit}) : super(key: key);
   @override
   _ChargeState createState() => _ChargeState();
 }
 
 class _ChargeState extends State<Charge> {
   String _charge;
+  ClientDetailModel _client;
+  Credit _credit;
+  Quote _quote;
   final formKey = new GlobalKey<FormState>();
   final scaffoldKey = new GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+    _client = widget.client;
+    _credit = widget.credit;
+    _quote = widget.quote;
+  }
 
   void _submit() {
     final form = formKey.currentState;
     if (form.validate()) {
       form.save();
-      final _sendCharge = double.parse(_charge) - widget.quote.current_arrear;
+      final _sendCharge = double.parse(_charge) - this._credit.current_arrear;
       Navigator.of(context).pushReplacement(new MaterialPageRoute(
           settings: const RouteSettings(name: '/chargeLoading'),
           builder: (context) => new ChargeLoading(
-            quote: widget.quote,
-            client: widget.client,
+            quote: this._quote,
+            credit: this._credit,
+            client: this._client,
             charge: _sendCharge,
-            arrear: widget.quote.current_arrear,
+            arrear: this._credit.current_arrear,
             totalCharge: _charge
           )));
     }
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -107,8 +123,8 @@ class _ChargeState extends State<Charge> {
                                               double.parse(widget.total)) {
                                             return "Este monto excede del total.";
                                           } else if (double.parse(val) <
-                                              widget.quote.current_arrear) {
-                                            return "Debe pagar por lo menos el monto total de la mora ${widget.quote.current_arrear}";
+                                              this._credit.current_arrear) {
+                                            return "Debe pagar por lo menos el monto total de la mora ${this._credit.current_arrear}";
                                           }
                                         }
                                       },

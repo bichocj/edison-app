@@ -19,43 +19,48 @@ class _ClientCreditDetailState extends State<ClientCreditDetail> {
   Credit _credit;
   String _creditName;
   String _rangeTime;
-  String _getCreditName(frequency){
+  String _getCreditName(frequency) {
     switch (frequency) {
-      case "D" : {
-        setState(() {
-          _creditName = 'Crédito Diario';
-          _rangeTime = 'días';
-        });
-      }
-      break;
-      case "Paralelo" : {
-        setState(() {
-          _creditName = 'Crédito Paralelo';
-          _rangeTime = 'días';
-        });
-      }
-      break;
-      case "S" : {
-        setState(() {
-          _creditName = 'Crédito Semanal';
-          _rangeTime = 'semanas';
-        });
-      }
-      break;
-      case "Q" : {
-        setState(() {
-          _creditName = 'Crédito Quincenal';
-          _rangeTime = 'quincenas';
-        });
-      }
-      break;
-      case "M" : {
-        setState(() {
-          _creditName = 'Crédito Mensual';
-          _rangeTime = 'meses';
-        });
-      }
-      break;
+      case "D":
+        {
+          setState(() {
+            _creditName = 'Crédito Diario';
+            _rangeTime = 'días';
+          });
+        }
+        break;
+      case "Paralelo":
+        {
+          setState(() {
+            _creditName = 'Crédito Paralelo';
+            _rangeTime = 'días';
+          });
+        }
+        break;
+      case "S":
+        {
+          setState(() {
+            _creditName = 'Crédito Semanal';
+            _rangeTime = 'semanas';
+          });
+        }
+        break;
+      case "Q":
+        {
+          setState(() {
+            _creditName = 'Crédito Quincenal';
+            _rangeTime = 'quincenas';
+          });
+        }
+        break;
+      case "M":
+        {
+          setState(() {
+            _creditName = 'Crédito Mensual';
+            _rangeTime = 'meses';
+          });
+        }
+        break;
     }
   }
 
@@ -64,7 +69,8 @@ class _ClientCreditDetailState extends State<ClientCreditDetail> {
     super.initState();
     _credit = widget.credit;
     _getCreditName(widget.credit.frequency);
-    print(widget.client.name);
+    print(widget.client.id);
+    print(widget.credit);
   }
 
   @override
@@ -120,7 +126,9 @@ class _ClientCreditDetailState extends State<ClientCreditDetail> {
               new InfoItem(
                 icon: Icons.toc,
                 title: 'Monto pagado',
-                text: this._credit.quotes_payed != null ? 'S/. ${this._credit.quotes_payed.toStringAsFixed(2)}' : 'S/. 0.00' ,
+                text: this._credit.amount_payed != null
+                    ? 'S/. ${this._credit.amount_payed.toStringAsFixed(2)}'
+                    : 'S/. 0.00',
                 primaryColor: themeData.primaryColorDark,
               ),
               new InfoItem(
@@ -129,8 +137,21 @@ class _ClientCreditDetailState extends State<ClientCreditDetail> {
                 text: '${this._credit.quotes_quantity} cuotas',
                 primaryColor: themeData.primaryColorDark,
               ),
+              new InfoItem(
+                icon: Icons.date_range,
+                title: 'Días de atraso',
+                text: '${this._credit.days_late} día(s)',
+                primaryColor: themeData.primaryColorDark,
+              ),
+              new InfoItem(
+                icon: Icons.details,
+                title: 'Mora',
+                text: 'S/. ${this._credit.current_arrear.toStringAsFixed(2)}',
+                primaryColor: themeData.primaryColorDark,
+              ),
               new Container(
-                margin: new EdgeInsets.symmetric(horizontal: 72.0, vertical: 16.0),
+                margin:
+                    new EdgeInsets.symmetric(horizontal: 72.0, vertical: 16.0),
                 child: new RaisedButton(
                   shape: new RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(30.0)),
@@ -151,9 +172,9 @@ class _ClientCreditDetailState extends State<ClientCreditDetail> {
                         context,
                         new MaterialPageRoute(
                             builder: (BuildContext context) => new QuotesList(
-                              creditId: this._credit.id,
-                              client: this.widget.client,
-                            )));
+                                  credit: this._credit,
+                                  client: this.widget.client,
+                                )));
                   },
                 ),
               )
@@ -251,14 +272,13 @@ class ProfileCard extends StatelessWidget {
 }
 
 class InfoItem extends StatelessWidget {
-  const InfoItem(
-      {Key key,
-      this.icon,
-      this.primaryColor,
-      this.title,
-      this.text,
-      })
-      : super(key: key);
+  const InfoItem({
+    Key key,
+    this.icon,
+    this.primaryColor,
+    this.title,
+    this.text,
+  }) : super(key: key);
   final IconData icon;
   final String title;
   final Color primaryColor;
@@ -289,7 +309,8 @@ class InfoItem extends StatelessWidget {
                             fontWeight: FontWeight.bold)),
                     new Text(
                       text,
-                      style: new TextStyle(color: Colors.black87, fontSize: 15.0),
+                      style:
+                          new TextStyle(color: Colors.black87, fontSize: 15.0),
                     ),
                   ],
                 )
@@ -301,4 +322,3 @@ class InfoItem extends StatelessWidget {
     );
   }
 }
-

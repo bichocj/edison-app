@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterapp/models/client_credit.dart';
 import 'package:flutterapp/models/client_detail.dart';
 import 'package:flutterapp/models/quote.dart';
 import 'package:flutterapp/screens/credit_list/credit_list_screen.dart';
@@ -10,8 +11,9 @@ class ChargeSuccess extends StatelessWidget {
   final String charge;
   final Quote quote;
   final ClientDetailModel client;
+  final Credit credit;
 
-  ChargeSuccess({Key key, this.charge, this.quote, this.client})
+  ChargeSuccess({Key key, this.charge, this.quote, this.client, this.credit})
       : super(key: key);
 
   @override
@@ -50,7 +52,7 @@ class ChargeSuccess extends StatelessWidget {
                       settings: const RouteSettings(name: '/quotes'),
                       builder: (context) => new QuotesList(
                           client: this.client,
-                          creditId: this.quote.credit,
+                          credit: this.credit,
                       )));
                 },
                 child: new Text("Cuotas",

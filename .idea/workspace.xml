@@ -10,22 +10,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5de29e84-5447-4060-9551-6bb6174712f5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/data/rest_ds.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/rest_ds.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/models/client_credit.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/client_credit.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/client_detail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/client_detail.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/credit_detail.dart" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/models/quote.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/quote.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/routes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/routes.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/charge/charge_fail_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/charge/charge_fail_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screens/charge/charge_loading_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/charge/charge_loading_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/charge/charge_loading_screen_presenter.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/charge/charge_loading_screen_presenter.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screens/charge/charge_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/charge/charge_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screens/charge/charge_success_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/charge/charge_success_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/client_detail/client_detail_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/client_detail/client_detail_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/client_list/client_list_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/client_list/client_list_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screens/credit_detail/credit_detail_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/credit_detail/credit_detail_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/profile/profile_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/profile/profile_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screens/quote_detail/quote_detail_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/quote_detail/quote_detail_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screens/quote_list/client_quotes_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/quote_list/client_quotes_screen.dart" afterDir="false" />
     </list>
@@ -36,28 +27,6 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DockManager">
-    <window id="9">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/lib/screens/charge/charge_success_screen.dart">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="138">
-                    <caret line="48" column="18" selection-start-line="48" selection-start-column="18" selection-end-line="53" selection-end-column="26" />
-                    <folding>
-                      <element signature="e#0#39#0" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="FUSProjectUsageTrigger">
     <session id="835715990">
       <usages-collector id="statistics.lifecycle.project">
@@ -66,6 +35,7 @@
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.100" value="1" />
           <entry key="project.open.time.107" value="1" />
+          <entry key="project.open.time.119" value="1" />
           <entry key="project.open.time.127" value="1" />
           <entry key="project.open.time.128" value="1" />
           <entry key="project.open.time.14" value="1" />
@@ -97,33 +67,33 @@
           <entry key="project.open.time.84" value="1" />
           <entry key="project.open.time.89" value="1" />
           <entry key="project.open.time.91" value="1" />
-          <entry key="project.opened" value="39" />
+          <entry key="project.opened" value="40" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="Theme Editor" value="1" />
-          <entry key="dart" value="473" />
+          <entry key="dart" value="487" />
           <entry key="yaml" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="" value="1" />
-          <entry key="Dart" value="467" />
+          <entry key="Dart" value="481" />
           <entry key="PLAIN_TEXT" value="6" />
           <entry key="YAML" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="dart" value="42502" />
+          <entry key="dart" value="43698" />
           <entry key="yaml" value="304" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Dart" value="42496" />
+          <entry key="Dart" value="43692" />
           <entry key="PLAIN_TEXT" value="6" />
           <entry key="YAML" value="304" />
         </counts>
@@ -136,10 +106,37 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/screens/quote_detail/quote_detail_screen.dart">
+        <entry file="file://$PROJECT_DIR$/lib/screens/credit_detail/credit_detail_screen.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="7" column="17" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="17" />
+            <state relative-caret-position="-3073">
+              <caret line="45" column="9" lean-forward="true" selection-start-line="45" selection-start-column="9" selection-end-line="45" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/models/client_credit.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1610">
+              <caret line="70" column="23" selection-start-line="70" selection-start-column="23" selection-end-line="70" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/models/quote.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="138">
+              <caret line="9" column="11" lean-forward="true" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/screens/charge/charge_screen.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="122">
+              <caret line="37" column="6" selection-start-line="37" selection-start-column="6" selection-end-line="46" selection-end-column="14" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -148,10 +145,31 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/screens/charge/charge_loading_screen.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="368">
+              <caret line="63" column="39" lean-forward="true" selection-start-line="63" selection-start-column="39" selection-end-line="63" selection-end-column="39" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/models/client_detail.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="920">
+              <caret line="40" column="32" selection-start-line="40" selection-start-column="32" selection-end-line="40" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/screens/quote_list/client_quotes_screen.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="90" column="12" selection-start-line="90" selection-start-column="12" selection-end-line="90" selection-end-column="12" />
+            <state relative-caret-position="200">
+              <caret line="125" column="25" lean-forward="true" selection-start-line="125" selection-start-column="25" selection-end-line="125" selection-end-column="25" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
               </folding>
@@ -160,43 +178,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/models/client_credit.dart">
+        <entry file="file://$PROJECT_DIR$/lib/routes.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="39" column="40" selection-start-line="39" selection-start-column="40" selection-end-line="39" selection-end-column="40" />
+            <state relative-caret-position="322">
+              <caret line="28" column="66" lean-forward="true" selection-start-line="28" selection-start-column="66" selection-end-line="28" selection-end-column="66" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/screens/credit_detail/credit_detail_screen.dart">
+        <entry file="file://$PROJECT_DIR$/lib/screens/quote_list/client_quotes_screen_presenter.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="122" column="17" selection-start-line="122" selection-start-column="17" selection-end-line="122" selection-end-column="17" />
-              <folding>
-                <element signature="n#!!block;n#InfoItem#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/lib/screens/charge/charge_screen.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="43">
-              <caret line="31" column="32" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/screens/charge/charge_loading_screen_presenter.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="16" column="62" selection-start-line="16" selection-start-column="62" selection-end-line="16" selection-end-column="62" />
+            <state relative-caret-position="398">
+              <caret line="21" column="9" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
               <folding>
                 <element signature="e#0#33#0" expanded="true" />
               </folding>
@@ -205,44 +199,12 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/screens/credit_list/credit_list_screen.dart">
+        <entry file="file://$PROJECT_DIR$/lib/screens/quote_detail/quote_detail_screen.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="11" column="2" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/models/client_detail.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
-              <caret line="40" column="32" selection-start-line="40" selection-start-column="32" selection-end-line="40" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/routes.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="25" column="17" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/screens/client_list/client_list_screen.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
-              <caret line="205" column="25" selection-start-line="205" selection-start-column="25" selection-end-line="205" selection-end-column="25" />
+            <state relative-caret-position="138">
+              <caret line="98" column="52" selection-start-line="98" selection-start-column="49" selection-end-line="98" selection-end-column="52" />
               <folding>
-                <element signature="e#1877#1982#0" />
-                <element signature="e#2038#2058#0" />
-                <element signature="e#3147#3825#0" />
-                <element signature="e#3867#4869#0" />
-                <element signature="e#4899#4957#0" />
-                <element signature="e#4985#5290#0" />
+                <element signature="e#0#39#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -252,21 +214,13 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>navigato</find>
-      <find>CLIENT_DETAIL_URL</find>
-      <find>nav</find>
-      <find>_buildList</find>
-      <find>Navigator</find>
-      <find>buildBar</find>
       <find>Refere</find>
       <find>Monto a cobrar</find>
-      <find>init</find>
       <find>initState</find>
       <find>Cobrar</find>
       <find>Total</find>
       <find>Recuerda</find>
       <find>navi</find>
-      <find>charge</find>
       <find>na</find>
       <find>navigator</find>
       <find>CreditDetailModel</find>
@@ -282,6 +236,14 @@
       <find>cobrar</find>
       <find>_fetchSessionAndNavigate</find>
       <find>toStrin</find>
+      <find>QuoteTitle</find>
+      <find>mora</find>
+      <find>_charge</find>
+      <find>screen</find>
+      <find>charge</find>
+      <find>print</find>
+      <find>loading</find>
+      <find>init</find>
     </findStrings>
     <replaceStrings>
       <replace>InfoItem</replace>
@@ -332,21 +294,21 @@
         <option value="$PROJECT_DIR$/lib/screens/custom_widgets/placeholder_line.dart" />
         <option value="$PROJECT_DIR$/lib/screens/charge/charge_loading_screen_presenter.dart" />
         <option value="$PROJECT_DIR$/lib/models/credit_detail.dart" />
-        <option value="$PROJECT_DIR$/lib/models/quote.dart" />
         <option value="$PROJECT_DIR$/lib/data/rest_ds.dart" />
         <option value="$PROJECT_DIR$/lib/screens/client_detail/client_detail_screen.dart" />
-        <option value="$PROJECT_DIR$/lib/screens/quote_detail/quote_detail_screen.dart" />
         <option value="$PROJECT_DIR$/lib/screens/charge/charge_fail_screen.dart" />
-        <option value="$PROJECT_DIR$/lib/screens/quote_list/client_quotes_screen.dart" />
         <option value="$PROJECT_DIR$/lib/screens/profile/profile_screen.dart" />
-        <option value="$PROJECT_DIR$/lib/routes.dart" />
-        <option value="$PROJECT_DIR$/lib/screens/charge/charge_success_screen.dart" />
         <option value="$PROJECT_DIR$/lib/screens/client_list/client_list_screen.dart" />
-        <option value="$PROJECT_DIR$/lib/screens/credit_detail/credit_detail_screen.dart" />
         <option value="$PROJECT_DIR$/lib/models/client_detail.dart" />
+        <option value="$PROJECT_DIR$/lib/models/quote.dart" />
         <option value="$PROJECT_DIR$/lib/models/client_credit.dart" />
+        <option value="$PROJECT_DIR$/lib/screens/credit_detail/credit_detail_screen.dart" />
         <option value="$PROJECT_DIR$/lib/screens/charge/charge_screen.dart" />
+        <option value="$PROJECT_DIR$/lib/screens/charge/charge_success_screen.dart" />
+        <option value="$PROJECT_DIR$/lib/screens/quote_detail/quote_detail_screen.dart" />
+        <option value="$PROJECT_DIR$/lib/screens/quote_list/client_quotes_screen.dart" />
         <option value="$PROJECT_DIR$/lib/screens/charge/charge_loading_screen.dart" />
+        <option value="$PROJECT_DIR$/lib/routes.dart" />
       </list>
     </option>
   </component>
@@ -357,10 +319,9 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="325" />
     <option name="y" value="27" />
-    <option name="width" value="673" />
-    <option name="height" value="555" />
+    <option name="width" value="663" />
+    <option name="height" value="562" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -384,7 +345,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
       <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
@@ -523,11 +483,12 @@
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="flutt&#9;ACTION&#9;ActivateFlutterInspectorToolWindow&#10;flutter ins&#9;ACTION&#9;ActivateFlutterInspectorToolWindow" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1535757218494" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1536001498314" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../flutter-master" />
@@ -573,8 +534,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1366" height="741" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49655172" visible="true" weight="0.08573596" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49655172" visible="true" weight="0.2837633" />
       <window_info id="Structure" order="1" sideWeight="0.50344825" side_tool="true" weight="0.2905918" />
       <window_info id="Designer" order="2" />
       <window_info id="Build Variants" order="3" sideWeight="0.50250417" side_tool="true" weight="0.32852808" />
@@ -585,7 +547,7 @@
       <window_info id="UI Designer" order="8" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.41344538" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3462185" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.18151261" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -791,16 +753,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/screens/quote_list/client_quotes_screen_presenter.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="21" column="9" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/screens/custom_widgets/info_item.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
@@ -812,9 +764,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="920">
           <caret line="42" column="43" selection-start-line="42" selection-start-column="43" selection-end-line="42" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -829,9 +778,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="17" column="3" selection-start-line="17" selection-start-column="3" selection-end-line="17" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -846,10 +792,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
           <caret line="11" column="2" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="49" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-            <element signature="e#400#809#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -867,16 +809,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/models/credit_detail.dart">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/models/quote.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="30" column="9" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/models/credit_detail.dart" />
     <entry file="file://$PROJECT_DIR$/lib/screens/charge/charge_fail_screen.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -887,23 +820,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/data/rest_ds.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-70">
-          <caret line="71" column="23" selection-start-line="71" selection-start-column="23" selection-end-line="71" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/screens/client_detail/client_detail_screen.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
           <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -944,7 +864,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/screens/charge/charge_loading_screen_presenter.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
+        <state relative-caret-position="345">
           <caret line="16" column="62" selection-start-line="16" selection-start-column="62" selection-end-line="16" selection-end-column="62" />
           <folding>
             <element signature="e#0#33#0" expanded="true" />
@@ -959,86 +879,79 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/screens/quote_detail/quote_detail_screen.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/screens/charge/charge_success_screen.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="48" column="18" selection-start-line="48" selection-start-column="18" selection-end-line="53" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/routes.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="25" column="17" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/screens/client_list/client_list_screen.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
+        <state relative-caret-position="4416">
           <caret line="205" column="25" selection-start-line="205" selection-start-column="25" selection-end-line="205" selection-end-column="25" />
           <folding>
             <element signature="e#1877#1982#0" />
             <element signature="e#2038#2058#0" />
-            <element signature="e#3147#3825#0" />
-            <element signature="e#3867#4869#0" />
-            <element signature="e#4899#4957#0" />
-            <element signature="e#4985#5290#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/screens/quote_list/client_quotes_screen.dart">
+    <entry file="file://$PROJECT_DIR$/lib/data/rest_ds.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="90" column="12" selection-start-line="90" selection-start-column="12" selection-end-line="90" selection-end-column="12" />
+        <state relative-caret-position="253">
+          <caret line="23" column="68" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="68" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/screens/credit_detail/credit_detail_screen.dart">
+    <entry file="file://$PROJECT_DIR$/lib/models/client_detail.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="122" column="17" selection-start-line="122" selection-start-column="17" selection-end-line="122" selection-end-column="17" />
+        <state relative-caret-position="920">
+          <caret line="40" column="32" selection-start-line="40" selection-start-column="32" selection-end-line="40" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/screens/charge/charge_success_screen.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-149">
+          <caret line="54" column="46" selection-start-line="54" selection-start-column="46" selection-end-line="54" selection-end-column="46" />
           <folding>
-            <element signature="n#!!block;n#InfoItem#0" />
+            <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/models/client_detail.dart">
+    <entry file="file://$PROJECT_DIR$/lib/models/quote.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="40" column="32" selection-start-line="40" selection-start-column="32" selection-end-line="40" selection-end-column="32" />
+        <state relative-caret-position="138">
+          <caret line="9" column="11" lean-forward="true" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/screens/credit_detail/credit_detail_screen.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3073">
+          <caret line="45" column="9" lean-forward="true" selection-start-line="45" selection-start-column="9" selection-end-line="45" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/models/client_credit.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="39" column="40" selection-start-line="39" selection-start-column="40" selection-end-line="39" selection-end-column="40" />
+        <state relative-caret-position="1610">
+          <caret line="70" column="23" selection-start-line="70" selection-start-column="23" selection-end-line="70" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/screens/charge/charge_loading_screen.dart">
+    <entry file="file://$PROJECT_DIR$/lib/screens/quote_list/client_quotes_screen_presenter.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="114" column="72" lean-forward="true" selection-start-line="114" selection-start-column="72" selection-end-line="114" selection-end-column="72" />
+        <state relative-caret-position="398">
+          <caret line="21" column="9" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/screens/quote_detail/quote_detail_screen.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="98" column="52" selection-start-line="98" selection-start-column="49" selection-end-line="98" selection-end-column="52" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
@@ -1047,10 +960,37 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/screens/charge/charge_screen.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="43">
-          <caret line="31" column="32" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
+        <state relative-caret-position="122">
+          <caret line="37" column="6" selection-start-line="37" selection-start-column="6" selection-end-line="46" selection-end-column="14" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/screens/charge/charge_loading_screen.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="63" column="39" lean-forward="true" selection-start-line="63" selection-start-column="39" selection-end-line="63" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/routes.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="28" column="66" lean-forward="true" selection-start-line="28" selection-start-column="66" selection-end-line="28" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/screens/quote_list/client_quotes_screen.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="125" column="25" lean-forward="true" selection-start-line="125" selection-start-column="25" selection-end-line="125" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
           </folding>
         </state>
       </provider>

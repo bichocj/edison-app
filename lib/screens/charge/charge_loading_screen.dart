@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterapp/models/client_credit.dart';
 import 'package:flutterapp/models/client_detail.dart';
 import 'package:flutterapp/models/quote.dart';
 import 'package:flutterapp/screens/custom_widgets/charge_info.dart';
@@ -15,7 +16,8 @@ class ChargeLoading extends StatefulWidget {
   final dynamic charge;
   final dynamic arrear;
   final dynamic totalCharge;
-  ChargeLoading({Key key, this.quote, this.client, this.charge, this.arrear, this.totalCharge})
+  final Credit credit;
+  ChargeLoading({Key key, this.quote, this.client, this.charge, this.arrear, this.totalCharge, this.credit})
       : super(key: key);
   @override
   _ChargeLoadingState createState() => _ChargeLoadingState();
@@ -46,28 +48,25 @@ class _ChargeLoadingState extends State<ChargeLoading>
 
   @override
   void onChargeSuccess(Map charge) {
-    Navigator.push(
-        context,
-        new MaterialPageRoute(
-            builder: (BuildContext context) =>
-            new ChargeSuccess(
-              charge: double.parse(widget.totalCharge).toString(),
-              quote: widget.quote,
-              client: widget.client
-            )));
+    Navigator.of(context).pushReplacement(new MaterialPageRoute(
+        settings: const RouteSettings(name: '/chargeLoading'),
+        builder: (context) => new ChargeSuccess(
+          charge: double.parse(widget.totalCharge).toString(),
+          quote: widget.quote,
+          client: widget.client,
+          credit: widget.credit,
+        )));
   }
 
   @override
   void onChargeError(String errorTxt) {
-    Navigator.push(
-        context,
-        new MaterialPageRoute(
-            builder: (BuildContext context) =>
-            new ChargeFail(
-                charge: double.parse(widget.totalCharge).toString(),
-                quote: widget.quote,
-                client: widget.client
-            )));
+    Navigator.of(context).pushReplacement(new MaterialPageRoute(
+        settings: const RouteSettings(name: '/chargeLoading'),
+        builder: (context) => new ChargeFail(
+            charge: double.parse(widget.totalCharge).toString(),
+            quote: widget.quote,
+            client: widget.client
+        )));
   }
 
   @override

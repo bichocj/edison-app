@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutterapp/models/client_credit.dart';
 import 'package:flutterapp/models/client_detail.dart';
 import 'package:flutterapp/screens/quote_detail/quote_detail_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -8,9 +9,9 @@ import 'package:flutterapp/models/quote.dart';
 
 class QuotesList extends StatefulWidget {
   static String tag = 'quote';
-  final int creditId;
+  final Credit credit;
   final ClientDetailModel client;
-  QuotesList({Key key, this.creditId, this.client}) : super(key: key);
+  QuotesList({Key key, this.credit, this.client}) : super(key: key);
 
   @override
   _QuotesListState createState() => _QuotesListState();
@@ -30,7 +31,7 @@ class _QuotesListState extends State<QuotesList>
     _sharedPreferences = await _prefs;
     String authToken = _sharedPreferences.getString('auth_token');
     _presenter = new QuotesScreenPresenter(this, authToken);
-    _presenter.requestQuotes(widget.creditId);
+    _presenter.requestQuotes(widget.credit.id);
   }
 
   @override
@@ -53,9 +54,9 @@ class _QuotesListState extends State<QuotesList>
     print(errorTxt);
   }
 
-  List<QuoteTitle> _buildList(client) {
+  List<QuoteTitle> _buildList(credit, client ) {
     return _quotes
-        .map((quote) => new QuoteTitle(quote, this._presenter, client))
+        .map((quote) => quote.id == _quotes.last.id ? new QuoteTitle(quote, credit, this._presenter, client, true) : new QuoteTitle(quote, credit, this._presenter, client, false))
         .toList();
   }
 
@@ -69,7 +70,7 @@ class _QuotesListState extends State<QuotesList>
         centerTitle: true,
       ),
       body: _success
-          ? new ListView(children: _buildList(widget.client))
+          ? new ListView(children: _buildList(widget.credit, widget.client))
           : new Center(
         child:new CircularProgressIndicator(),
       )
@@ -79,9 +80,11 @@ class _QuotesListState extends State<QuotesList>
 
 class QuoteTitle extends StatelessWidget {
   final Quote _quote;
+  final Credit _credit;
   final QuotesScreenPresenter _presenter;
   final ClientDetailModel _client;
-  const QuoteTitle(this._quote, this._presenter, this._client);
+  final bool _lastQuote;
+  const QuoteTitle(this._quote, this._credit, this._presenter, this._client, this._lastQuote);
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
@@ -89,7 +92,7 @@ class QuoteTitle extends StatelessWidget {
     if(this._quote.has_complete) {
       _quoteColor = Colors.grey;
     } else {
-      if(this._quote.days_late == 0) {
+      if(this._credit.days_late == 0) {
         _quoteColor = Colors.green;
       } else {
         _quoteColor = Colors.red;
@@ -124,7 +127,7 @@ class QuoteTitle extends StatelessWidget {
               context,
               new MaterialPageRoute(
                   builder: (BuildContext context) => new QuoteDetail(
-                      quote: this._quote, client: this._client)));
+                      quote: this._quote, client: this._client, credit: this._credit, lastQuote: this._lastQuote)));
         },
       ),
     );
