@@ -8,6 +8,8 @@ class Quote {
   bool _has_complete;
   dynamic _amount_debt;
   List _fees;
+  bool _is_beaten;
+  String _client_name;
 
   Quote(
       this._id,
@@ -19,6 +21,8 @@ class Quote {
       this._has_complete,
       this._amount_debt,
       this._fees,
+      this._is_beaten,
+      this._client_name,
       );
 
   Quote.map(dynamic obj) {
@@ -31,6 +35,8 @@ class Quote {
     this._has_complete = obj["has_complete"];
     this._amount_debt = obj["amount_debt"];
     this._fees = obj["fees"];
+    this._is_beaten = obj["is_beaten"];
+    this._client_name = obj["client_name"];
   }
 
   int get id => _id;
@@ -42,6 +48,8 @@ class Quote {
   bool get has_complete => _has_complete;
   dynamic get amount_debt => _amount_debt;
   List get fees => _fees;
+  bool get is_beaten => _is_beaten;
+  String get client_name => _client_name;
 
   Map<String, dynamic> toMap() {
     var map = new Map<String, dynamic>();
@@ -53,6 +61,8 @@ class Quote {
     map["amount"] = _amount;
     map["has_complete"] = _has_complete;
     map["fees"] = _fees;
+    map["is_beaten"] = _is_beaten;
+    map["client_name"] = _client_name;
     return map;
   }
 }
