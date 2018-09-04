@@ -39,8 +39,8 @@ class ChargeSuccess extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).pushReplacement(new MaterialPageRoute(
                       settings: const RouteSettings(name: '/credits'),
-                      builder: (context) => new CreditList(
-                          client: this.client)));
+                      builder: (context) =>
+                          new CreditList(client: this.client)));
                 },
                 child: new Text(
                   "Créditos",
@@ -51,9 +51,9 @@ class ChargeSuccess extends StatelessWidget {
                   Navigator.of(context).pushReplacement(new MaterialPageRoute(
                       settings: const RouteSettings(name: '/quotes'),
                       builder: (context) => new QuotesList(
-                          client: this.client,
-                          credit: this.credit,
-                      )));
+                            client: this.client,
+                            credit: this.credit,
+                          )));
                 },
                 child: new Text("Cuotas",
                     style: new TextStyle(color: themeData.cardColor))),
@@ -88,7 +88,7 @@ class ChargeSuccess extends StatelessWidget {
               ),
               new ChargeInfo(
                 icon: Icons.monetization_on,
-                text: 'S/. ${this.charge}',
+                text: "S/. ${double.parse(this.charge).toStringAsFixed(2)}",
               ),
             ],
           ),

@@ -53,8 +53,8 @@ class _TotalChargeState extends State<TotalCharge>
     print(errorTxt);
   }
 
-  List<ChargeItem> _buildList() {
-    return _fees.map((fee) => new ChargeItem(fee, this._presenter)).toList();
+  List<ChargeItem>_buildList() {
+      return _fees.map((fee) => new ChargeItem(fee, this._presenter)).toList();
   }
 
   @override
@@ -63,7 +63,8 @@ class _TotalChargeState extends State<TotalCharge>
     return Container(
         child: _success
             ? new ListView(
-                children: _buildList(),
+            children:
+              _buildList(),
               )
             : new Center(
                 child: new CircularProgressIndicator(),
@@ -80,6 +81,6 @@ class ChargeItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return new ListTile(
         title: new Text(this._fee.owner),
-        trailing: new Text("S/. ${double.parse(this._fee.amount_received)}"));
+        trailing: new Text("S/. ${double.parse(this._fee.amount_received).toStringAsFixed(2)}"));
   }
 }

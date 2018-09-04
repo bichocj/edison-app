@@ -7,7 +7,7 @@ class ChargeFail extends StatelessWidget {
   final String charge;
   final Quote quote;
   final ClientDetailModel client;
-  ChargeFail({Key key, this.charge, this.quote, this.client}):super(key:key);
+  ChargeFail({Key key, this.charge, this.quote, this.client}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
@@ -63,15 +63,14 @@ class ChargeFail extends StatelessWidget {
                   )),
               new ChargeInfo(
                   icon: Icons.person,
-                  text: "${this.client.lastname}, ${this.client.name}"
-              ),
+                  text: "${this.client.lastname}, ${this.client.name}"),
               new ChargeInfo(
                 icon: Icons.chrome_reader_mode,
                 text: this.client.dni,
               ),
               new ChargeInfo(
                 icon: Icons.monetization_on,
-                text: 'S/. ${this.charge}'
+                text: "S/. ${double.parse(this.charge).toStringAsFixed(2)}",
               ),
             ],
           ),
