@@ -66,7 +66,7 @@ class _QuotesListState extends State<QuotesList>
     return Scaffold(
       backgroundColor: themeData.canvasColor,
       appBar: new AppBar(
-        title: Text('Coutas'),
+        title: Text('Cuotas'),
         centerTitle: true,
       ),
       body: _success
