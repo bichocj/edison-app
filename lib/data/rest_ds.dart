@@ -122,8 +122,6 @@ class RestDatasource {
       }
       return _decoder.convert(res);
     }).then((res) {
-      print("este es el res");
-      print(res);
       return res;
     });
   }
