@@ -4,6 +4,7 @@ class Fee {
   String _amount_received;
   String _arrears;
   String _created_at;
+  String _owner;
 
   Fee(
       this._id,
@@ -11,6 +12,7 @@ class Fee {
       this._amount_received,
       this._arrears,
       this._created_at,
+      this._owner
       );
 
   Fee.map(dynamic obj) {
@@ -19,6 +21,7 @@ class Fee {
     this._amount_received = obj["amount_received"];
     this._arrears = obj["arrears"];
     this._created_at = obj["created_at"];
+    this._owner = obj["owner"];
   }
 
   int get id => _id;
@@ -26,6 +29,7 @@ class Fee {
   String get amount_received => _amount_received;
   String get arrears => _arrears;
   String get created_at => _created_at;
+  String get owner => _owner;
 
   Map<String, dynamic> toMap() {
     var map = new Map<String, dynamic>();
@@ -34,6 +38,7 @@ class Fee {
     map["amount_received"] = _amount_received;
     map["arrears"] = _arrears;
     map["created_at"] = _created_at;
+    map["owner"] = _owner;
     return map;
   }
 }
