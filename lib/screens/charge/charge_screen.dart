@@ -9,7 +9,8 @@ class Charge extends StatefulWidget {
   final ClientDetailModel client;
   final String total;
   final Credit credit;
-  Charge({Key key, this.quote, this.client, this.total, this.credit}) : super(key: key);
+  final bool lastQuote;
+  Charge({Key key, this.quote, this.client, this.total, this.credit, this.lastQuote}) : super(key: key);
   @override
   _ChargeState createState() => _ChargeState();
 }
@@ -32,9 +33,18 @@ class _ChargeState extends State<Charge> {
 
   void _submit() {
     final form = formKey.currentState;
+    var _sendCharge;
+    var _sendArrear;
     if (form.validate()) {
       form.save();
-      final _sendCharge = double.parse(_charge) - this._credit.current_arrear;
+      if (widget.lastQuote) {
+        _sendArrear = this._credit.current_arrear;
+        _sendCharge = double.parse(_charge) - this._credit.current_arrear;
+      } else {
+        _sendArrear = 0.00;
+        _sendCharge = double.parse(_charge);
+      }
+
       Navigator.of(context).pushReplacement(new MaterialPageRoute(
           settings: const RouteSettings(name: '/chargeLoading'),
           builder: (context) => new ChargeLoading(

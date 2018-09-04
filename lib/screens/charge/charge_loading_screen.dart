@@ -49,7 +49,7 @@ class _ChargeLoadingState extends State<ChargeLoading>
   @override
   void onChargeSuccess(Map charge) {
     Navigator.of(context).pushReplacement(new MaterialPageRoute(
-        settings: const RouteSettings(name: '/chargeLoading'),
+        settings: const RouteSettings(name: '/chargeSuccess'),
         builder: (context) => new ChargeSuccess(
           charge: double.parse(widget.totalCharge).toString(),
           quote: widget.quote,
@@ -61,7 +61,7 @@ class _ChargeLoadingState extends State<ChargeLoading>
   @override
   void onChargeError(String errorTxt) {
     Navigator.of(context).pushReplacement(new MaterialPageRoute(
-        settings: const RouteSettings(name: '/chargeLoading'),
+        settings: const RouteSettings(name: '/chargeFail'),
         builder: (context) => new ChargeFail(
             charge: double.parse(widget.totalCharge).toString(),
             quote: widget.quote,
@@ -111,7 +111,7 @@ class _ChargeLoadingState extends State<ChargeLoading>
               ),
               new ChargeInfo(
                 icon: Icons.monetization_on,
-                text: "S/. ${double.parse(widget.totalCharge).toString()}",
+                text: "S/. ${double.parse(widget.totalCharge).toStringAsFixed(2)}",
               ),
             ],
           ),

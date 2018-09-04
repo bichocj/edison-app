@@ -42,7 +42,7 @@ class _QuoteDetailState extends State<QuoteDetail> {
   void _navigate() {
     Navigator.push(context,
         new MaterialPageRoute(builder: (BuildContext context) => new Charge(
-          quote: this._quote, client: widget.client, total: _total, credit: _credit
+          quote: this._quote, client: widget.client, total: _total, credit: _credit, lastQuote: widget.lastQuote
         )));
   }
 
