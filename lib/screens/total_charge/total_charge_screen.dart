@@ -14,7 +14,7 @@ class _TotalChargeState extends State<TotalCharge>
   List<Fee> _fees;
   bool _success;
   String _date;
-  double _sum;
+  dynamic _sum;
   FeesScreenPresenter _presenter;
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   SharedPreferences _sharedPreferences;
@@ -31,21 +31,26 @@ class _TotalChargeState extends State<TotalCharge>
     super.initState();
     _success = false;
     _date = new DateTime.now().toString().substring(0, 10);
-    print(_date);
     _fetchSessionAndNavigate(_date);
   }
 
-  /*_sum(){
-    return _fees.reduce((a, b) => (int.parse(a.amount_received) + int.parse(b.amount_received)));
-  }*/
+  _sumAmount(){
+    var tem = 0.00;
+    for (var x = 0; x < _fees.length; x++) {
+      tem += double.parse(_fees[x].amount_received);
+      setState(() {
+        _sum = tem;
+      });
+    }
+  }
 
   @override
   void onFeesSuccess(List<Fee> fee) {
     setState(() {
       _success = true;
       _fees = fee;
-      //_sum = _sum();
     });
+    _sumAmount();
   }
 
   @override
@@ -57,18 +62,42 @@ class _TotalChargeState extends State<TotalCharge>
       return _fees.map((fee) => new ChargeItem(fee, this._presenter)).toList();
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
-    return Container(
-        child: _success
+    return
+        new Scaffold(
+          appBar: new AppBar(
+            automaticallyImplyLeading: false,
+            title: _success ? new Text("Al ${_date}: S/. ${_sum.toStringAsFixed(2)} ") : new LinearProgressIndicator(),
+            centerTitle: true,
+            titleSpacing: 10.0,
+          ),
+         body: new Container(
+        padding: new EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+        child:
+        _success
             ? new ListView(
             children:
               _buildList(),
               )
             : new Center(
                 child: new CircularProgressIndicator(),
-              ));
+              ))
+        );
+      /*new Container(
+        padding: new EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+        child:
+        _success
+            ? new ListView(
+            children:
+              _buildList(),
+              )
+            : new Center(
+                child: new CircularProgressIndicator(),
+              ));*/
   }
 }
 
