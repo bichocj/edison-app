@@ -13,23 +13,26 @@ class _TotalChargeState extends State<TotalCharge>
     implements FeesScreenContract {
   List<Fee> _fees;
   bool _success;
+  String _date;
   double _sum;
   FeesScreenPresenter _presenter;
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   SharedPreferences _sharedPreferences;
 
-  _fetchSessionAndNavigate() async {
+  _fetchSessionAndNavigate(date) async {
     _sharedPreferences = await _prefs;
     String authToken = _sharedPreferences.getString('auth_token');
     _presenter = new FeesScreenPresenter(this, authToken);
-    _presenter.requestFees('2018-09-01');
+    _presenter.requestFees(date);
   }
 
   @override
   void initState() {
     super.initState();
     _success = false;
-    _fetchSessionAndNavigate();
+    _date = new DateTime.now().toString().substring(0, 10);
+    print(_date);
+    _fetchSessionAndNavigate(_date);
   }
 
   /*_sum(){
