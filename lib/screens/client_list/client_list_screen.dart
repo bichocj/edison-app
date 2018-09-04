@@ -99,7 +99,7 @@ class _SearchListState extends State<SearchList>
           : new Center(
               child: CircularProgressIndicator(),
             ),
-      /*floatingActionButton: new FloatingActionButton(
+      floatingActionButton: new FloatingActionButton(
         onPressed: () {
           Navigator.of(context).pushNamed('/other_list');
         },
@@ -108,7 +108,7 @@ class _SearchListState extends State<SearchList>
           Icons.add_to_photos,
           semanticLabel: 'Add',
         ),
-      ),*/
+      ),
     );
   }
 

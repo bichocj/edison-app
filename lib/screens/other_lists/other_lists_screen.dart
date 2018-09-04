@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/auth.dart';
 import 'package:flutterapp/screens/login/login_screen_presenter.dart';
+import 'package:flutterapp/screens/total_charge/total_charge_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class OtherLists extends StatefulWidget {
@@ -63,25 +64,6 @@ class _OtherListsState extends State<OtherLists>
           ],
           controller: _tabController,
         ),
-      ),
-    );
-  }
-}
-
-class TotalCharge extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          new Text("ajam"),
-          new Text("ajam"),
-          new Text("ajam"),
-          new Text("ajam"),
-          new Text("ajam"),
-          new Text("ajam"),
-        ],
       ),
     );
   }

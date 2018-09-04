@@ -90,7 +90,7 @@ class _ClientDetailState extends State<ClientDetail>
       new InfoItem(
         icon: Icons.home,
         title: 'Domicilio',
-        text: this._client_detail.address + ' - ' + this._client_detail.district,
+        text: this._client_detail.address + ' - ' + this._client_detail.district + 'aslkdasd ajsdbakjdbh aksjdbhaksjdbh akjdbhakjsdb akjdbh akjsdbha kjsdbhakjsdb kjadbh akjsdb',
         primaryColor: themeData.primaryColorDark,
         textColor: themeData.hintColor,
       ),

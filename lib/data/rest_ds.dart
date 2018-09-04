@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutterapp/models/fee.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutterapp/utils/network_util.dart';
 import 'package:flutterapp/models/user.dart';
@@ -22,7 +23,7 @@ class RestDatasource {
   static final CLIENT_CREDIT_URL = BASE_URL + "/credits/api/credit/?client=";
   static final CREDIT_DETAIL_URL = BASE_URL + "/credits/api/credit/";
   static final QUOTES_URL = BASE_URL + "/credits/api/quote/?credit=";
-  static final FEES_URL = BASE_URL + "/credits/api/fee/";
+  static final FEES_URL = BASE_URL + "/credits/api/fee/?created_at=";
   static final _API_KEY = "somerandomkey";
 
   Future<String> login(String username, String password) {
@@ -126,5 +127,14 @@ class RestDatasource {
       return res;
     });
   }
-
+  Future<List<Fee>> getFees(String token, String created_at) {
+    return _netUtil
+        .get(FEES_URL + created_at, token)
+        .then((dynamic res) {
+      print(FEES_URL + created_at);
+      final itemsTmp = res.map((i) => new Fee.map(i));
+      final items = itemsTmp.cast<Fee>();
+      return items.toList();
+    });
+  }
 }
