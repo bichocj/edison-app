@@ -19,13 +19,11 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
     return Scaffold(
-      backgroundColor: themeData.primaryColorDark,
+
       body: new Center(
-        child: new CircleAvatar(
-          radius: 40.0,
-          backgroundColor: Colors.white,
-          child: new Icon(Icons.monetization_on,
-              color: themeData.primaryColorDark, size: 80.0),
+        child: new Image(
+          image: new AssetImage('assets/img/edisonLogoGreen.png'),
+          height: 92.0,
         ),
       ),
     );

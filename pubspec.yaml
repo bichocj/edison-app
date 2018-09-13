@@ -28,6 +28,7 @@ flutter:
     - assets/img/bgProfile.jpeg
     - assets/img/profile.png
     - assets/img/profile1.png
+    - assets/img/edisonLogoGreen.png
 
 fonts:
 - family: Poppins
