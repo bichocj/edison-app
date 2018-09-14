@@ -103,10 +103,17 @@ class _ClientDetailState extends State<ClientDetail>
         textColor: themeData.hintColor,
       ),
       new Divider(),
+      this._client_detail.phone != null ?
       new InfoItem(
         icon: Icons.phone,
         title: 'Teléfono Fijo',
         text: "${this._client_detail.phone}",
+        primaryColor: themeData.primaryColorDark,
+        textColor: themeData.hintColor,
+      ) : new InfoItem(
+        icon: Icons.phone,
+        title: 'Teléfono Fijo',
+        text: "Sin teléfono fijo.",
         primaryColor: themeData.primaryColorDark,
         textColor: themeData.hintColor,
       ),
@@ -114,18 +121,25 @@ class _ClientDetailState extends State<ClientDetail>
       new InfoItem(
         icon: Icons.business,
         title: 'Dirección del Negocio',
-        text: this._client_detail.address_of_payment,
+        text: "${this._client_detail.address_of_payment}",
         primaryColor: themeData.primaryColorDark,
         textColor: themeData.hintColor,
       ),
       new Divider(),
+      this._client_detail.reference != null ?
       new InfoItem(
         icon: Icons.location_on,
         title: 'Referencia',
-        text: this._client_detail.reference,
+        text: "${this._client_detail.reference}",
         primaryColor: themeData.primaryColorDark,
         textColor: themeData.hintColor,
-      ),
+      ) : new InfoItem(
+    icon: Icons.location_on,
+    title: 'Referencia',
+    text: "Sin referencia.",
+    primaryColor: themeData.primaryColorDark,
+    textColor: themeData.hintColor,
+    ),
       new Padding(padding: new EdgeInsets.all(8.0))
     ]);
   }
