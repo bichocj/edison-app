@@ -31,20 +31,27 @@ class InfoItem extends StatelessWidget {
                   width: 72.0,
                   child: new Icon(icon, color: primaryColor),
                 ),
-                new Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    new Text(title,
-                        style: new TextStyle(
-                            color: primaryColor,
-                            fontSize: 17.0,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Poppins')),
-                    new Text(
-                      text,
-                      style: new TextStyle(color: textColor, fontSize: 15.0),
-                    )
-                  ],
+                new Container(
+                  width: MediaQuery.of(context).size.width*0.8,
+                  child: 
+                  new Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      new Text(title,
+                          style: new TextStyle(
+                              color: primaryColor,
+                              fontSize: 17.0,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Poppins')),
+                      new Text(
+                        text,
+                        maxLines: 4,
+                        // overflow: TextOverflow.ellipsis,
+                        //softWrap: true,
+                        style: new TextStyle(color: textColor, fontSize: 15.0),
+                      )
+                    ],
+                  )
                 )
               ],
             ),

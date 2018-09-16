@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'dart:io';
+import 'package:flutterapp/data/rest_ds.dart';
 
 class NetworkUtil {
   // next three lines makes this class a Singleton
@@ -11,9 +12,28 @@ class NetworkUtil {
 
   final JsonDecoder _decoder = new JsonDecoder();
 
-  Future<dynamic> get(String url, String token) {
-    print('TOKEN network $token');
 
+  dynamic getData(url, params, token)  async  {
+    var  httpClient  =  new  HttpClient();
+    
+    var  uri  =  new Uri.https(RestDatasource.BASE_URL,  url, params);
+    var  request  =  await httpClient.getUrl(uri);    
+    request.headers.add('Authorization', 'token $token');
+
+    var  response  =  await request.close();
+    var  responseBody  =  await response.transform(utf8.decoder).join();
+    return  responseBody;
+}
+
+  Future<dynamic> get(String url, Map<String, String> params, String token) {
+  
+    print(url);
+    return getData(url, params, token).then((dynamic rr){
+       return _decoder.convert(rr);
+    });
+
+    // return _decoder.convert(test);
+/*
     return http.get(url, headers: {'Authorization': "token $token"}).then((http.Response response) {
       final String res = response.body;
       final int statusCode = response.statusCode;
@@ -23,18 +43,15 @@ class NetworkUtil {
       }
       return _decoder.convert(res);
     });
+    */
   }
 
   Future<dynamic> post(String url, {Map headers, body, encoding}) {
-    // if(encoding==null){
-    //  encoding = Encoding.getByName("utf-8");
-    //}
-
-    // var stuff = {HttpHeaders.CONTENT_ENCODING : "charset=utf-8"};
-    /// headers =  new Map.from({HttpHeaders.CONTENT_TYPE : "application/json; charset=utf-8"});
+    
+    var  uri  =  new Uri.https(RestDatasource.BASE_URL,  url);
 
     return http
-        .post(url, body: body, headers: headers, encoding: encoding)
+        .post(uri.toString(), body: body, headers: headers, encoding: encoding)
         .then((http.Response response) {
       final String res = response.body;
       final int statusCode = response.statusCode;

@@ -13,18 +13,18 @@ import 'dart:convert';
 
 class RestDatasource {
   NetworkUtil _netUtil = new NetworkUtil();
-  static final BASE_URL = "https://edison-prod.herokuapp.com";
+  static final BASE_URL = "edison-prod.herokuapp.com";
 
   //static final BASE_URL = "http://172.20.10.2:8000";
-  static final LOGIN_URL = BASE_URL + "/accounts/api/login/";
-  static final PROFILE_URL = BASE_URL + "/accounts/api/users/me/";
-  static final CLIENTS_URL = BASE_URL + "/clients/api/clients/?zone_from=";
-  static final CLIENT_DETAIL_URL = BASE_URL + "/clients/api/clients/";
-  static final CLIENT_CREDIT_URL = BASE_URL + "/credits/api/credit/?client=";
-  static final CREDIT_DETAIL_URL = BASE_URL + "/credits/api/credit/";
-  static final QUOTES_URL = BASE_URL + "/credits/api/quote/?credit=";
-  static final OVERDUE_URL = BASE_URL + "/credits/api/quote/";
-  static final FEES_URL = BASE_URL + "/credits/api/fee/?created_at=";
+  static final LOGIN_URL = "/accounts/api/login/";
+  static final PROFILE_URL = "/accounts/api/users/me/";
+  static final CLIENTS_URL = "/clients/api/clients/";
+  static final CLIENT_DETAIL_URL = "/clients/api/clients/";
+  static final CLIENT_CREDIT_URL = "/credits/api/credit/";
+  static final CREDIT_DETAIL_URL = "/credits/api/credit/";
+  static final QUOTES_URL = "/credits/api/quote/";
+  static final OVERDUE_URL = "/credits/api/quote/";
+  static final FEES_URL = "/credits/api/fee/";
   static final _API_KEY = "somerandomkey";
 
   Future<String> login(String username, String password) {
@@ -42,14 +42,17 @@ class RestDatasource {
   }
 
   Future<Profile> getProfile(String token) {
-    return _netUtil.get(PROFILE_URL, token).then((dynamic res) {
+    Map<String, String> queryParameters = Map<String, String>();
+    return _netUtil.get(PROFILE_URL, queryParameters, token).then((dynamic res) {
       return new Profile(res["username"], res["email"], res["first_name"],
           res["last_name"], res["profile"]);
     });
   }
 
   Future<List<Client>> getClients(String token, String zone) {
-    return _netUtil.get(CLIENTS_URL + zone, token).then((dynamic res) {
+    Map<String, String> queryParameters = Map<String, String>();
+    queryParameters.addAll({"zone_from":zone});
+    return _netUtil.get(CLIENTS_URL, queryParameters, token).then((dynamic res) {
       final itemsTmp = res.map((i) => new Client.map(i));
       final items = itemsTmp.cast<Client>();
       return items.toList();
@@ -57,8 +60,9 @@ class RestDatasource {
   }
 
   Future<ClientDetailModel> getClientDetail(String token, String clientId) {
+    Map<String, String> queryParameters = Map<String, String>();
     return _netUtil
-        .get(CLIENT_DETAIL_URL + clientId + '/', token)
+        .get(CLIENT_DETAIL_URL + clientId + '/', queryParameters, token)
         .then((dynamic res) {
       return new ClientDetailModel(
           res["id"],
@@ -71,14 +75,16 @@ class RestDatasource {
           res["address_of_payment"],
           res["reference"],
           res["zone_from"],
-        res["district"]
+          res["district"]
       );
     });
   }
 
   Future<List<Credit>> getCreditList(String token, int clientId) {
+    Map<String, String> queryParameters = Map<String, String>();
+    queryParameters.addAll({"client":clientId.toString()});
     return _netUtil
-        .get(CLIENT_CREDIT_URL + clientId.toString(), token)
+        .get(CLIENT_CREDIT_URL, queryParameters, token)
         .then((dynamic res) {
       final itemsTmp = res.map((i) => new Credit.map(i));
       final items = itemsTmp.cast<Credit>();
@@ -87,15 +93,18 @@ class RestDatasource {
   }
 
   Future<Credit> getCreditDetail(String token, String creditId) {
+    Map<String, String> queryParameters = Map<String, String>();
     return _netUtil
-        .get(CREDIT_DETAIL_URL + creditId + '/', token)
+        .get(CREDIT_DETAIL_URL + creditId + '/', queryParameters, token)
         .then((dynamic res) {
     });
   }
 
   Future<List<Quote>> getQuotes(String token, int creditId) {
+    Map<String, String> queryParameters = Map<String, String>();
+    queryParameters.addAll({"QUOTES_URL":creditId.toString()});
     return _netUtil
-        .get(QUOTES_URL + creditId.toString(), token)
+        .get(QUOTES_URL, queryParameters, token)
         .then((dynamic res) {
       final itemsTmp = res.map((i) => new Quote.map(i));
       final items = itemsTmp.cast<Quote>();
@@ -106,7 +115,8 @@ class RestDatasource {
   Future<Map> postCharge(String token, dynamic charge, dynamic quoteId,
       dynamic arrears) {
     final JsonDecoder _decoder = new JsonDecoder();
-    return http.post(FEES_URL, body: {
+    var  uri  =  new Uri.https(RestDatasource.BASE_URL,  FEES_URL);
+    return http.post(uri.toString(), body: {
       "arrears": arrears.toString(),
       "quote": quoteId.toString(),
       "amount_received": charge.toString()
@@ -125,8 +135,11 @@ class RestDatasource {
     });
   }
   Future<List<Fee>> getFees(String token, String created_at) {
+    Map<String, String> queryParameters = Map<String, String>();
+    queryParameters.addAll({"created_at":created_at});
+ 
     return _netUtil
-        .get(FEES_URL + created_at, token)
+        .get(FEES_URL, queryParameters, token)
         .then((dynamic res) {
       final itemsTmp = res.map((i) => new Fee.map(i));
       final items = itemsTmp.cast<Fee>();
@@ -135,8 +148,9 @@ class RestDatasource {
   }
 
   Future<List<Quote>> getOverdueQuotes(String token) {
+    Map<String, String> queryParameters = Map<String, String>();
     return _netUtil
-        .get(QUOTES_URL, token)
+        .get(QUOTES_URL, queryParameters, token)
         .then((dynamic res) {
       final itemsTmp = res.map((i) => new Quote.map(i));
       final items = itemsTmp.cast<Quote>();

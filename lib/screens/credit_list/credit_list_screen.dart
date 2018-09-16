@@ -266,6 +266,18 @@ class ListItem extends StatelessWidget {
           _creditName = "Mensual";
         }
         break;
+
+      case "M-I":
+        {
+          _creditName = 'Crédito Mensual - Interes';          
+        }
+        break;
+      case "P-F":
+        {
+          _creditName = 'Crédito Mensual - Plazo Fijo';         
+        }
+        break;
+
     }
     return new ListTile(
         title: new Text('Crédito ${_creditName}'),

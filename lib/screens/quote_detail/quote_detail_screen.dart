@@ -36,7 +36,7 @@ class _QuoteDetailState extends State<QuoteDetail> {
     } else {
       total = _quote.amount_debt;
     }
-    return total.toStringAsFixed(2);
+    return total.toString();
   }
 
   void _navigate() {
@@ -138,14 +138,14 @@ class _QuoteDetailState extends State<QuoteDetail> {
                   icon: Icons.monetization_on,
                   primaryColor: Colors.indigo,
                   title: 'Deuda',
-                  text: 'S/. ${this._quote.amount_debt.toStringAsFixed(2)}',
+                  text: '--S/. ${this._quote.amount_debt}',
                   textColor: Colors.black87,
                 ),
                 new InfoItem(
                   icon: Icons.details,
                   primaryColor: Colors.indigo,
                   title: 'Mora',
-                  text: "S/. ${this._credit.current_arrear.toStringAsFixed(2)}",
+                  text: "S/. ${this._credit.current_arrear}",
                   textColor: Colors.black87,
                 ),
                 new Divider(),

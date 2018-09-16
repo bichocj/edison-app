@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutterapp/models/client_credit.dart';
 import 'package:flutterapp/models/client_detail.dart';
 import 'package:flutterapp/screens/quote_list/client_quotes_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutterapp/screens/custom_widgets/subtitle.dart';
+import 'package:intl/intl.dart';
 
 class ClientCreditDetail extends StatefulWidget {
   static String tag = 'credit';
@@ -19,6 +19,7 @@ class _ClientCreditDetailState extends State<ClientCreditDetail> {
   Credit _credit;
   String _creditName;
   String _rangeTime;
+  final formatter = new NumberFormat.simpleCurrency(name: 'PEN');
   String _getCreditName(frequency) {
     switch (frequency) {
       case "D":
@@ -29,7 +30,7 @@ class _ClientCreditDetailState extends State<ClientCreditDetail> {
           });
         }
         break;
-      case "Paralelo":
+      case "P":
         {
           setState(() {
             _creditName = 'Crédito Paralelo';
@@ -57,6 +58,22 @@ class _ClientCreditDetailState extends State<ClientCreditDetail> {
         {
           setState(() {
             _creditName = 'Crédito Mensual';
+            _rangeTime = 'meses';
+          });
+        }
+        break;
+      case "M-I":
+        {
+          setState(() {
+            _creditName = 'Crédito Mensual - Interes';
+            _rangeTime = 'meses';
+          });
+        }
+        break;
+      case "P-F":
+        {
+          setState(() {
+            _creditName = 'Crédito Mensual - Plazo Fijo';
             _rangeTime = 'meses';
           });
         }
@@ -102,13 +119,26 @@ class _ClientCreditDetailState extends State<ClientCreditDetail> {
               new InfoItem(
                 icon: Icons.monetization_on,
                 title: 'Monto del crédito',
-                text: 'S/.${this._credit.amount_total}',
+                text: '${formatter.format(this._credit.amount_total)}',
+                //text: '${this._credit.amount_total}',
                 primaryColor: themeData.primaryColorDark,
               ),
               new InfoItem(
                 icon: Icons.date_range,
-                title: 'Fecha del crédito',
+                title: 'Fecha del desembolso',
+                text: this._credit.deliver_at,
+                primaryColor: themeData.primaryColorDark,
+              ),
+              new InfoItem(
+                icon: Icons.date_range,
+                title: 'Fecha de incio de cobro',
                 text: this._credit.start_at,
+                primaryColor: themeData.primaryColorDark,
+              ),
+              new InfoItem(
+                icon: Icons.date_range,
+                title: 'Fecha de vencimiento',
+                text: this._credit.due_date,
                 primaryColor: themeData.primaryColorDark,
               ),
               new InfoItem(
@@ -126,9 +156,8 @@ class _ClientCreditDetailState extends State<ClientCreditDetail> {
               new InfoItem(
                 icon: Icons.toc,
                 title: 'Monto pagado',
-                text: this._credit.amount_payed != null
-                    ? 'S/. ${this._credit.amount_payed.toStringAsFixed(2)}'
-                    : 'S/. 0.00',
+                text: '${formatter.format(this._credit.amount_payed)}',
+                // text: '${this._credit.amount_payed}',
                 primaryColor: themeData.primaryColorDark,
               ),
               new InfoItem(
@@ -146,7 +175,8 @@ class _ClientCreditDetailState extends State<ClientCreditDetail> {
               new InfoItem(
                 icon: Icons.details,
                 title: 'Mora',
-                text: 'S/. ${this._credit.current_arrear.toStringAsFixed(2)}',
+                text: '${formatter.format(this._credit.current_arrear)}',
+                // text: '${this._credit.current_arrear}',
                 primaryColor: themeData.primaryColorDark,
               ),
               new Container(

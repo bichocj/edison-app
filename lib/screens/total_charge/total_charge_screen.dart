@@ -69,12 +69,12 @@ class _TotalChargeState extends State<TotalCharge>
     final ThemeData themeData = Theme.of(context);
     return
         new Scaffold(
-          appBar: new AppBar(
+          /* appBar: new AppBar(
             automaticallyImplyLeading: false,
-            title: _success ? new Text("Al ${_date}: S/. ${_sum.toStringAsFixed(2)} ") : new LinearProgressIndicator(),
+            title: _success ? new Text("Al ${_date}: S/. ${_sum} ") : new LinearProgressIndicator(),
             centerTitle: true,
             titleSpacing: 10.0,
-          ),
+          ),*/
          body: new Container(
         padding: new EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
         child:
@@ -110,6 +110,6 @@ class ChargeItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return new ListTile(
         title: new Text(this._fee.owner),
-        trailing: new Text("S/. ${double.parse(this._fee.amount_received).toStringAsFixed(2)}"));
+        trailing: new Text("-- S/. ${this._fee.amount_received}"));
   }
 }

@@ -111,7 +111,7 @@ class _ChargeLoadingState extends State<ChargeLoading>
               ),
               new ChargeInfo(
                 icon: Icons.monetization_on,
-                text: "S/. ${double.parse(widget.totalCharge).toStringAsFixed(2)}",
+                text: "S/. ${widget.totalCharge}",
               ),
             ],
           ),

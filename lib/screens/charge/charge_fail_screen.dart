@@ -70,7 +70,7 @@ class ChargeFail extends StatelessWidget {
               ),
               new ChargeInfo(
                 icon: Icons.monetization_on,
-                text: "S/. ${double.parse(this.charge).toStringAsFixed(2)}",
+                text: "--S/. ${this.charge}",
               ),
             ],
           ),

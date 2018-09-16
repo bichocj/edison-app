@@ -120,7 +120,7 @@ class QuoteTitle extends StatelessWidget {
           this._quote.charge_at,
           style: new TextStyle(fontWeight: FontWeight.bold),
         ),
-        subtitle: new Text("S/. ${this._quote.amount_debt.toStringAsFixed(2)}"),
+        subtitle: new Text("---S/. ${this._quote.amount_debt}"),
         trailing: new Icon(Icons.arrow_right),
         onTap: () {
           Navigator.push(

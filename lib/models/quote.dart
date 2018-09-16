@@ -1,3 +1,5 @@
+import 'package:date_format/date_format.dart';
+
 class Quote {
   int _id;
   dynamic _credit;
@@ -28,7 +30,7 @@ class Quote {
   Quote.map(dynamic obj) {
     this._id = obj["id"];
     this._credit = obj["credit"];
-    this._charge_at = obj["charge_at"];
+    this._charge_at = formatDate(DateTime.parse(obj["charge_at"]), [dd, ' ', M, ', del ', yyyy ] );
     this._capital = obj["capital"];
     this._interest = obj["interest"];
     this._amount = obj["amount"];
@@ -55,7 +57,7 @@ class Quote {
     var map = new Map<String, dynamic>();
     map["id"] = _id;
     map["credit"] = _credit;
-    map["charge_at"] = _charge_at;
+    map["charge_at"] = formatDate(DateTime.parse(_charge_at), [dd, ' ', M, ', del ', yyyy ] );
     map["capital"] = _capital;
     map["interest"] = _interest;
     map["amount"] = _amount;

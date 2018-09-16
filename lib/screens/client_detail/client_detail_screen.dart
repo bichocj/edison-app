@@ -57,9 +57,14 @@ class _ClientDetailState extends State<ClientDetail>
 
   _buildTitle() {
     if (this._success) {
-      return new Text(
+      return 
+      new Container(
+        width: MediaQuery.of(context).size.width*0.55,
+        child:  new Text(
         this._client_detail.lastname,
-        style: new TextStyle(color: Colors.white, fontSize: 18.0),
+        maxLines: 2,
+        style: new TextStyle(color: Colors.white, fontSize: 14.0),
+      )
       );
     } else {
       return new Container(
@@ -74,7 +79,7 @@ class _ClientDetailState extends State<ClientDetail>
       new InfoItem(
         icon: Icons.person,
         title: 'Nombre Completo',
-        text: "${this._client_detail.lastname}, ${this._client_detail.name}",
+        text: "${this._client_detail.lastname},\n${this._client_detail.name}",
         primaryColor: themeData.primaryColorDark,
         textColor: themeData.hintColor,
       ),
