@@ -6,6 +6,7 @@ import 'package:flutterapp/screens/quote_detail/quote_detail_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutterapp/screens/quote_list/client_quotes_screen_presenter.dart';
 import 'package:flutterapp/models/quote.dart';
+import 'package:date_format/date_format.dart';
 
 class QuotesList extends StatefulWidget {
   static String tag = 'quote';
@@ -92,10 +93,10 @@ class QuoteTitle extends StatelessWidget {
     if(this._quote.has_complete) {
       _quoteColor = Colors.grey;
     } else {
-      if(this._credit.days_late == 0) {
-        _quoteColor = Colors.green;
-      } else {
+      if(this._quote.is_beaten) {
         _quoteColor = Colors.red;
+      } else {
+        _quoteColor = Colors.green;        
       }
     }
     return new Container(
@@ -117,7 +118,7 @@ class QuoteTitle extends StatelessWidget {
               _quoteColor
         ),
         title: new Text(
-          this._quote.charge_at,
+          formatDate(DateTime.parse(this._quote.charge_at), [dd, ' ', M, ', del ', yyyy ] ),
           style: new TextStyle(fontWeight: FontWeight.bold),
         ),
         subtitle: new Text("S/. ${this._quote.amount_debt}"),
