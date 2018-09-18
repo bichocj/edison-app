@@ -102,7 +102,7 @@ class RestDatasource {
 
   Future<List<Quote>> getQuotes(String token, int creditId) {
     Map<String, String> queryParameters = Map<String, String>();
-    queryParameters.addAll({"QUOTES_URL":creditId.toString()});
+    queryParameters.addAll({"credit":creditId.toString()});
     return _netUtil
         .get(QUOTES_URL, queryParameters, token)
         .then((dynamic res) {

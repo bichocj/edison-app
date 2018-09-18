@@ -67,7 +67,7 @@ class LoginScreenState extends State<LoginScreen>
 
     var brandImage = new Container(
       child:
-          new Image.asset("assets/img/login.png", width: 150.0, height: 150.0),
+          new Image.asset("assets/img/edisonLogoGreen.png", width: 150.0, height: 150.0),
       margin: new EdgeInsets.only(bottom: 25.0),
     );
 
@@ -126,7 +126,11 @@ class LoginScreenState extends State<LoginScreen>
       children: <Widget>[
         new Form(
           key: formKey,
-          child: new Column(
+          child:
+            new Container(
+              height: 400.0,               
+              child:
+            new Column(
             children: <Widget>[
               usernameField,
               passwordField,
@@ -140,6 +144,7 @@ class LoginScreenState extends State<LoginScreen>
             ],
           ),
         ),
+        ),
         //loginBtn
       ],
       // crossAxisAlignment: CrossAxisAlignment.center,
@@ -148,11 +153,11 @@ class LoginScreenState extends State<LoginScreen>
     return new Scaffold(
       appBar: null,
       key: scaffoldKey,
+      
       body: new Container(
           padding: new EdgeInsets.symmetric(vertical: 50.0, horizontal: 30.0),
-          child: new Center(
-            child: loginForm,
-          )),
+          child: ListView(children: <Widget>[brandImage, SizedBox(height: 5.0), loginForm],)
+          ),
     );
   }
 

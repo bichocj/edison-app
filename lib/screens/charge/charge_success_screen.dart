@@ -88,7 +88,7 @@ class ChargeSuccess extends StatelessWidget {
               ),
               new ChargeInfo(
                 icon: Icons.monetization_on,
-                text: "--S/. ${this.charge}",
+                text: "S/. ${this.charge}",
               ),
             ],
           ),

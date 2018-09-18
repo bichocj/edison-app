@@ -138,7 +138,7 @@ class _QuoteDetailState extends State<QuoteDetail> {
                   icon: Icons.monetization_on,
                   primaryColor: Colors.indigo,
                   title: 'Deuda',
-                  text: '--S/. ${this._quote.amount_debt}',
+                  text: 'S/. ${this._quote.amount_debt}',
                   textColor: Colors.black87,
                 ),
                 new InfoItem(

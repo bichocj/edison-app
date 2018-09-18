@@ -110,6 +110,6 @@ class ChargeItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return new ListTile(
         title: new Text(this._fee.owner),
-        trailing: new Text("-- S/. ${this._fee.amount_received}"));
+        trailing: new Text("S/. ${this._fee.amount_received}"));
   }
 }
