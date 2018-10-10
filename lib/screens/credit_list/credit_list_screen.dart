@@ -30,6 +30,13 @@ class _CreditListState extends State<CreditList>
     _presenter.requestCreditList(widget.client.id);
   }
 
+  _closeSession() async {
+    _sharedPreferences = await _prefs;
+    _sharedPreferences.remove('auth_token');
+    Navigator.of(context)
+        .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+  }
+
   @override
   void initState() {
     super.initState();
@@ -65,10 +72,17 @@ class _CreditListState extends State<CreditList>
         appBar: new AppBar(
           title: new Text('Estado de Cuenta'),
           centerTitle: true,
+          actions: <Widget>[
+            new IconButton(
+              icon: new Icon(Icons.leak_remove),
+              onPressed: () {
+                this._closeSession();
+              },
+            ),
+          ],
         ),
         body: RefreshIndicator(
-            child:
-            new Container(
+            child: new Container(
                 margin: const EdgeInsets.symmetric(
                   vertical: 16.0,
                   horizontal: 16.0,
@@ -97,15 +111,15 @@ class _CreditListState extends State<CreditList>
                         shape: BoxShape.rectangle,
                         borderRadius: new BorderRadius.circular(8.0),
                       ),
-                      child: _success ? new Column(children: _buildList()) : new CircularProgressIndicator(),
+                      child: _success
+                          ? new Column(children: _buildList())
+                          : new CircularProgressIndicator(),
                     )
                   ],
                 )),
-            onRefresh: (){
+            onRefresh: () {
               print("refresh");
-            }
-        )
-    );
+            }));
   }
 }
 
@@ -269,15 +283,14 @@ class ListItem extends StatelessWidget {
 
       case "M-I":
         {
-          _creditName = 'Crédito Mensual - Interes';          
+          _creditName = 'Crédito Mensual - Interes';
         }
         break;
       case "P-F":
         {
-          _creditName = 'Crédito Mensual - Plazo Fijo';         
+          _creditName = 'Crédito Mensual - Plazo Fijo';
         }
         break;
-
     }
     return new ListTile(
         title: new Text('Crédito ${_creditName}'),
