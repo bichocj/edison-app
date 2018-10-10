@@ -41,7 +41,7 @@ class _ClientDetailState extends State<ClientDetail>
     print('--------------------------------------------------------CLOSE SESSION');
     var authStateProvider = new AuthStateProvider();
     authStateProvider.notify(AuthState.LOGGED_OUT);
-    Navigator.of(context).pushNamedAndRemoveUntil('/', (Route<dynamic> route) => false);
+    Navigator.of(context).pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
   }
 
   @override

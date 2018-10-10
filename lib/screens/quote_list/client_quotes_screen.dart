@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutterapp/screens/quote_list/client_quotes_screen_presenter.dart';
 import 'package:flutterapp/models/quote.dart';
 import 'package:date_format/date_format.dart';
+import 'package:flutterapp/auth.dart';
 
 class QuotesList extends StatefulWidget {
   static String tag = 'quote';
@@ -33,6 +34,13 @@ class _QuotesListState extends State<QuotesList>
     String authToken = _sharedPreferences.getString('auth_token');
     _presenter = new QuotesScreenPresenter(this, authToken);
     _presenter.requestQuotes(widget.credit.id);
+  }
+
+  _closeSession() async {
+    _sharedPreferences = await _prefs;
+    _sharedPreferences.remove('auth_token');
+    var authStateProvider = new AuthStateProvider();
+    authStateProvider.notify(AuthState.LOGGED_OUT);
   }
 
   @override
@@ -69,6 +77,14 @@ class _QuotesListState extends State<QuotesList>
       appBar: new AppBar(
         title: Text('Cuotas'),
         centerTitle: true,
+        actions: <Widget>[
+          new IconButton(
+            icon: new Icon(Icons.directions_run),
+            onPressed: () {
+              this._closeSession();
+            },
+          ),
+        ],
       ),
       body: _success
           ? new ListView(children: _buildList(widget.credit, widget.client))

@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutterapp/screens/credit_list/credit_list_screen_presenter.dart';
 import 'package:flutterapp/models/client_credit.dart';
 import 'package:flutterapp/models/client_detail.dart';
+import 'package:flutterapp/auth.dart';
 
 class CreditList extends StatefulWidget {
   static String tag = 'client_credits';
@@ -33,6 +34,8 @@ class _CreditListState extends State<CreditList>
   _closeSession() async {
     _sharedPreferences = await _prefs;
     _sharedPreferences.remove('auth_token');
+    var authStateProvider = new AuthStateProvider();
+    authStateProvider.notify(AuthState.LOGGED_OUT);
     Navigator.of(context)
         .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
   }
