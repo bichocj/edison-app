@@ -15,8 +15,8 @@ import 'package:flutterapp/screens/quote_list/client_quotes_screen.dart';
 import 'package:flutterapp/screens/charge/charge_loading_screen.dart';
 
 final routes = {
-  '/login':         (BuildContext context) => new LoginScreen(),
-  '/profile':         (BuildContext context) => new ProfileScreen(),
+  '/login':         (context) => new LoginScreen(),
+  '/profile':         (context) => new ProfileScreen(),
   '/home':         (BuildContext context) => new SearchList(),
   '/detail':       (BuildContext context) => new ClientDetail(),
   '/credits':       (BuildContext context) => new CreditList(),

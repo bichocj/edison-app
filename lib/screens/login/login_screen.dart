@@ -57,9 +57,10 @@ class LoginScreenState extends State<LoginScreen>
   onAuthStateChanged(AuthState state) {
     print('----------------------------------------STATE');
     print(state);
-    if (state == AuthState.LOGGED_IN)
-      //Navigator.of(context).pushReplacementNamed("/profile");
-    Navigator.pushReplacementNamed(context, '/profile');
+    if (state == AuthState.LOGGED_IN) {
+      Navigator.of(context).pushReplacementNamed("/profile");
+
+    }
   }
 
   @override
