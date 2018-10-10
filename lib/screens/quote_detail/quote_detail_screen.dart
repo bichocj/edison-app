@@ -8,6 +8,7 @@ import 'package:flutterapp/models/quote.dart';
 import 'package:flutterapp/screens/charge/charge_screen.dart';
 import 'package:flutterapp/auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:date_format/date_format.dart';
 
 
 class QuoteDetail extends StatefulWidget {
@@ -171,7 +172,7 @@ class _QuoteDetailState extends State<QuoteDetail> {
                   icon: Icons.date_range,
                   primaryColor: Colors.indigo,
                   title: 'Fecha de Crédito',
-                  text: this._quote.charge_at,
+                  text: formatDate(DateTime.parse(this._quote.charge_at), [dd, ' ', M, ', del ', yyyy ] ),
                   textColor: Colors.black87,
                 ),
                 new InfoItem(
