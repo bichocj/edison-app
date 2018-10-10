@@ -36,6 +36,7 @@ class LoginScreenState extends State<LoginScreen>
 
   _fetchSessionAndNavigate() async {
     _sharedPreferences = await _prefs;
+
   }
 
   void _submit() {
@@ -54,8 +55,11 @@ class LoginScreenState extends State<LoginScreen>
 
   @override
   onAuthStateChanged(AuthState state) {
+    print('----------------------------------------STATE');
+    print(state);
     if (state == AuthState.LOGGED_IN)
-      Navigator.of(_ctx).pushReplacementNamed("/profile");
+      //Navigator.of(context).pushReplacementNamed("/profile");
+    Navigator.pushReplacementNamed(context, '/profile');
   }
 
   @override
@@ -171,7 +175,11 @@ class LoginScreenState extends State<LoginScreen>
   void onLoginSuccess(String token) async {
     setState(() => _isLoading = false);
     _sharedPreferences.setString('auth_token', token);
+    String authToken = _sharedPreferences.getString('auth_token');
+    print("--------------------------------------------Authtoken");
+    print(authToken);
     var authStateProvider = new AuthStateProvider();
     authStateProvider.notify(AuthState.LOGGED_IN);
+
   }
 }

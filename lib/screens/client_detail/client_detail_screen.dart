@@ -6,6 +6,7 @@ import 'package:flutterapp/models/client_detail.dart';
 import 'package:flutterapp/screens/custom_widgets/info_item.dart';
 import 'package:flutterapp/screens/custom_widgets/into_item_placeholder.dart';
 import 'package:flutterapp/screens/credit_list/credit_list_screen.dart';
+import 'package:flutterapp/auth.dart';
 
 class ClientDetail extends StatefulWidget {
   static String tag = 'client_detail';
@@ -35,7 +36,12 @@ class _ClientDetailState extends State<ClientDetail>
   _closeSession() async {
     _sharedPreferences = await _prefs;
     _sharedPreferences.remove('auth_token');
-    Navigator.of(context).pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+    String authToken = _sharedPreferences.getString('auth_token');
+    print(authToken);
+    print('--------------------------------------------------------CLOSE SESSION');
+    var authStateProvider = new AuthStateProvider();
+    authStateProvider.notify(AuthState.LOGGED_OUT);
+    Navigator.of(context).pushNamedAndRemoveUntil('/', (Route<dynamic> route) => false);
   }
 
   @override
@@ -222,7 +228,7 @@ class _ClientDetailState extends State<ClientDetail>
             expandedHeight: _heightImage,
             actions: <Widget>[
               new IconButton(
-                icon: new Icon(Icons.leak_remove),
+                icon: new Icon(Icons.directions_run),
                 onPressed: () {
                   this._closeSession();
                 },

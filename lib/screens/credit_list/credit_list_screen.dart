@@ -74,7 +74,7 @@ class _CreditListState extends State<CreditList>
           centerTitle: true,
           actions: <Widget>[
             new IconButton(
-              icon: new Icon(Icons.leak_remove),
+              icon: new Icon(Icons.directions_run),
               onPressed: () {
                 this._closeSession();
               },

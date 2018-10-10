@@ -5,6 +5,7 @@ import 'package:flutterapp/models/client_detail.dart';
 import 'package:flutterapp/screens/quote_list/client_quotes_screen.dart';
 import 'package:flutterapp/screens/custom_widgets/subtitle.dart';
 import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ClientCreditDetail extends StatefulWidget {
   static String tag = 'credit';
@@ -81,6 +82,16 @@ class _ClientCreditDetailState extends State<ClientCreditDetail> {
     }
   }
 
+  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  SharedPreferences _sharedPreferences;
+
+  _closeSession() async {
+    _sharedPreferences = await _prefs;
+    _sharedPreferences.remove('auth_token');
+    Navigator.of(context)
+        .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+  }
+
   @override
   void initState() {
     super.initState();
@@ -95,7 +106,15 @@ class _ClientCreditDetailState extends State<ClientCreditDetail> {
     final ThemeData themeData = Theme.of(context);
     final double _heightCard = 124.0;
     return new Scaffold(
-      appBar: new AppBar(),
+      appBar: new AppBar(
+        actions: <Widget>[
+          new IconButton(
+              icon: new Icon(Icons.directions_run),
+              onPressed: () {
+                this._closeSession();
+              })
+        ],
+      ),
       body: new Container(
         padding: new EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
         child: new CustomScrollView(
@@ -163,7 +182,8 @@ class _ClientCreditDetailState extends State<ClientCreditDetail> {
               new InfoItem(
                 icon: Icons.toc,
                 title: 'Saldo actual',
-                text: '${formatter.format(this._credit.amount_total - this._credit.amount_payed)}',
+                text:
+                    '${formatter.format(this._credit.amount_total - this._credit.amount_payed)}',
                 // text: '${this._credit.amount_payed}',
                 primaryColor: themeData.primaryColorDark,
               ),
