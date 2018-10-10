@@ -14,8 +14,7 @@ class QuoteDetail extends StatefulWidget {
   final Quote quote;
   final ClientDetailModel client;
   final Credit credit;
-  final bool lastQuote;
-  QuoteDetail({Key key, this.quote, this.client, this.credit, this.lastQuote}) : super(key: key);
+  QuoteDetail({Key key, this.quote, this.client, this.credit}) : super(key: key);
   @override
   _QuoteDetailState createState() => _QuoteDetailState();
 }
@@ -38,18 +37,14 @@ class _QuoteDetailState extends State<QuoteDetail> {
 
   String _calcTotal() {
     double total;
-    if(widget.lastQuote) {
-      total = _quote.amount_debt + _credit.current_arrear;
-    } else {
-      total = _quote.amount_debt;
-    }
+    total = _quote.amount_debt + _quote.current_arrear;
     return total.toString();
   }
 
   void _navigate() {
     Navigator.push(context,
         new MaterialPageRoute(builder: (BuildContext context) => new Charge(
-          quote: this._quote, client: widget.client, total: _total, credit: _credit, lastQuote: widget.lastQuote
+          quote: this._quote, client: widget.client, total: _total, credit: _credit
         )));
   }
 
@@ -168,7 +163,7 @@ class _QuoteDetailState extends State<QuoteDetail> {
                   icon: Icons.details,
                   primaryColor: Colors.indigo,
                   title: 'Mora',
-                  text: "S/. ${this._credit.current_arrear}",
+                  text: "S/. ${this._quote.current_arrear}",
                   textColor: Colors.black87,
                 ),
                 new Divider(),

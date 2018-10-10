@@ -9,8 +9,7 @@ class Charge extends StatefulWidget {
   final ClientDetailModel client;
   final String total;
   final Credit credit;
-  final bool lastQuote;
-  Charge({Key key, this.quote, this.client, this.total, this.credit, this.lastQuote}) : super(key: key);
+  Charge({Key key, this.quote, this.client, this.total, this.credit}) : super(key: key);
   @override
   _ChargeState createState() => _ChargeState();
 }
@@ -34,16 +33,9 @@ class _ChargeState extends State<Charge> {
   void _submit() {
     final form = formKey.currentState;
     var _sendCharge;
-    var _sendArrear;
     if (form.validate()) {
       form.save();
-      if (widget.lastQuote) {
-        _sendArrear = this._credit.current_arrear;
-        _sendCharge = double.parse(_charge) - this._credit.current_arrear;
-      } else {
-        _sendArrear = 0.00;
-        _sendCharge = double.parse(_charge);
-      }
+      _sendCharge = double.parse(_charge) - this._quote.current_arrear;
 
       Navigator.of(context).pushReplacement(new MaterialPageRoute(
           settings: const RouteSettings(name: '/chargeLoading'),
@@ -52,7 +44,7 @@ class _ChargeState extends State<Charge> {
             credit: this._credit,
             client: this._client,
             charge: _sendCharge,
-            arrear: this._credit.current_arrear,
+            arrear: this._quote.current_arrear,
             totalCharge: _charge
           )));
     }
@@ -133,8 +125,8 @@ class _ChargeState extends State<Charge> {
                                               double.parse(widget.total)) {
                                             return "Este monto excede del total.";
                                           } else if (double.parse(val) <
-                                              this._credit.current_arrear) {
-                                            return "Debe pagar por lo menos el monto total de la mora ${this._credit.current_arrear}";
+                                              this._quote.current_arrear) {
+                                            return "Cobrar por lo menos la mora: S/. ${this._quote.current_arrear}";
                                           }
                                         }
                                       },

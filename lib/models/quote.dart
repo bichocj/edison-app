@@ -11,6 +11,8 @@ class Quote {
   List _fees;
   bool _is_beaten;
   String _client_name;
+  int _days_late;
+  double _current_arrear;
 
   Quote(
       this._id,
@@ -24,6 +26,8 @@ class Quote {
       this._fees,
       this._is_beaten,
       this._client_name,
+      this._days_late,
+      this._current_arrear
       );
 
   Quote.map(dynamic obj) {
@@ -36,6 +40,7 @@ class Quote {
     this._fees = obj["fees"];
     this._is_beaten = obj["is_beaten"];
     this._client_name = obj["client_name"];
+    this._days_late = obj["days_late"];
 
     if(obj["amount"] is double){
       this._amount = obj["amount"];
@@ -48,6 +53,13 @@ class Quote {
     }else{
       this._amount_debt = double.parse(obj["amount_debt"] ?? "0");
     }
+
+    if(obj["current_arrear"] is double){
+      this._current_arrear = obj["current_arrear"];
+    }else{
+      this._current_arrear = double.parse(obj["current_arrear"] ?? "0");
+    }
+
   }
 
   int get id => _id;
@@ -61,6 +73,8 @@ class Quote {
   List get fees => _fees;
   bool get is_beaten => _is_beaten;
   String get client_name => _client_name;
+  double get current_arrear => _current_arrear;
+  int get days_late => _days_late;
 
   Map<String, dynamic> toMap() {
     var map = new Map<String, dynamic>();
@@ -74,6 +88,8 @@ class Quote {
     map["fees"] = _fees;
     map["is_beaten"] = _is_beaten;
     map["client_name"] = _client_name;
+    map["current_arrear"] = _current_arrear;
+    map["days_late"] = _days_late;
     return map;
   }
 }

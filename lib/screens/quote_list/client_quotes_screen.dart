@@ -66,7 +66,7 @@ class _QuotesListState extends State<QuotesList>
 
   List<QuoteTitle> _buildList(credit, client ) {
     return _quotes
-        .map((quote) => quote.id == _quotes.last.id ? new QuoteTitle(quote, credit, this._presenter, client, true) : new QuoteTitle(quote, credit, this._presenter, client, false))
+        .map((quote) => new QuoteTitle(quote, credit, this._presenter, client))
         .toList();
   }
 
@@ -101,8 +101,7 @@ class QuoteTitle extends StatelessWidget {
   final Credit _credit;
   final QuotesScreenPresenter _presenter;
   final ClientDetailModel _client;
-  final bool _lastQuote;
-  const QuoteTitle(this._quote, this._credit, this._presenter, this._client, this._lastQuote);
+  const QuoteTitle(this._quote, this._credit, this._presenter, this._client);
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
@@ -159,7 +158,7 @@ class QuoteTitle extends StatelessWidget {
               context,
               new MaterialPageRoute(
                   builder: (BuildContext context) => new QuoteDetail(
-                      quote: this._quote, client: this._client, credit: this._credit, lastQuote: this._lastQuote)));
+                      quote: this._quote, client: this._client, credit: this._credit)));
         },
       ),
     );
