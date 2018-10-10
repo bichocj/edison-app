@@ -109,7 +109,7 @@ class _ClientDetailState extends State<ClientDetail>
       new InfoItem(
         icon: Icons.phone_android,
         title: 'Celular',
-        text: "${this._client_detail.cellphone}",
+        text: this._client_detail.cellphone != null ? "${this._client_detail.cellphone}" : 'Sin celular.',
         primaryColor: themeData.primaryColorDark,
         textColor: themeData.hintColor,
       ),
