@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/models/client_credit.dart';
 import 'package:flutterapp/models/client_detail.dart';
@@ -5,6 +6,9 @@ import 'package:flutterapp/screens/custom_widgets/custom_card.dart';
 import 'package:flutterapp/screens/custom_widgets/info_item.dart';
 import 'package:flutterapp/models/quote.dart';
 import 'package:flutterapp/screens/charge/charge_screen.dart';
+import 'package:flutterapp/auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 class QuoteDetail extends StatefulWidget {
   final Quote quote;
@@ -20,6 +24,9 @@ class _QuoteDetailState extends State<QuoteDetail> {
   Quote _quote;
   Credit _credit;
   String _total;
+
+  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  SharedPreferences _sharedPreferences;
 
   @override
   void initState() {
@@ -46,6 +53,14 @@ class _QuoteDetailState extends State<QuoteDetail> {
         )));
   }
 
+  _closeSession() async {
+    _sharedPreferences = await _prefs;
+    _sharedPreferences.remove('auth_token');
+    var authStateProvider = new AuthStateProvider();
+    authStateProvider.notify(AuthState.LOGGED_OUT);
+    Navigator.of(context).pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+  }
+
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
@@ -53,6 +68,14 @@ class _QuoteDetailState extends State<QuoteDetail> {
         appBar: new AppBar(
           centerTitle: true,
           title: new Text('Detalle de cuota'),
+          actions: <Widget>[
+            new IconButton(
+              icon: new Icon(Icons.directions_run),
+              onPressed: () {
+                this._closeSession();
+              },
+            ),
+          ],
         ),
         body: new Container(
           child: new CustomScrollView(
