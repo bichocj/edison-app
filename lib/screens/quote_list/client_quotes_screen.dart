@@ -41,6 +41,7 @@ class _QuotesListState extends State<QuotesList>
     _sharedPreferences.remove('auth_token');
     var authStateProvider = new AuthStateProvider();
     authStateProvider.notify(AuthState.LOGGED_OUT);
+    Navigator.of(context).pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
   }
 
   @override
