@@ -32,6 +32,12 @@ class _ClientDetailState extends State<ClientDetail>
     _presenter.requestClientDetails(widget.clientId);
   }
 
+  _closeSession() async {
+    _sharedPreferences = await _prefs;
+    _sharedPreferences.remove('auth_token');
+    Navigator.of(context).pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+  }
+
   @override
   void initState() {
     super.initState();
@@ -60,11 +66,11 @@ class _ClientDetailState extends State<ClientDetail>
       return 
       new Container(
         width: MediaQuery.of(context).size.width*0.55,
-        child:  new Text(
-        this._client_detail.lastname,
-        maxLines: 2,
-        style: new TextStyle(color: Colors.white, fontSize: 14.0),
-      )
+        child: new Text(
+          this._client_detail.lastname,
+          maxLines: 2,
+          style: new TextStyle(color: Colors.white, fontSize: 14.0),
+        ),
       );
     } else {
       return new Container(
@@ -179,7 +185,7 @@ class _ClientDetailState extends State<ClientDetail>
       ),
       new Divider(),
       new PlaceholderInfoItem(
-          icon: Icons.location_on, title: 'Referenacia', size: 120.0),
+          icon: Icons.location_on, title: 'Referencia', size: 120.0),
       new Padding(padding: new EdgeInsets.all(8.0))
     ]);
   }
@@ -214,6 +220,14 @@ class _ClientDetailState extends State<ClientDetail>
           new SliverAppBar(
             pinned: true,
             expandedHeight: _heightImage,
+            actions: <Widget>[
+              new IconButton(
+                icon: new Icon(Icons.leak_remove),
+                onPressed: () {
+                  this._closeSession();
+                },
+              ),
+            ],
             flexibleSpace: new FlexibleSpaceBar(
               title: _buildTitle(),
               background: new Stack(
