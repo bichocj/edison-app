@@ -51,21 +51,31 @@ class Credit {
     this._days_late = obj["days_late"];
     this._current_arrear = obj["current_arrear"];
 
-    this._amount_payed = double.parse(obj["amount_payed"] ?? "0");
-    this._amount_total = double.parse(obj["amount_total"] ?? "0");
+    if(obj["amount_payed"] is double){
+      this._amount_payed = obj["amount_payed"];
+    }else{
+      this._amount_payed = double.parse(obj["amount_payed"] ?? "0");
+    }
+
+    if(obj["amount_total"] is double){
+      this._amount_total = obj["amount_total"];
+    }else{
+      this._amount_total = double.parse(obj["amount_total"] ?? "0");
+    }
+        
     // this._days_late = obj["days_late"];
     // this._current_arrear = double.parse(obj["current_arrear"] ?? "0");
 
   }
 
   int get id => _id;
-  String get frequency => _frequency;
+  String get frequency => _frequency.toString();
   int get time => _time;
   dynamic get rate => _rate;
-  String get amount => _amount;
-  String get start_at => _start_at;
-  String get deliver_at => _deliver_at;
-  String get due_date => _due_date;
+  String get amount => _amount.toString();
+  String get start_at => _start_at.toString();
+  String get deliver_at => _deliver_at.toString();
+  String get due_date => _due_date.toString();
   int get client => _client;
   dynamic get quotes_quantity => _quotes_quantity;
   double get amount_payed => _amount_payed;
@@ -78,7 +88,7 @@ class Credit {
     map["id"] = _id;
     map["frequency"] = _frequency;
     map["time"] = _time;
-    map["rate"] = _rate;
+    map["rate"] = _rate;    
     map["amount"] = _amount;
     map["start_at"] = _start_at;
     map["deliver_at"] = _deliver_at;

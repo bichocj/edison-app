@@ -5,9 +5,9 @@ class Quote {
   String _charge_at;
   String _capital;
   String _interest;
-  String _amount;
+  double _amount;
   bool _has_complete;
-  dynamic _amount_debt;
+  double _amount_debt;
   List _fees;
   bool _is_beaten;
   String _client_name;
@@ -31,13 +31,23 @@ class Quote {
     this._credit = obj["credit"];
     this._charge_at =obj["charge_at"];
     this._capital = obj["capital"];
-    this._interest = obj["interest"];
-    this._amount = obj["amount"];
-    this._has_complete = obj["has_complete"];
-    this._amount_debt = obj["amount_debt"];
+    this._interest = obj["interest"];  
+    this._has_complete = obj["has_complete"];    
     this._fees = obj["fees"];
     this._is_beaten = obj["is_beaten"];
     this._client_name = obj["client_name"];
+
+    if(obj["amount"] is double){
+      this._amount = obj["amount"];
+    }else{
+      this._amount = double.parse(obj["amount"] ?? "0");      
+    }
+
+    if(obj["amount_debt"] is double){
+      this._amount_debt = obj["amount_debt"];
+    }else{
+      this._amount_debt = double.parse(obj["amount_debt"] ?? "0");
+    }
   }
 
   int get id => _id;
@@ -45,9 +55,9 @@ class Quote {
   String get charge_at => _charge_at;
   String get capital => _capital;
   String get interest => _interest;
-  String get amount => _amount;
+  double get amount => _amount;
   bool get has_complete => _has_complete;
-  dynamic get amount_debt => _amount_debt;
+  double get amount_debt => _amount_debt;
   List get fees => _fees;
   bool get is_beaten => _is_beaten;
   String get client_name => _client_name;

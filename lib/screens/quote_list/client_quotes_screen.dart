@@ -117,11 +117,25 @@ class QuoteTitle extends StatelessWidget {
           backgroundColor:
               _quoteColor
         ),
-        title: new Text(
-          formatDate(DateTime.parse(this._quote.charge_at), [dd, ' ', M, ', del ', yyyy ] ),
-          style: new TextStyle(fontWeight: FontWeight.bold),
-        ),
-        subtitle: new Text("S/. ${this._quote.amount_debt}"),
+        title: Center(child: Text(
+                  formatDate(DateTime.parse(this._quote.charge_at), [dd, ' ', M, ', del ', yyyy ] ),
+                  style: new TextStyle(fontWeight: FontWeight.bold),
+              )),
+        subtitle: Container(child:new Row(children: <Widget>[
+          Expanded(child: Column(children:<Widget>[
+            Container( child: new Text("Total"),), 
+            Container( child: new Text("S/. ${this._quote.amount}"),), 
+            ],)),
+          Expanded(child: Column(children:<Widget>[
+            Container( child: new Text("Pagado"),), 
+            Container( child: new Text("S/. ${this._quote.amount - this._quote.amount_debt}"),), 
+            ],)),
+          Expanded(child: Column(children:<Widget>[
+            Container( child: new Text("Debe"),), 
+            Container( child: new Text("S/. ${this._quote.amount_debt}"),), 
+            ],)),
+          ],
+          )),
         trailing: new Icon(Icons.arrow_right),
         onTap: () {
           Navigator.push(

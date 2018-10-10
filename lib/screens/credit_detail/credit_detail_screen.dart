@@ -26,7 +26,7 @@ class _ClientCreditDetailState extends State<ClientCreditDetail> {
         {
           setState(() {
             _creditName = 'Crédito Diario';
-            _rangeTime = 'días';
+            _rangeTime = 'meses';
           });
         }
         break;
@@ -157,6 +157,13 @@ class _ClientCreditDetailState extends State<ClientCreditDetail> {
                 icon: Icons.toc,
                 title: 'Monto pagado',
                 text: '${formatter.format(this._credit.amount_payed)}',
+                // text: '${this._credit.amount_payed}',
+                primaryColor: themeData.primaryColorDark,
+              ),
+              new InfoItem(
+                icon: Icons.toc,
+                title: 'Saldo actual',
+                text: '${formatter.format(this._credit.amount_total - this._credit.amount_payed)}',
                 // text: '${this._credit.amount_payed}',
                 primaryColor: themeData.primaryColorDark,
               ),
