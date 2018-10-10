@@ -16,6 +16,17 @@ class _OtherListsState extends State<OtherLists>
     with SingleTickerProviderStateMixin {
   TabController _tabController;
   ScrollController _scrollViewController;
+  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  SharedPreferences _sharedPreferences;
+
+  _closeSession() async {
+    _sharedPreferences = await _prefs;
+    _sharedPreferences.remove('auth_token');
+    var authStateProvider = new AuthStateProvider();
+    authStateProvider.notify(AuthState.LOGGED_OUT);
+    Navigator.of(context).pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+  }
+
   @override
   void initState() {
     super.initState();
@@ -39,6 +50,14 @@ class _OtherListsState extends State<OtherLists>
           return <Widget>[
             SliverAppBar(
               title: Text('Otras Listas'),
+              actions: <Widget>[
+                new IconButton(
+                  icon: new Icon(Icons.directions_run),
+                  onPressed: () {
+                    this._closeSession();
+                  },
+                ),
+              ],
               pinned: true,
               floating: true,
               forceElevated: boxIsScrolled,
