@@ -19,79 +19,83 @@ class ChargeSuccess extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
-    return Scaffold(
-        backgroundColor: Colors.green,
-        floatingActionButton: new Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            new FlatButton(
-                onPressed: () {
-                  Navigator.of(context).pushReplacement(new MaterialPageRoute(
-                      settings: const RouteSettings(name: '/Home'),
-                      builder: (context) => new SearchList(
-                          zone: this.client.zone_from.toString())));
-                },
-                child: new Icon(
-                  Icons.home,
-                  color: themeData.cardColor,
-                )),
-            new FlatButton(
-                onPressed: () {
-                  Navigator.of(context).pushReplacement(new MaterialPageRoute(
-                      settings: const RouteSettings(name: '/credits'),
-                      builder: (context) =>
-                          new CreditList(client: this.client)));
-                },
-                child: new Text(
-                  "Créditos",
-                  style: new TextStyle(color: themeData.cardColor),
-                )),
-            new FlatButton(
-                onPressed: () {
-                  Navigator.of(context).pushReplacement(new MaterialPageRoute(
-                      settings: const RouteSettings(name: '/quotes'),
-                      builder: (context) => new QuotesList(
-                            client: this.client,
-                            credit: this.credit,
-                          )));
-                },
-                child: new Text("Cuotas",
-                    style: new TextStyle(color: themeData.cardColor))),
-          ],
-        ),
-        body: new Container(
-          margin: new EdgeInsets.all(20.0),
-          child: new Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
+    return WillPopScope (
+      onWillPop: () async => false,
+      child: Scaffold(
+          backgroundColor: Colors.green,
+          floatingActionButton: new Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              new Icon(
-                Icons.check_circle,
-                size: 100.0,
-                color: Colors.white,
-              ),
-              new Container(
-                  margin: new EdgeInsets.symmetric(vertical: 16.0),
-                  child: new Text(
-                    "Cobro exitoso",
-                    style: new TextStyle(
-                        color: themeData.cardColor,
-                        fontWeight: FontWeight.w800,
-                        fontSize: 40.0),
+              new FlatButton(
+                  onPressed: () {
+                    Navigator.of(context).pushReplacement(new MaterialPageRoute(
+                        settings: const RouteSettings(name: '/Home'),
+                        builder: (context) => new SearchList(
+                            zone: this.client.zone_from.toString())));
+                  },
+                  child: new Icon(
+                    Icons.home,
+                    color: themeData.cardColor,
                   )),
-              new ChargeInfo(
-                  icon: Icons.person,
-                  text: "${this.client.lastname}, ${this.client.name}"),
-              new ChargeInfo(
-                icon: Icons.chrome_reader_mode,
-                text: this.client.dni,
-              ),
-              new ChargeInfo(
-                icon: Icons.monetization_on,
-                text: "S/. ${this.charge}",
-              ),
+              new FlatButton(
+                  onPressed: () {
+                    Navigator.of(context).pushReplacement(new MaterialPageRoute(
+                        settings: const RouteSettings(name: '/credits'),
+                        builder: (context) =>
+                        new CreditList(client: this.client)));
+                  },
+                  child: new Text(
+                    "Créditos",
+                    style: new TextStyle(color: themeData.cardColor),
+                  )),
+              new FlatButton(
+                  onPressed: () {
+                    Navigator.of(context).pushReplacement(new MaterialPageRoute(
+                        settings: const RouteSettings(name: '/quotes'),
+                        builder: (context) => new QuotesList(
+                          client: this.client,
+                          credit: this.credit,
+                        )));
+                  },
+                  child: new Text("Cuotas",
+                      style: new TextStyle(color: themeData.cardColor))),
             ],
           ),
-        ));
+          body: new Container(
+            margin: new EdgeInsets.all(20.0),
+            child: new Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                new Icon(
+                  Icons.check_circle,
+                  size: 100.0,
+                  color: Colors.white,
+                ),
+                new Container(
+                    margin: new EdgeInsets.symmetric(vertical: 16.0),
+                    child: new Text(
+                      "Cobro exitoso",
+                      style: new TextStyle(
+                          color: themeData.cardColor,
+                          fontWeight: FontWeight.w800,
+                          fontSize: 40.0),
+                    )),
+                new ChargeInfo(
+                    icon: Icons.person,
+                    text: "${this.client.lastname}, ${this.client.name}"),
+                new ChargeInfo(
+                  icon: Icons.chrome_reader_mode,
+                  text: this.client.dni,
+                ),
+                new ChargeInfo(
+                  icon: Icons.monetization_on,
+                  text: "S/. ${this.charge}",
+                ),
+              ],
+            ),
+          ))
+    );
+
   }
 }

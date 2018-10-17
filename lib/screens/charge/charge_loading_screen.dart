@@ -65,7 +65,8 @@ class _ChargeLoadingState extends State<ChargeLoading>
         builder: (context) => new ChargeFail(
             charge: double.parse(widget.totalCharge).toString(),
             quote: widget.quote,
-            client: widget.client
+            client: widget.client,
+            credit: widget.credit,
         )));
   }
 
