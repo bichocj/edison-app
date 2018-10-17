@@ -28,37 +28,17 @@ class ChargeSuccess extends StatelessWidget {
             children: <Widget>[
               new FlatButton(
                   onPressed: () {
-                    Navigator.of(context).pushReplacement(new MaterialPageRoute(
-                        settings: const RouteSettings(name: '/Home'),
-                        builder: (context) => new SearchList(
-                            zone: this.client.zone_from.toString())));
+                    Navigator.of(context).pushAndRemoveUntil(
+                        new MaterialPageRoute(
+                            settings: const RouteSettings(name: '/home'),
+                            builder: (context) => new SearchList(
+                                zone: this.client.zone_from.toString()
+                            )), (Route<dynamic> route) => false);
                   },
                   child: new Icon(
                     Icons.home,
                     color: themeData.cardColor,
                   )),
-              new FlatButton(
-                  onPressed: () {
-                    Navigator.of(context).pushReplacement(new MaterialPageRoute(
-                        settings: const RouteSettings(name: '/credits'),
-                        builder: (context) =>
-                        new CreditList(client: this.client)));
-                  },
-                  child: new Text(
-                    "Créditos",
-                    style: new TextStyle(color: themeData.cardColor),
-                  )),
-              new FlatButton(
-                  onPressed: () {
-                    Navigator.of(context).pushReplacement(new MaterialPageRoute(
-                        settings: const RouteSettings(name: '/quotes'),
-                        builder: (context) => new QuotesList(
-                          client: this.client,
-                          credit: this.credit,
-                        )));
-                  },
-                  child: new Text("Cuotas",
-                      style: new TextStyle(color: themeData.cardColor))),
             ],
           ),
           body: new Container(

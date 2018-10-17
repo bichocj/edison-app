@@ -1,7 +1,7 @@
 
 class Quote {
   int _id;
-  dynamic _credit;
+  int _credit;
   String _charge_at;
   String _capital;
   String _interest;
@@ -45,13 +45,18 @@ class Quote {
     if(obj["amount"] is double){
       this._amount = obj["amount"];
     }else{
+      print('amount conversion');
       this._amount = double.parse(obj["amount"] ?? "0");      
     }
 
     if(obj["amount_debt"] is double){
       this._amount_debt = obj["amount_debt"];
     }else{
-      this._amount_debt = double.parse(obj["amount_debt"] ?? "0");
+      if (obj["amount_debt"] == 0) {
+        this._amount_debt = 0.00;
+      } else {
+        this._amount_debt = double.parse(obj["amount_debt"] ?? "0");
+      }
     }
 
     if(obj["current_arrear"] is double){
@@ -59,11 +64,10 @@ class Quote {
     }else{
       this._current_arrear = double.parse(obj["current_arrear"] ?? "0");
     }
-
   }
 
   int get id => _id;
-  dynamic get credit => _credit;
+  int get credit => _credit;
   String get charge_at => _charge_at;
   String get capital => _capital;
   String get interest => _interest;
