@@ -25,7 +25,7 @@ class Fee {
   }
 
   int get id => _id;
-  dynamic get quote => _quote;
+  int get quote => _quote;
   String get amount_received => _amount_received;
   String get arrears => _arrears;
   String get created_at => _created_at;

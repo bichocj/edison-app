@@ -2,20 +2,22 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/models/client_credit.dart';
 import 'package:flutterapp/models/client_detail.dart';
+import 'package:flutterapp/models/fee.dart';
 import 'package:flutterapp/screens/custom_widgets/custom_card.dart';
 import 'package:flutterapp/screens/custom_widgets/info_item.dart';
 import 'package:flutterapp/models/quote.dart';
 import 'package:flutterapp/screens/charge/charge_screen.dart';
 import 'package:flutterapp/auth.dart';
+import 'package:flutterapp/screens/custom_widgets/subtitle.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:date_format/date_format.dart';
-
 
 class QuoteDetail extends StatefulWidget {
   final Quote quote;
   final ClientDetailModel client;
   final Credit credit;
-  QuoteDetail({Key key, this.quote, this.client, this.credit}) : super(key: key);
+  QuoteDetail({Key key, this.quote, this.client, this.credit})
+      : super(key: key);
   @override
   _QuoteDetailState createState() => _QuoteDetailState();
 }
@@ -24,6 +26,7 @@ class _QuoteDetailState extends State<QuoteDetail> {
   Quote _quote;
   Credit _credit;
   String _total;
+  List _fees;
 
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   SharedPreferences _sharedPreferences;
@@ -34,6 +37,7 @@ class _QuoteDetailState extends State<QuoteDetail> {
     _quote = widget.quote;
     _credit = widget.credit;
     _total = _calcTotal();
+    _fees = _quote.fees;
   }
 
   String _calcTotal() {
@@ -43,10 +47,14 @@ class _QuoteDetailState extends State<QuoteDetail> {
   }
 
   void _navigate() {
-    Navigator.push(context,
-        new MaterialPageRoute(builder: (BuildContext context) => new Charge(
-          quote: this._quote, client: widget.client, total: _total, credit: _credit
-        )));
+    Navigator.push(
+        context,
+        new MaterialPageRoute(
+            builder: (BuildContext context) => new Charge(
+                quote: this._quote,
+                client: widget.client,
+                total: _total,
+                credit: _credit)));
   }
 
   _closeSession() async {
@@ -54,7 +62,15 @@ class _QuoteDetailState extends State<QuoteDetail> {
     _sharedPreferences.remove('auth_token');
     var authStateProvider = new AuthStateProvider();
     authStateProvider.notify(AuthState.LOGGED_OUT);
-    Navigator.of(context).pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+    Navigator.of(context)
+        .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+  }
+
+  List<Fees> _buildList() {
+    return _fees
+        .map((fee) =>
+            new Fees(fee["created_at"], fee["amount_received"], fee["arrears"]))
+        .toList();
   }
 
   @override
@@ -78,15 +94,6 @@ class _QuoteDetailState extends State<QuoteDetail> {
             slivers: <Widget>[
               new SliverList(
                   delegate: new SliverChildListDelegate(<Widget>[
-                /*new CustomCart(
-                  image: 'assets/img/account.png',
-                  height: 250.0,
-                  background: Colors.white,
-                  icon: Icons.account_balance_wallet,
-                  name: widget.client.name,
-                  lastname: widget.client.lastname,
-                  dni: widget.client.dni,
-                ),*/
                 new Container(
                   margin: new EdgeInsets.all(16.0),
                   child: new Row(
@@ -113,10 +120,12 @@ class _QuoteDetailState extends State<QuoteDetail> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
-                              new Text('Total:', style: new TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: themeData.primaryColorDark
-                              ),),
+                              new Text(
+                                'Total:',
+                                style: new TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: themeData.primaryColorDark),
+                              ),
                               new Text(
                                 'S/.${this._total}',
                                 style: new TextStyle(
@@ -130,7 +139,9 @@ class _QuoteDetailState extends State<QuoteDetail> {
                           shape: new RoundedRectangleBorder(
                               borderRadius: new BorderRadius.circular(30.0)),
                           textColor: themeData.cardColor,
-                          color: double.parse(this._total) > 0 ? themeData.primaryColor : Color.fromRGBO(210, 210, 210, 1.0),
+                          color: double.parse(this._total) > 0
+                              ? themeData.primaryColor
+                              : Color.fromRGBO(210, 210, 210, 1.0),
                           splashColor: themeData.canvasColor,
                           elevation: 4.0,
                           padding: new EdgeInsets.symmetric(
@@ -145,7 +156,7 @@ class _QuoteDetailState extends State<QuoteDetail> {
                             if (double.parse(this._total) > 0) {
                               _navigate();
                             } else {
-                             return null;
+                              return null;
                             }
                           },
                         ),
@@ -172,7 +183,8 @@ class _QuoteDetailState extends State<QuoteDetail> {
                   icon: Icons.date_range,
                   primaryColor: Colors.indigo,
                   title: 'Fecha de Crédito',
-                  text: formatDate(DateTime.parse(this._quote.charge_at), [dd, ' ', M, ', del ', yyyy ] ),
+                  text: formatDate(DateTime.parse(this._quote.charge_at),
+                      [dd, ' ', M, ', del ', yyyy]),
                   textColor: Colors.black87,
                 ),
                 new InfoItem(
@@ -204,10 +216,98 @@ class _QuoteDetailState extends State<QuoteDetail> {
                   text: '${this._credit.days_late.toString()} día(s)',
                   textColor: Colors.black87,
                 ),
-                new Divider()
+                new Divider(),
+                new Container(
+                    margin: new EdgeInsets.symmetric(horizontal: 24.0),
+                    child: new Column(
+                      children: <Widget>[
+                        new Subtitle(
+                          text: "Cuotas Pagadas",
+                          background: themeData.primaryColor,
+                          color: themeData.cardColor,
+                        ),
+                        new Container(
+                            margin:
+                                new EdgeInsets.only(top: 00.0, bottom: 20.0),
+                            padding: new EdgeInsets.symmetric(vertical: 10.0),
+                            decoration: new BoxDecoration(
+                              color: themeData.cardColor,
+                              shape: BoxShape.rectangle,
+                              borderRadius: new BorderRadius.circular(8.0),
+                            ),
+                            child: new Column(children: _buildList()))
+                      ],
+                    ))
               ]))
             ],
           ),
         ));
+  }
+}
+
+class Fees extends StatelessWidget {
+  final String _date;
+  final String _amount;
+  final String _arrears;
+  const Fees(this._date, this._amount, this._arrears);
+  @override
+  Widget build(BuildContext context) {
+    final ThemeData themeData = Theme.of(context);
+    return new ListTile(
+      title: Center(
+          child: Text(
+        formatDate(DateTime.parse(this._date), [dd, ' ', M, ', del ', yyyy]),
+        style: new TextStyle(
+            fontWeight: FontWeight.bold, color: themeData.primaryColor),
+      )),
+      subtitle: Container(
+          child: new Row(
+        children: <Widget>[
+          Expanded(
+              child: Column(
+            children: <Widget>[
+              Container(
+                child: new Text(
+                  "Cuota",
+                  style: new TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+              Container(
+                child: new Text("S/. ${this._amount}"),
+              ),
+            ],
+          )),
+          Expanded(
+              child: Column(
+            children: <Widget>[
+              Container(
+                child: new Text(
+                  "Mora",
+                  style: new TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+              Container(
+                child: new Text("S/. ${this._arrears}"),
+              ),
+            ],
+          )),
+          Expanded(
+              child: Column(
+            children: <Widget>[
+              Container(
+                child: new Text(
+                  "Total",
+                  style: new TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+              Container(
+                child: new Text(
+                    "S/. ${double.parse(this._amount) + double.parse(this._arrears)}"),
+              ),
+            ],
+          )),
+        ],
+      )),
+    );
   }
 }
