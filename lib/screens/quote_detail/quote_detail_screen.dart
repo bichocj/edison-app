@@ -235,7 +235,11 @@ class _QuoteDetailState extends State<QuoteDetail> {
                               shape: BoxShape.rectangle,
                               borderRadius: new BorderRadius.circular(8.0),
                             ),
-                            child: new Column(children: _buildList()))
+                            child: _fees.length > 1 ?
+                            new Column(children: _buildList())
+                                :
+                                new Text("Aún no ha realizado ningún pago")
+                        )
                       ],
                     ))
               ]))
