@@ -202,13 +202,13 @@ class _ClientCreditDetailState extends State<ClientCreditDetail> {
                 text: '${this._credit.days_late} día(s)',
                 primaryColor: themeData.primaryColorDark,
               ),
-              new InfoItem(
+              /*new InfoItem(
                 icon: Icons.details,
                 title: 'Mora',
                 text: '${formatter.format(this._credit.current_arrear)}',
                 // text: '${this._credit.current_arrear}',
                 primaryColor: themeData.primaryColorDark,
-              ),
+              ),*/
               new Container(
                 margin:
                     new EdgeInsets.symmetric(horizontal: 72.0, vertical: 16.0),
