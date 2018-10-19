@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/models/client_credit.dart';
 import 'package:flutterapp/models/client_detail.dart';
+import 'package:flutterapp/models/fee.dart';
 import 'package:flutterapp/screens/quote_detail/quote_detail_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutterapp/screens/quote_list/client_quotes_screen_presenter.dart';
@@ -105,6 +106,11 @@ class QuoteTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
+
+    double _total = this._quote.amount + this._quote.current_arrear;
+    double _debt = this._quote.amount_debt + this._quote.current_arrear;
+    double _payed = _total - _debt;
+
     Color _quoteColor;
     if(this._quote.has_complete) {
       _quoteColor = Colors.grey;
@@ -140,15 +146,15 @@ class QuoteTitle extends StatelessWidget {
         subtitle: Container(child:new Row(children: <Widget>[
           Expanded(child: Column(children:<Widget>[
             Container( child: new Text("Total"),), 
-            Container( child: new Text("S/. ${this._quote.amount}"),), 
+            Container( child: new Text("S/. ${_total}"),),
             ],)),
           Expanded(child: Column(children:<Widget>[
             Container( child: new Text("Pagado"),), 
-            Container( child: new Text("S/. ${this._quote.amount - this._quote.amount_debt}"),), 
+            Container( child: new Text("S/. ${_payed}"),),
             ],)),
           Expanded(child: Column(children:<Widget>[
             Container( child: new Text("Debe"),), 
-            Container( child: new Text("S/. ${this._quote.amount_debt}"),), 
+            Container( child: new Text("S/. ${ _debt}"),),
             ],)),
           ],
           )),
