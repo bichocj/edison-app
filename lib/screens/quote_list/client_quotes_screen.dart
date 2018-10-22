@@ -9,6 +9,7 @@ import 'package:flutterapp/screens/quote_list/client_quotes_screen_presenter.dar
 import 'package:flutterapp/models/quote.dart';
 import 'package:date_format/date_format.dart';
 import 'package:flutterapp/auth.dart';
+import 'package:intl/intl.dart';
 
 class QuotesList extends StatefulWidget {
   static String tag = 'quote';
@@ -106,7 +107,7 @@ class QuoteTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
-
+    final formatter = new NumberFormat.simpleCurrency(name: 'PEN');
     double _total = this._quote.amount + this._quote.current_arrear;
     double _debt = this._quote.amount_debt + this._quote.current_arrear;
     double _payed = _total - _debt;
@@ -146,15 +147,15 @@ class QuoteTitle extends StatelessWidget {
         subtitle: Container(child:new Row(children: <Widget>[
           Expanded(child: Column(children:<Widget>[
             Container( child: new Text("Total"),), 
-            Container( child: new Text("S/. ${_total}"),),
+            Container( child: new Text("${formatter.format(_total)}"),),
             ],)),
           Expanded(child: Column(children:<Widget>[
             Container( child: new Text("Pagado"),), 
-            Container( child: new Text("S/. ${_payed}"),),
+            Container( child: new Text(" ${formatter.format(_payed)}"),),
             ],)),
           Expanded(child: Column(children:<Widget>[
             Container( child: new Text("Debe"),), 
-            Container( child: new Text("S/. ${ _debt}"),),
+            Container( child: new Text(" ${formatter.format(_debt)}"),),
             ],)),
           ],
           )),
