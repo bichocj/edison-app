@@ -33,9 +33,23 @@ class _ChargeState extends State<Charge> {
   void _submit() {
     final form = formKey.currentState;
     var _sendCharge;
+    var _sendArrear;
     if (form.validate()) {
       form.save();
-      _sendCharge = double.parse(_charge) - this._quote.current_arrear;
+      if (this._quote.amount_debt != 0.00) {
+        if (double.parse(_charge) > this._quote.amount_debt) {
+          _sendCharge =  this._quote.amount_debt;
+          _sendArrear = double.parse(_charge) - _sendCharge ;
+        } else {
+          _sendCharge =  double.parse(_charge);
+          _sendArrear = 0.00;
+        }
+      } else {
+        _sendArrear = double.parse(_charge);
+        _sendCharge = 0.00;
+      }
+
+
 
       Navigator.of(context).pushReplacement(new MaterialPageRoute(
           settings: const RouteSettings(name: '/chargeLoading'),
@@ -44,7 +58,7 @@ class _ChargeState extends State<Charge> {
             credit: this._credit,
             client: this._client,
             charge: _sendCharge,
-            arrear: this._quote.current_arrear,
+            arrear: _sendArrear,
             totalCharge: _charge
           )));
     }
@@ -121,12 +135,8 @@ class _ChargeState extends State<Charge> {
                                         if (val.length < 1) {
                                           return "Por favor, ingrese monto.";
                                         } else {
-                                          if (double.parse(val) >
-                                              double.parse(widget.total)) {
+                                          if (double.parse(val) > double.parse(widget.total)) {
                                             return "Este monto excede del total.";
-                                          } else if (double.parse(val) <
-                                              this._quote.current_arrear) {
-                                            return "Cobrar por lo menos la mora: S/. ${this._quote.current_arrear}";
                                           }
                                         }
                                       },
