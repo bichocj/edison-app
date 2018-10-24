@@ -108,9 +108,30 @@ class QuoteTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
     final formatter = new NumberFormat.simpleCurrency(name: 'PEN');
+
+    _getAmounts() {
+      return this._quote.fees
+          .map((fee) => double.parse(fee['amount_received'])).toList();
+    }
+    _getArrears(){
+      return this._quote.fees
+          .map((fee) => double.parse(fee['arrears'])).toList();
+    }
+
+    double _sumPayed(){
+      if (this._quote.fees.length > 0) {
+        List<double> _amounts = _getAmounts();
+        List<double> _arrears = _getArrears();
+        double _sumAmounts = _amounts.reduce((a, b) => a + b);
+        double _sumArrears = _arrears.reduce((a, b) => a + b);
+        return _sumAmounts + _sumArrears;
+      } else {
+        return 0.00;
+      }
+    }
     double _total = this._quote.amount + this._quote.current_arrear;
     double _debt = this._quote.amount_debt + this._quote.current_arrear;
-    double _payed = _total - _debt;
+    double _payed = _sumPayed();
 
     Color _quoteColor;
     if(this._quote.has_complete) {
