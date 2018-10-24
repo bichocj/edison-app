@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterapp/models/client_credit.dart';
 import 'package:flutterapp/models/client_detail.dart';
 import 'package:flutterapp/models/fee.dart';
+import 'package:flutterapp/screens/client_list/client_list_screen.dart';
 import 'package:flutterapp/screens/custom_widgets/custom_card.dart';
 import 'package:flutterapp/screens/custom_widgets/info_item.dart';
 import 'package:flutterapp/models/quote.dart';
@@ -67,6 +68,15 @@ class _QuoteDetailState extends State<QuoteDetail> {
         .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
   }
 
+  _navigateToHome(){
+    Navigator.of(context).pushAndRemoveUntil(
+        new MaterialPageRoute(
+            settings: const RouteSettings(name: '/home'),
+            builder: (context) => new SearchList(
+                zone: widget.client.zone_from.toString()
+            )), (Route<dynamic> route) => false);
+  }
+
   List<Fees> _buildList() {
     return _fees
         .map((fee) =>
@@ -79,9 +89,15 @@ class _QuoteDetailState extends State<QuoteDetail> {
     final ThemeData themeData = Theme.of(context);
     return new Scaffold(
         appBar: new AppBar(
-          centerTitle: true,
+          centerTitle: false,
           title: new Text('Detalle de cuota'),
           actions: <Widget>[
+            new IconButton(
+              icon: new Icon(Icons.home),
+              onPressed: () {
+                this._navigateToHome();
+              },
+            ),
             new IconButton(
               icon: new Icon(Icons.directions_run),
               onPressed: () {
