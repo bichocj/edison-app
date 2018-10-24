@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/models/client_credit.dart';
 import 'package:flutterapp/models/client_detail.dart';
+import 'package:flutterapp/screens/client_list/client_list_screen.dart';
 import 'package:flutterapp/screens/quote_list/client_quotes_screen.dart';
 import 'package:flutterapp/screens/custom_widgets/subtitle.dart';
 import 'package:intl/intl.dart';
@@ -95,6 +96,15 @@ class _ClientCreditDetailState extends State<ClientCreditDetail> {
         .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
   }
 
+  _navigateToHome(){
+    Navigator.of(context).pushAndRemoveUntil(
+        new MaterialPageRoute(
+            settings: const RouteSettings(name: '/home'),
+            builder: (context) => new SearchList(
+                zone: widget.client.zone_from.toString()
+            )), (Route<dynamic> route) => false);
+  }
+
   @override
   void initState() {
     super.initState();
@@ -111,6 +121,12 @@ class _ClientCreditDetailState extends State<ClientCreditDetail> {
     return new Scaffold(
       appBar: new AppBar(
         actions: <Widget>[
+          new IconButton(
+            icon: new Icon(Icons.home),
+            onPressed: () {
+              this._navigateToHome();
+            },
+          ),
           new IconButton(
               icon: new Icon(Icons.directions_run),
               onPressed: () {
