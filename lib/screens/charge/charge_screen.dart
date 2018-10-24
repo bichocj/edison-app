@@ -49,16 +49,14 @@ class _ChargeState extends State<Charge> {
         _sendCharge = 0.00;
       }
 
-
-
       Navigator.of(context).pushReplacement(new MaterialPageRoute(
           settings: const RouteSettings(name: '/chargeLoading'),
           builder: (context) => new ChargeLoading(
             quote: this._quote,
             credit: this._credit,
             client: this._client,
-            charge: _sendCharge,
-            arrear: _sendArrear,
+            charge: _sendCharge.toStringAsFixed(2),
+            arrear: _sendArrear.toStringAsFixed(2),
             totalCharge: _charge
           )));
     }
@@ -117,7 +115,7 @@ class _ChargeState extends State<Charge> {
                                         color: themeData.primaryColorDark),
                                   ),
                                   new Text(
-                                    'S/.${widget.total}',
+                                    'S/.${double.parse(widget.total).toStringAsFixed(2)}',
                                     style: new TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 24.0),
