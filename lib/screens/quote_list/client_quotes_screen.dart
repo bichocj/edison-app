@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterapp/models/client_credit.dart';
 import 'package:flutterapp/models/client_detail.dart';
 import 'package:flutterapp/models/fee.dart';
+import 'package:flutterapp/screens/client_list/client_list_screen.dart';
 import 'package:flutterapp/screens/quote_detail/quote_detail_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutterapp/screens/quote_list/client_quotes_screen_presenter.dart';
@@ -46,6 +47,15 @@ class _QuotesListState extends State<QuotesList>
     Navigator.of(context).pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
   }
 
+  _navigateToHome(){
+    Navigator.of(context).pushAndRemoveUntil(
+        new MaterialPageRoute(
+            settings: const RouteSettings(name: '/home'),
+            builder: (context) => new SearchList(
+                zone: widget.client.zone_from.toString()
+            )), (Route<dynamic> route) => false);
+  }
+
   @override
   void initState() {
     super.initState();
@@ -81,6 +91,12 @@ class _QuotesListState extends State<QuotesList>
         title: Text('Cuotas'),
         centerTitle: true,
         actions: <Widget>[
+          new IconButton(
+            icon: new Icon(Icons.home),
+            onPressed: () {
+              this._navigateToHome();
+            },
+          ),
           new IconButton(
             icon: new Icon(Icons.directions_run),
             onPressed: () {
