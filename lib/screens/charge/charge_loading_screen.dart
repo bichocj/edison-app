@@ -35,10 +35,6 @@ class _ChargeLoadingState extends State<ChargeLoading>
     _sharedPreferences = await _prefs;
     String authToken = _sharedPreferences.getString('auth_token');
     print(authToken);
-    print("*********************+");
-    print(widget.charge);
-    print(widget.arrear);
-    print("*********************+");
     _presenter = new ChargeScreenPresenter(this, authToken);
     _presenter.requestCharge(widget.charge, widget.quote.id, widget.arrear);
   }
