@@ -9,6 +9,7 @@ import 'package:flutterapp/models/quote.dart';
 import 'package:flutterapp/screens/charge/charge_screen.dart';
 import 'package:flutterapp/auth.dart';
 import 'package:flutterapp/screens/custom_widgets/subtitle.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:date_format/date_format.dart';
 
@@ -27,7 +28,7 @@ class _QuoteDetailState extends State<QuoteDetail> {
   Credit _credit;
   String _total;
   List _fees;
-
+  final formatter = new NumberFormat.simpleCurrency(name: 'PEN');
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   SharedPreferences _sharedPreferences;
 
@@ -127,7 +128,7 @@ class _QuoteDetailState extends State<QuoteDetail> {
                                     color: themeData.primaryColorDark),
                               ),
                               new Text(
-                                'S/.${this._total}',
+                                'S/.${double.parse(this._total).toStringAsFixed(2)}',
                                 style: new TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 24.0),
