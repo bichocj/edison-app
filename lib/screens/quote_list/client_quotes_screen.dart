@@ -89,7 +89,7 @@ class _QuotesListState extends State<QuotesList>
       backgroundColor: themeData.canvasColor,
       appBar: new AppBar(
         title: Text('Cuotas'),
-        centerTitle: true,
+        centerTitle: false,
         actions: <Widget>[
           new IconButton(
             icon: new Icon(Icons.home),

@@ -53,8 +53,8 @@
             <file pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/lib/screens/quote_list/client_quotes_screen.dart">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="391">
-                    <caret line="54" column="56" lean-forward="true" selection-start-line="54" selection-start-column="56" selection-end-line="54" selection-end-column="56" />
+                  <state relative-caret-position="209">
+                    <caret line="91" column="26" selection-start-line="91" selection-start-column="26" selection-end-line="91" selection-end-column="26" />
                     <folding>
                       <element signature="e#0#20#0" expanded="true" />
                     </folding>
@@ -175,12 +175,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="dart" value="6232" />
+          <entry key="dart" value="6237" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Dart" value="6232" />
+          <entry key="Dart" value="6237" />
         </counts>
       </usages-collector>
     </session>
@@ -193,8 +193,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/screens/credit_detail/credit_detail_screen.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="159">
-              <caret line="98" column="2" lean-forward="true" selection-start-line="98" selection-start-column="2" selection-end-line="105" selection-end-column="3" />
+            <state relative-caret-position="106">
+              <caret line="210" column="38" selection-start-line="210" selection-start-column="32" selection-end-line="210" selection-end-column="38" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
               </folding>
@@ -278,7 +278,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>action</find>
       <find>_close</find>
       <find>Estad</find>
       <find>sca</find>
@@ -299,7 +298,6 @@
       <find>formater</find>
       <find>formateer</find>
       <find>form</find>
-      <find>quote</find>
       <find>Total</find>
       <find>formatter</find>
       <find>ixed</find>
@@ -308,6 +306,8 @@
       <find>print</find>
       <find>run</find>
       <find>close</find>
+      <find>cuotas</find>
+      <find>quote</find>
     </findStrings>
     <replaceStrings>
       <replace>InfoItem</replace>
@@ -544,7 +544,7 @@
     <frame x="0" y="27" width="683" height="741" extended-state="4" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49655172" visible="true" weight="0.36850393" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49655172" visible="true" weight="0.36850393" />
       <window_info id="Structure" order="1" sideWeight="0.50344825" side_tool="true" weight="0.2905918" />
       <window_info id="Designer" order="2" />
       <window_info id="Build Variants" order="3" sideWeight="0.50250417" side_tool="true" weight="0.32852808" />
@@ -555,7 +555,7 @@
       <window_info id="UI Designer" order="8" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.66554624" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.07394958" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.34117648" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -899,8 +899,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/screens/credit_detail/credit_detail_screen.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="98" column="2" lean-forward="true" selection-start-line="98" selection-start-column="2" selection-end-line="105" selection-end-column="3" />
+        <state relative-caret-position="106">
+          <caret line="210" column="38" selection-start-line="210" selection-start-column="32" selection-end-line="210" selection-end-column="38" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
           </folding>
@@ -909,8 +909,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/screens/quote_list/client_quotes_screen.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="54" column="56" lean-forward="true" selection-start-line="54" selection-start-column="56" selection-end-line="54" selection-end-column="56" />
+        <state relative-caret-position="209">
+          <caret line="91" column="26" selection-start-line="91" selection-start-column="26" selection-end-line="91" selection-end-column="26" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
           </folding>
