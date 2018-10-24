@@ -2,12 +2,15 @@ import 'dart:ui';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/auth.dart';
+import 'package:flutterapp/screens/client_list/client_list_screen.dart';
 import 'package:flutterapp/screens/login/login_screen_presenter.dart';
 import 'package:flutterapp/screens/overdue_fees/overdue_fees_screen.dart';
 import 'package:flutterapp/screens/total_charge/total_charge_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class OtherLists extends StatefulWidget {
+  final String zone;
+  OtherLists({Key key, this.zone});
   @override
   _OtherListsState createState() => _OtherListsState();
 }
@@ -25,6 +28,15 @@ class _OtherListsState extends State<OtherLists>
     var authStateProvider = new AuthStateProvider();
     authStateProvider.notify(AuthState.LOGGED_OUT);
     Navigator.of(context).pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+  }
+
+  _navigateToHome(){
+    Navigator.of(context).pushAndRemoveUntil(
+        new MaterialPageRoute(
+            settings: const RouteSettings(name: '/home'),
+            builder: (context) => new SearchList(
+                zone: widget.zone.toString()
+            )), (Route<dynamic> route) => false);
   }
 
   @override
@@ -51,6 +63,12 @@ class _OtherListsState extends State<OtherLists>
             SliverAppBar(
               title: Text('Otras Listas'),
               actions: <Widget>[
+                new IconButton(
+                  icon: new Icon(Icons.home),
+                  onPressed: () {
+                    this._navigateToHome();
+                  },
+                ),
                 new IconButton(
                   icon: new Icon(Icons.directions_run),
                   onPressed: () {

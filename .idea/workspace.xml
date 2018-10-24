@@ -10,7 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5de29e84-5447-4060-9551-6bb6174712f5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/lib/screens/client_detail/client_detail_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/client_detail/client_detail_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/client_list/client_list_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/client_list/client_list_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/other_lists/other_lists_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/other_lists/other_lists_screen.dart" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -53,8 +54,8 @@
             <file pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/lib/screens/quote_list/client_quotes_screen.dart">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="186">
-                    <caret line="49" column="2" lean-forward="true" selection-start-line="49" selection-start-column="2" selection-end-line="56" selection-end-column="3" />
+                  <state relative-caret-position="4577">
+                    <caret line="199" column="18" selection-start-line="199" selection-start-column="18" selection-end-line="205" selection-end-column="9" />
                     <folding>
                       <element signature="e#0#20#0" expanded="true" />
                     </folding>
@@ -165,22 +166,22 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="dart" value="123" />
+          <entry key="dart" value="124" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Dart" value="123" />
+          <entry key="Dart" value="124" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="dart" value="6288" />
+          <entry key="dart" value="6387" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Dart" value="6288" />
+          <entry key="Dart" value="6387" />
         </counts>
       </usages-collector>
     </session>
@@ -214,11 +215,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/screens/client_detail/client_detail_screen.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="259" column="27" selection-start-line="259" selection-start-column="27" selection-end-line="259" selection-end-column="27" />
+            <state relative-caret-position="350">
+              <caret line="268" column="26" lean-forward="true" selection-start-line="268" selection-start-column="26" selection-end-line="268" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lib/screens/other_lists/other_lists_screen.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="304">
+              <caret line="68" column="42" selection-start-line="68" selection-start-column="42" selection-end-line="68" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -235,8 +245,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/screens/client_list/client_list_screen.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="149" column="27" selection-start-line="149" selection-start-column="22" selection-end-line="149" selection-end-column="27" />
+            <state relative-caret-position="231">
+              <caret line="106" column="60" lean-forward="true" selection-start-line="106" selection-start-column="60" selection-end-line="106" selection-end-column="60" />
             </state>
           </provider>
         </entry>
@@ -246,15 +256,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="322">
               <caret line="15" column="8" lean-forward="true" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/models/client_detail.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="851">
-              <caret line="37" column="7" selection-start-line="37" selection-start-column="7" selection-end-line="37" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -290,9 +291,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>listas</find>
-      <find>Mo</find>
-      <find>navig</find>
       <find>Debe</find>
       <find>Fecha</find>
       <find>last</find>
@@ -315,11 +313,14 @@
       <find>print</find>
       <find>run</find>
       <find>close</find>
-      <find>quote</find>
       <find>cuotas</find>
       <find>Detalle</find>
       <find>closeSe</find>
       <find>home</find>
+      <find>Navigate</find>
+      <find>charge</find>
+      <find>quote</find>
+      <find>othe</find>
     </findStrings>
     <replaceStrings>
       <replace>InfoItem</replace>
@@ -366,11 +367,9 @@
         <option value="$PROJECT_DIR$/lib/screens/total_charge/total_charge_screen.dart" />
         <option value="$PROJECT_DIR$/lib/screens/overdue_fees/overdue_fees_screen_presenter.dart" />
         <option value="$PROJECT_DIR$/lib/screens/overdue_fees/overdue_fees_screen.dart" />
-        <option value="$PROJECT_DIR$/lib/screens/client_list/client_list_screen.dart" />
         <option value="$PROJECT_DIR$/lib/auth.dart" />
         <option value="$PROJECT_DIR$/lib/screens/profile/profile_screen.dart" />
         <option value="$PROJECT_DIR$/lib/main.dart" />
-        <option value="$PROJECT_DIR$/lib/screens/other_lists/other_lists_screen.dart" />
         <option value="$PROJECT_DIR$/lib/routes.dart" />
         <option value="$PROJECT_DIR$/lib/screens/login/login_screen.dart" />
         <option value="$PROJECT_DIR$/lib/data/rest_ds.dart" />
@@ -385,6 +384,8 @@
         <option value="$PROJECT_DIR$/lib/screens/quote_list/client_quotes_screen.dart" />
         <option value="$PROJECT_DIR$/lib/screens/quote_detail/quote_detail_screen.dart" />
         <option value="$PROJECT_DIR$/lib/screens/client_detail/client_detail_screen.dart" />
+        <option value="$PROJECT_DIR$/lib/screens/client_list/client_list_screen.dart" />
+        <option value="$PROJECT_DIR$/lib/screens/other_lists/other_lists_screen.dart" />
       </list>
     </option>
   </component>
@@ -395,7 +396,7 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="61" />
+    <option name="x" value="99" />
     <option name="y" value="27" />
     <option name="width" value="663" />
     <option name="height" value="562" />
@@ -490,6 +491,13 @@
               <item name="edison-app" type="462c0819:PsiDirectoryNode" />
               <item name="lib" type="462c0819:PsiDirectoryNode" />
               <item name="screens" type="462c0819:PsiDirectoryNode" />
+              <item name="other_lists" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="edison-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="edison-app" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="screens" type="462c0819:PsiDirectoryNode" />
               <item name="quote_detail" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -509,7 +517,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="flutt&#9;ACTION&#9;ActivateFlutterInspectorToolWindow&#10;flutter ins&#9;ACTION&#9;ActivateFlutterInspectorToolWindow" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540409385354" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540409836208" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -557,7 +565,7 @@
     <frame x="0" y="27" width="1366" height="741" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49655172" visible="true" weight="0.17754173" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49655172" visible="true" weight="0.17754173" />
       <window_info id="Structure" order="1" sideWeight="0.50344825" side_tool="true" weight="0.2905918" />
       <window_info id="Designer" order="2" />
       <window_info id="Build Variants" order="3" sideWeight="0.50250417" side_tool="true" weight="0.32852808" />
@@ -568,7 +576,7 @@
       <window_info id="UI Designer" order="8" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.66554624" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.17310925" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.17310925" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -771,13 +779,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/screens/other_lists/other_lists_screen.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="27" column="3" selection-start-line="27" selection-start-column="3" selection-end-line="27" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/screens/custom_widgets/info_item.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="874">
@@ -865,13 +866,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/screens/client_list/client_list_screen.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="149" column="27" selection-start-line="149" selection-start-column="22" selection-end-line="149" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/screens/credit_detail/credit_detail_screen_presenter.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
@@ -913,20 +907,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lib/screens/client_detail/client_detail_screen.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="268" column="26" lean-forward="true" selection-start-line="268" selection-start-column="26" selection-end-line="268" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/screens/client_list/client_list_screen.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="106" column="60" lean-forward="true" selection-start-line="106" selection-start-column="60" selection-end-line="106" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/screens/quote_list/client_quotes_screen.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="49" column="2" lean-forward="true" selection-start-line="49" selection-start-column="2" selection-end-line="56" selection-end-column="3" />
+        <state relative-caret-position="4577">
+          <caret line="199" column="18" selection-start-line="199" selection-start-column="18" selection-end-line="205" selection-end-column="9" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/screens/client_detail/client_detail_screen.dart">
+    <entry file="file://$PROJECT_DIR$/lib/screens/other_lists/other_lists_screen.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="259" column="27" selection-start-line="259" selection-start-column="27" selection-end-line="259" selection-end-column="27" />
+        <state relative-caret-position="304">
+          <caret line="68" column="42" selection-start-line="68" selection-start-column="42" selection-end-line="68" selection-end-column="42" />
         </state>
       </provider>
     </entry>

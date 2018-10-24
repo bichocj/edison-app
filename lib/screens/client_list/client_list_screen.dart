@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/screens/client_detail/client_detail_screen.dart';
+import 'package:flutterapp/screens/other_lists/other_lists_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutterapp/screens/client_list/client_list_screen_presenter.dart';
 import 'package:flutterapp/models/client.dart';
@@ -80,8 +81,6 @@ class _SearchListState extends State<SearchList>
     _isSearching = false;
     _success = false;
     _list = [];
-    print("set state aqui");
-    print(widget.zone);
     _fetchSessionAndNavigate();
   }
 
@@ -101,7 +100,13 @@ class _SearchListState extends State<SearchList>
             ),
       floatingActionButton: new FloatingActionButton(
         onPressed: () {
-          Navigator.of(context).pushNamed('/other_list');
+          {
+            Navigator.push(
+                context,
+                new MaterialPageRoute(
+                    builder: (BuildContext context) => new OtherLists(
+                        zone: widget.zone)));
+          }
         },
         backgroundColor: themeData.primaryColorDark,
         child: new Icon(
