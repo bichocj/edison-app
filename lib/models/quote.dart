@@ -45,7 +45,6 @@ class Quote {
     if(obj["amount"] is double){
       this._amount = obj["amount"];
     }else{
-      print('amount conversion');
       this._amount = double.parse(obj["amount"] ?? "0");      
     }
 
