@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutterapp/screens/client_list/client_list_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutterapp/screens/client_detail/client_detail_screen_presenter.dart';
 import 'package:flutterapp/models/client_detail.dart';
@@ -38,10 +39,21 @@ class _ClientDetailState extends State<ClientDetail>
     _sharedPreferences.remove('auth_token');
     String authToken = _sharedPreferences.getString('auth_token');
     print(authToken);
-    print('--------------------------------------------------------CLOSE SESSION');
+    print(
+        '--------------------------------------------------------CLOSE SESSION');
     var authStateProvider = new AuthStateProvider();
     authStateProvider.notify(AuthState.LOGGED_OUT);
-    Navigator.of(context).pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+    Navigator.of(context)
+        .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+  }
+
+  _navigateToHome() {
+    Navigator.of(context).pushAndRemoveUntil(
+        new MaterialPageRoute(
+            settings: const RouteSettings(name: '/home'),
+            builder: (context) =>
+                new SearchList(zone: this._client_detail.zone_from.toString())),
+        (Route<dynamic> route) => false);
   }
 
   @override
@@ -69,9 +81,8 @@ class _ClientDetailState extends State<ClientDetail>
 
   _buildTitle() {
     if (this._success) {
-      return 
-      new Container(
-        width: MediaQuery.of(context).size.width*0.55,
+      return new Container(
+        width: MediaQuery.of(context).size.width * 0.55,
         child: new Text(
           this._client_detail.lastname,
           maxLines: 2,
@@ -107,7 +118,8 @@ class _ClientDetailState extends State<ClientDetail>
       new InfoItem(
         icon: Icons.home,
         title: 'Domicilio',
-        text: this._client_detail.address + ' - ' + this._client_detail.district,
+        text:
+            this._client_detail.address + ' - ' + this._client_detail.district,
         primaryColor: themeData.primaryColorDark,
         textColor: themeData.hintColor,
       ),
@@ -115,25 +127,28 @@ class _ClientDetailState extends State<ClientDetail>
       new InfoItem(
         icon: Icons.phone_android,
         title: 'Celular',
-        text: this._client_detail.cellphone != null ? "${this._client_detail.cellphone}" : 'Sin celular.',
+        text: this._client_detail.cellphone != null
+            ? "${this._client_detail.cellphone}"
+            : 'Sin celular.',
         primaryColor: themeData.primaryColorDark,
         textColor: themeData.hintColor,
       ),
       new Divider(),
-      this._client_detail.phone != null ?
-      new InfoItem(
-        icon: Icons.phone,
-        title: 'Teléfono Fijo',
-        text: "${this._client_detail.phone}",
-        primaryColor: themeData.primaryColorDark,
-        textColor: themeData.hintColor,
-      ) : new InfoItem(
-        icon: Icons.phone,
-        title: 'Teléfono Fijo',
-        text: "Sin teléfono fijo.",
-        primaryColor: themeData.primaryColorDark,
-        textColor: themeData.hintColor,
-      ),
+      this._client_detail.phone != null
+          ? new InfoItem(
+              icon: Icons.phone,
+              title: 'Teléfono Fijo',
+              text: "${this._client_detail.phone}",
+              primaryColor: themeData.primaryColorDark,
+              textColor: themeData.hintColor,
+            )
+          : new InfoItem(
+              icon: Icons.phone,
+              title: 'Teléfono Fijo',
+              text: "Sin teléfono fijo.",
+              primaryColor: themeData.primaryColorDark,
+              textColor: themeData.hintColor,
+            ),
       new Divider(),
       new InfoItem(
         icon: Icons.business,
@@ -143,20 +158,21 @@ class _ClientDetailState extends State<ClientDetail>
         textColor: themeData.hintColor,
       ),
       new Divider(),
-      this._client_detail.reference != null ?
-      new InfoItem(
-        icon: Icons.location_on,
-        title: 'Referencia',
-        text: "${this._client_detail.reference}",
-        primaryColor: themeData.primaryColorDark,
-        textColor: themeData.hintColor,
-      ) : new InfoItem(
-    icon: Icons.location_on,
-    title: 'Referencia',
-    text: "Sin referencia.",
-    primaryColor: themeData.primaryColorDark,
-    textColor: themeData.hintColor,
-    ),
+      this._client_detail.reference != null
+          ? new InfoItem(
+              icon: Icons.location_on,
+              title: 'Referencia',
+              text: "${this._client_detail.reference}",
+              primaryColor: themeData.primaryColorDark,
+              textColor: themeData.hintColor,
+            )
+          : new InfoItem(
+              icon: Icons.location_on,
+              title: 'Referencia',
+              text: "Sin referencia.",
+              primaryColor: themeData.primaryColorDark,
+              textColor: themeData.hintColor,
+            ),
       new Padding(padding: new EdgeInsets.all(8.0))
     ]);
   }
@@ -226,14 +242,29 @@ class _ClientDetailState extends State<ClientDetail>
           new SliverAppBar(
             pinned: true,
             expandedHeight: _heightImage,
-            actions: <Widget>[
-              new IconButton(
-                icon: new Icon(Icons.directions_run),
-                onPressed: () {
-                  this._closeSession();
-                },
-              ),
-            ],
+            actions: _success
+                ? <Widget>[
+                    new IconButton(
+                      icon: new Icon(Icons.home),
+                      onPressed: () {
+                        this._navigateToHome();
+                      },
+                    ),
+                    new IconButton(
+                      icon: new Icon(Icons.directions_run),
+                      onPressed: () {
+                        this._closeSession();
+                      },
+                    ),
+                  ]
+                : <Widget>[
+                    new IconButton(
+                      icon: new Icon(Icons.directions_run),
+                      onPressed: () {
+                        this._closeSession();
+                      },
+                    ),
+                  ],
             flexibleSpace: new FlexibleSpaceBar(
               title: _buildTitle(),
               background: new Stack(
