@@ -27,16 +27,16 @@ class _OtherListsState extends State<OtherLists>
     _sharedPreferences.remove('auth_token');
     var authStateProvider = new AuthStateProvider();
     authStateProvider.notify(AuthState.LOGGED_OUT);
-    Navigator.of(context).pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+    Navigator.of(context)
+        .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
   }
 
-  _navigateToHome(){
+  _navigateToHome() {
     Navigator.of(context).pushAndRemoveUntil(
         new MaterialPageRoute(
             settings: const RouteSettings(name: '/home'),
-            builder: (context) => new SearchList(
-                zone: widget.zone.toString()
-            )), (Route<dynamic> route) => false);
+            builder: (context) => new SearchList(zone: widget.zone.toString())),
+        (Route<dynamic> route) => false);
   }
 
   @override
@@ -106,5 +106,3 @@ class _OtherListsState extends State<OtherLists>
     );
   }
 }
-
-
