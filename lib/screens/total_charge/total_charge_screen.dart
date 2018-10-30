@@ -5,6 +5,8 @@ import 'package:flutterapp/screens/total_charge/total_charge_screen_presenter.da
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TotalCharge extends StatefulWidget {
+  final String zone;
+  TotalCharge({Key key, this.zone}) : super(key: key);
   @override
   _TotalChargeState createState() => _TotalChargeState();
 }
@@ -20,10 +22,11 @@ class _TotalChargeState extends State<TotalCharge>
   SharedPreferences _sharedPreferences;
 
   _fetchSessionAndNavigate(date) async {
+    print(widget.zone);
     _sharedPreferences = await _prefs;
     String authToken = _sharedPreferences.getString('auth_token');
     _presenter = new FeesScreenPresenter(this, authToken);
-    _presenter.requestFees(date);
+    _presenter.requestFees(date, widget.zone);
   }
 
   @override

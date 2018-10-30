@@ -12,10 +12,10 @@ class FeesScreenPresenter {
   RestDatasource api = new RestDatasource();
   FeesScreenPresenter(this._view, this.authToken);
 
-  requestFees(created_at) {
+  requestFees(created_at, zone) {
     try {
       api
-          .getFees(this.authToken, created_at)
+          .getFees(this.authToken, created_at, zone)
           .then((List<Fee> fee) {
         print(fee);
         _view.onFeesSuccess(fee);

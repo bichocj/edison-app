@@ -97,8 +97,8 @@ class _OtherListsState extends State<OtherLists>
         },
         body: TabBarView(
           children: <Widget>[
-            TotalCharge(),
-            OverdueFeeds(),
+            new TotalCharge(zone: widget.zone),
+            new OverdueFeeds(),
           ],
           controller: _tabController,
         ),
