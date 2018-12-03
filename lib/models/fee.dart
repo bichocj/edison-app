@@ -1,10 +1,11 @@
-class Fee {
+class Fee extends Comparable<Fee>{
   int _id;
   int _quote;
   String _amount_received;
   String _arrears;
   String _created_at;
   String _owner;
+  double _amount_received_total;
 
   Fee(
       this._id,
@@ -22,6 +23,8 @@ class Fee {
     this._arrears = obj["arrears"];
     this._created_at = obj["created_at"];
     this._owner = obj["owner"];
+
+    this._amount_received_total = double.parse(this._amount_received);
   }
 
   int get id => _id;
@@ -30,6 +33,19 @@ class Fee {
   String get arrears => _arrears;
   String get created_at => _created_at;
   String get owner => _owner;
+  double get amount_received_total => _amount_received_total;
+
+  @override
+  int compareTo(Fee f){
+    if(f.id == this._id){
+      return 0;
+    }
+    return -1;
+  }
+
+  addToTotal(double tmp){
+    _amount_received_total += tmp;
+  }
 
   Map<String, dynamic> toMap() {
     var map = new Map<String, dynamic>();

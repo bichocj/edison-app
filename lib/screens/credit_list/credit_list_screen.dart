@@ -312,7 +312,7 @@ class ListItem extends StatelessWidget {
         break;
     }
     return new ListTile(
-        title: new Text('Crédito ${_creditName}'),
+        title: new Text('Crédito ${_creditName} - ${this._credit.deliver_at}'),
         trailing: const Icon(Icons.arrow_right),
         onTap: () {
           Navigator.push(

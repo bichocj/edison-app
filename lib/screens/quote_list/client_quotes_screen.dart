@@ -150,7 +150,10 @@ class QuoteTitle extends StatelessWidget {
     double _payed = _sumPayed();
 
     Color _quoteColor;
-    if(this._quote.has_complete) {
+    if(this._quote.isCompletedBefore()){
+      _quoteColor = Colors.yellow;
+    }
+    else if(this._quote.has_complete) {
       _quoteColor = Colors.grey;
     } else {
       if(this._quote.is_beaten) {

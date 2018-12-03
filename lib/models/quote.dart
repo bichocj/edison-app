@@ -13,6 +13,7 @@ class Quote {
   String _client_name;
   int _days_late;
   double _current_arrear;
+  String _completed_at;
 
   Quote(
       this._id,
@@ -27,7 +28,8 @@ class Quote {
       this._is_beaten,
       this._client_name,
       this._days_late,
-      this._current_arrear
+      this._current_arrear,
+      this._completed_at
       );
 
   Quote.map(dynamic obj) {
@@ -41,6 +43,7 @@ class Quote {
     this._is_beaten = obj["is_beaten"];
     this._client_name = obj["client_name"];
     this._days_late = obj["days_late"];
+    this._completed_at = obj["completed_at"];
 
     if(obj["amount"] is double){
       this._amount = obj["amount"];
@@ -78,6 +81,14 @@ class Quote {
   String get client_name => _client_name;
   double get current_arrear => _current_arrear;
   int get days_late => _days_late;
+
+  bool isCompletedBefore(){
+    if(this._completed_at=="" || this._completed_at == null ){
+      return false;
+    }
+    return DateTime.parse(this._completed_at).compareTo(DateTime.parse(this.charge_at)) == -1;
+
+  }
 
   Map<String, dynamic> toMap() {
     var map = new Map<String, dynamic>();
