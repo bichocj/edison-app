@@ -41,13 +41,13 @@ class _CreditListState extends State<CreditList>
         .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
   }
 
-  _navigateToHome(){
+  _navigateToHome() {
     Navigator.of(context).pushAndRemoveUntil(
         new MaterialPageRoute(
             settings: const RouteSettings(name: '/home'),
-            builder: (context) => new SearchList(
-                zone: widget.client.zone_from.toString()
-            )), (Route<dynamic> route) => false);
+            builder: (context) =>
+                new SearchList(zone: widget.client.zone_from.toString())),
+        (Route<dynamic> route) => false);
   }
 
   @override
@@ -82,63 +82,57 @@ class _CreditListState extends State<CreditList>
     final ThemeData themeData = Theme.of(context);
     final double _heightCard = 124.0;
     return new Scaffold(
-        appBar: new AppBar(
-          title: new Text('Estado de Cuenta'),
-          centerTitle: false,
-          actions: <Widget>[
-            new IconButton(
-              icon: new Icon(Icons.home),
-              onPressed: () {
-                this._navigateToHome();
-              },
-            ),
-            new IconButton(
-              icon: new Icon(Icons.directions_run),
-              onPressed: () {
-                this._closeSession();
-              },
-            ),
-          ],
-        ),
-        body: RefreshIndicator(
-            child: new Container(
-                margin: const EdgeInsets.symmetric(
-                  vertical: 16.0,
-                  horizontal: 16.0,
-                ),
-                child: new Column(
-                  children: <Widget>[
-                    new ProfileCard(
-                      image: 'assets/img/profile.png',
-                      height: _heightCard,
-                      background: themeData.cardColor,
-                      icon: Icons.chrome_reader_mode,
-                      name: widget.client.name,
-                      lastname: widget.client.lastname + ',',
-                      dni: widget.client.dni,
-                    ),
-                    new Subtitle(
-                      text: "Estado de cuenta",
-                      background: themeData.primaryColor,
-                      color: themeData.cardColor,
-                    ),
-                    new Container(
-                      margin: new EdgeInsets.only(top: 00.0, bottom: 20.0),
-                      padding: new EdgeInsets.symmetric(vertical: 10.0),
-                      decoration: new BoxDecoration(
-                        color: themeData.cardColor,
-                        shape: BoxShape.rectangle,
-                        borderRadius: new BorderRadius.circular(8.0),
-                      ),
-                      child: _success
-                          ? new Column(children: _buildList())
-                          : new CircularProgressIndicator(),
-                    )
-                  ],
-                )),
-            onRefresh: () {
-              print("refresh");
-            }));
+      appBar: new AppBar(
+        title: new Text('Estado de Cuenta'),
+        centerTitle: false,
+        actions: <Widget>[
+          new IconButton(
+            icon: new Icon(Icons.home),
+            onPressed: () {
+              this._navigateToHome();
+            },
+          ),
+          new IconButton(
+            icon: new Icon(Icons.directions_run),
+            onPressed: () {
+              this._closeSession();
+            },
+          ),
+        ],
+      ),
+      body: new Container(
+          margin: const EdgeInsets.symmetric(
+            vertical: 16.0,
+            horizontal: 16.0,
+          ),
+          child: new Column(
+            children: <Widget>[
+              new ProfileCard(
+                image: 'assets/img/profile.png',
+                height: _heightCard,
+                background: themeData.cardColor,
+                icon: Icons.chrome_reader_mode,
+                name: widget.client.name,
+                lastname: widget.client.lastname + ',',
+                dni: widget.client.dni,
+              ),
+              new Subtitle(
+                text: "Estado de cuenta",
+                background: themeData.primaryColor,
+                color: themeData.cardColor,
+              ),
+              new Container(
+                  decoration: new BoxDecoration(
+                color: themeData.cardColor,
+                shape: BoxShape.rectangle,
+                borderRadius: new BorderRadius.circular(8.0),
+              )),
+              _success
+                  ? new Expanded(child: new ListView(children: _buildList()))
+                  : new CircularProgressIndicator(),
+            ],
+          )),
+    );
   }
 }
 

@@ -81,6 +81,7 @@ class Quote {
   String get client_name => _client_name;
   double get current_arrear => _current_arrear;
   int get days_late => _days_late;
+  String get completed_at => _completed_at ;
 
   bool isCompletedBefore(){
     if(this._completed_at=="" || this._completed_at == null ){

@@ -150,7 +150,7 @@ class QuoteTitle extends StatelessWidget {
     double _payed = _sumPayed();
 
     Color _quoteColor;
-    if(this._quote.isCompletedBefore()){
+    /*if(this._quote.isCompletedBefore()){
       _quoteColor = Colors.yellow;
     }
     else if(this._quote.has_complete) {
@@ -161,7 +161,21 @@ class QuoteTitle extends StatelessWidget {
       } else {
         _quoteColor = Colors.green;        
       }
+    }*/
+    if (this._quote.has_complete && DateTime.parse(this._quote.charge_at) == DateTime.parse(this._quote.completed_at)) {
+      _quoteColor = Colors.grey;
+    } else {
+      if (this._quote.has_complete && this._quote.is_beaten) {
+        _quoteColor = Colors.orange;
+      } else if (!this._quote.has_complete && this._quote.is_beaten) {
+        _quoteColor = Colors.red;
+      } else if (this._quote.has_complete && !this._quote.is_beaten) {
+        _quoteColor = Colors.yellow;
+      } else  {
+        _quoteColor = Colors.green;
+      }
     }
+
     return new Container(
       margin: new EdgeInsets.all(5.0),
       decoration: new BoxDecoration(
