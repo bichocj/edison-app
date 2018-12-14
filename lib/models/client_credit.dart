@@ -7,19 +7,17 @@ class Credit {
   dynamic _rate;
   String _amount;
   String _start_at;
+  Map _client;
+  dynamic _quotes_quantity;
   String _deliver_at;
   String _due_date;
-  int _client;
-  dynamic _quotes_quantity;
-  // dynamic _amount_payed;
-  // String _amount_total;
-  int _days_late;
-  dynamic _current_arrear;
-
   double _amount_payed;
   double _amount_total;
-  // int _days_late;
-  // double _current_arrear;
+  int _days_late;
+  dynamic _current_arrear;
+  dynamic _payed_min_at;
+  bool _is_archived;
+
 
   Credit(
       this._id,
@@ -33,7 +31,12 @@ class Credit {
       this._amount_payed,
       this._amount_total,
       this._days_late,
-      this._current_arrear);
+      this._current_arrear,
+      this._deliver_at,
+      this._due_date,
+      this._is_archived,
+      this._payed_min_at
+      );
 
   Credit.map(dynamic obj) {
     this._id = obj["id"];
@@ -62,7 +65,8 @@ class Credit {
     }else{
       this._amount_total = double.parse(obj["amount_total"] ?? "0");
     }
-        
+
+    this._is_archived = obj["is_archived"];
     // this._days_late = obj["days_late"];
     // this._current_arrear = double.parse(obj["current_arrear"] ?? "0");
 
@@ -76,14 +80,15 @@ class Credit {
   String get start_at => _start_at.toString();
   String get deliver_at => _deliver_at.toString();
   String get due_date => _due_date.toString();
-  int get client => _client;
+  Map get client => _client;
   dynamic get quotes_quantity => _quotes_quantity;
   double get amount_payed => _amount_payed;
   double get amount_total => _amount_total;
   int get days_late => _days_late;
   double get current_arrear => _current_arrear;
+  bool get is_archived => _is_archived;
 
-  Map<String, dynamic> toMap() {
+  Map<dynamic, dynamic> toMap() {
     var map = new Map<String, dynamic>();
     map["id"] = _id;
     map["frequency"] = _frequency;
@@ -99,6 +104,7 @@ class Credit {
     map["amount_total"] = _amount_total;
     map["days_late"] = _days_late;
     map["current_arrear"] = _current_arrear;
+    map["is_archived"] = _is_archived;
     return map;
   }
 }
