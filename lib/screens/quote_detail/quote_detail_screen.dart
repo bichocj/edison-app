@@ -199,13 +199,6 @@ class _QuoteDetailState extends State<QuoteDetail> {
                   text: "S/. ${this._quote.current_arrear}",	
                   textColor: Colors.black87,	
                 ),
-                new InfoItem(	
-                  icon: Icons.today,	
-                  primaryColor: Colors.indigo,	
-                  title: 'Día(s) de atraso',	
-                  text: '${this._credit.days_late.toString()} día(s)',	
-                  textColor: Colors.black87,	
-                ),
                 new Container(
                     margin: new EdgeInsets.symmetric(horizontal: 24.0),
                     child: new Column(
