@@ -23,7 +23,7 @@ class RestDatasource {
   static final CLIENT_CREDIT_URL = "/credits/api/credit/";
   static final CREDIT_DETAIL_URL = "/credits/api/credit/";
   static final QUOTES_URL = "/credits/api/quote/";
-  static final OVERDUE_URL = "/credits/api/quote/";
+  static final OVERDUE_URL = "/credits/api/credit/";
   static final FEES_URL = "/credits/api/fee/";
   static final _API_KEY = "somerandomkey";
 
@@ -147,13 +147,14 @@ class RestDatasource {
     });
   }
 
-  Future<List<Quote>> getOverdueQuotes(String token) {
+  Future<List<Credit>> getOverdueQuotes(String token, String zone) {
     Map<String, String> queryParameters = Map<String, String>();
+    queryParameters.addAll({"zone_from": zone, "is_archived":"false", "due_date__lt": new DateTime.now().toString().substring(0, 11)});
     return _netUtil
-        .get(QUOTES_URL, queryParameters, token)
+        .get(OVERDUE_URL, queryParameters, token)
         .then((dynamic res) {
-      final itemsTmp = res.map((i) => new Quote.map(i));
-      final items = itemsTmp.cast<Quote>();
+      final itemsTmp = res.map((i) => new Credit.map(i));
+      final items = itemsTmp.cast<Credit>();
       return items.toList();
     });
   }

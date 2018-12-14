@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutterapp/models/client_credit.dart';
+import 'package:flutterapp/screens/client_detail/client_detail_screen.dart';
 import 'dart:async';
-import 'package:flutterapp/models/quote.dart';
 import 'package:flutterapp/screens/overdue_fees/overdue_fees_screen_presenter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
 class OverdueFeeds extends StatefulWidget {
+  final String zone;
+  OverdueFeeds({Key key, this.zone}) : super(key: key);
   @override
   _OverdueFeedsState createState() => _OverdueFeedsState();
 }
 
 class _OverdueFeedsState extends State<OverdueFeeds>
     implements OverdueFeesContract {
-  List<Quote> _quotes;
+  List<Credit> _credits;
   bool _success;
 
   OverdueFeesScreenPresenter _presenter;
@@ -23,14 +26,14 @@ class _OverdueFeedsState extends State<OverdueFeeds>
     _sharedPreferences = await _prefs;
     String authToken = _sharedPreferences.getString('auth_token');
     _presenter = new OverdueFeesScreenPresenter(this, authToken);
-    _presenter.requestOverdueFees();
+    _presenter.requestOverdueFees(widget.zone);
   }
 
   @override
-  void onOverdueFeesSuccess(List<Quote> quote) {
+  void onOverdueFeesSuccess(List<Credit> credits) {
     setState(() {
       _success = true;
-      _quotes = quote;
+      _credits = credits;
     });
   }
 
@@ -47,8 +50,8 @@ class _OverdueFeedsState extends State<OverdueFeeds>
   }
 
   List<OverdueFee>_buildList() {
-    var _filterList = _quotes.where((quote) => quote.is_beaten == true);
-    return _filterList.map((quote) => new OverdueFee(quote, this._presenter)).toList();
+    /*var _filterList = _credits.where((quote) => quote.is_beaten == true);*/
+    return _credits.map((credit) => new OverdueFee(credit, this._presenter)).toList();
   }
 
   @override
@@ -66,14 +69,23 @@ class _OverdueFeedsState extends State<OverdueFeeds>
 }
 
 class OverdueFee extends StatelessWidget {
-  final Quote _quote;
+  final Credit _credit;
   final OverdueFeesScreenPresenter _presenter;
-  const OverdueFee(this._quote, this._presenter);
+  const OverdueFee(this._credit, this._presenter);
 
   @override
   Widget build(BuildContext context) {
     return new ListTile(
-        title: new Text(this._quote.client_name),
-        trailing: new Text("${this._quote.charge_at}"));
+      title: new Text(_credit.client["name"] + ' ' +_credit.client["lastname"] ),
+      leading: new Text("${_credit.due_date}"),
+      trailing: new Icon(Icons.keyboard_arrow_right),
+      onTap: () {
+        Navigator.push(
+            context,
+            new MaterialPageRoute(
+                builder: (BuildContext context) =>
+                new ClientDetail(clientId: '${_credit.client["id"]}')));
+      }
+    );
   }
 }

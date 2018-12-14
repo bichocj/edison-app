@@ -1,8 +1,8 @@
+import 'package:flutterapp/models/client_credit.dart';
 import '../../data/rest_ds.dart';
-import 'package:flutterapp/models/quote.dart';
 
 abstract class OverdueFeesContract {
-  void onOverdueFeesSuccess(List<Quote> quotes);
+  void onOverdueFeesSuccess(List<Credit> credit);
   void onOverdueFeesError(String errorTxt);
 }
 
@@ -12,13 +12,12 @@ class OverdueFeesScreenPresenter {
   RestDatasource api = new RestDatasource();
   OverdueFeesScreenPresenter(this._view, this.authToken);
 
-  requestOverdueFees() {
+  requestOverdueFees(zone) {
     try {
       api
-          .getOverdueQuotes(this.authToken)
-          .then((List<Quote> quote) {
-        print(quote);
-        _view.onOverdueFeesSuccess(quote);
+          .getOverdueQuotes(this.authToken, zone)
+          .then((List<Credit> credit) {
+        _view.onOverdueFeesSuccess(credit);
       }).catchError(
               (handleError) => _view.onOverdueFeesError(handleError.message));
     } catch (e) {
