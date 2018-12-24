@@ -49,8 +49,8 @@ class _TotalChargeState extends State<TotalCharge>
 
   @override
   void onFeesSuccess(List<Fee> fee) {
+    /*
     List<Fee> tmpFees = [];
-
     for(var i = 0; i < fee.length; i++){
       int k = -1 ;
       for(int j = 0; j < tmpFees.length; j++){
@@ -65,13 +65,13 @@ class _TotalChargeState extends State<TotalCharge>
       }else{
         tmpFees[k].addToTotal(fee[i].amount_received_total);
       }
-    }
+    }*/
 
     setState(() {
       _success = true;  
-      _fees = tmpFees;
+      _fees = fee;
     });
-    _sumAmount();
+    //_sumAmount();
   }
 
   @override
@@ -131,6 +131,6 @@ class ChargeItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return new ListTile(
         title: new Text(this._fee.owner),
-        trailing: new Text("S/. ${this._fee.amount_received_total}"));
+        trailing: new Text("S/. ${double.parse(this._fee.amount_received) + double.parse(this._fee.arrears)}"));
   }
 }
