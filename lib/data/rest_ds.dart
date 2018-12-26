@@ -137,10 +137,8 @@ class RestDatasource {
 
   Future<List<Fee>> getFees(String token, String created_at, String zone) {
     Map<String, String> queryParameters = Map<String, String>();
-    queryParameters.addAll({"created_at":created_at, "quote_creditclient_zone_from": zone});
-    print("aqii");
-    print(created_at);
-    print(zone);
+    queryParameters.addAll({"created_at":created_at, "quote__credit__client__zone_from": zone});
+                                                                                                                      
     return _netUtil
         .get(FEES_URL, queryParameters, token)
         .then((dynamic res) {
