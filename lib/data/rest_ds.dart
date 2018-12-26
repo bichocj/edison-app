@@ -138,7 +138,7 @@ class RestDatasource {
   Future<List<Fee>> getFees(String token, String created_at, String zone) {
     Map<String, String> queryParameters = Map<String, String>();
     queryParameters.addAll({"created_at":created_at, "quote__credit__client__zone_from": zone});
-                                                                                                                      
+
     return _netUtil
         .get(FEES_URL, queryParameters, token)
         .then((dynamic res) {
@@ -147,10 +147,10 @@ class RestDatasource {
       return items.toList();
     });
   }
-
+  
   Future<List<Credit>> getOverdueQuotes(String token, String zone) {
     Map<String, String> queryParameters = Map<String, String>();
-    queryParameters.addAll({"zone_from": zone, "is_archived":"false", "due_date__lt": new DateTime.now().toString().substring(0, 11)});
+    queryParameters.addAll({"client__zone_from": zone, "is_archived":"false", "due_date__lt": new DateTime.now().toString().substring(0, 11)});
     return _netUtil
         .get(OVERDUE_URL, queryParameters, token)
         .then((dynamic res) {
