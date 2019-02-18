@@ -13,6 +13,7 @@ import 'package:flutterapp/screens/custom_widgets/subtitle.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:date_format/date_format.dart';
+import 'package:flutterapp/utils/util.dart';
 
 class QuoteDetail extends StatefulWidget {
   final Quote quote;
@@ -242,7 +243,7 @@ class Fees extends StatelessWidget {
     return new ListTile(
       title: Center(
           child: Text(
-        formatDate(DateTime.parse(this._date), [dd, ' ', M, ', del ', yyyy]),
+        toEsp(formatDate(DateTime.parse(this._date), [dd, ' ', M, ', del ', yyyy])),
         style: new TextStyle(
             fontWeight: FontWeight.bold, color: themeData.primaryColor),
       )),

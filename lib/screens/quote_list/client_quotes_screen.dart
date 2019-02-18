@@ -11,6 +11,7 @@ import 'package:flutterapp/models/quote.dart';
 import 'package:date_format/date_format.dart';
 import 'package:flutterapp/auth.dart';
 import 'package:intl/intl.dart';
+import 'package:flutterapp/utils/util.dart';
 
 class QuotesList extends StatefulWidget {
   static String tag = 'quote';
@@ -184,7 +185,7 @@ class QuoteTitle extends StatelessWidget {
               _quoteColor
         ),
         title: Center(child: Text(
-                  formatDate(DateTime.parse(this._quote.charge_at), [dd, ' ', M, ', del ', yyyy ] ),
+                  toEsp(formatDate(DateTime.parse(this._quote.charge_at), [dd, ' ', M, ', del ', yyyy ] )),
                   style: new TextStyle(fontWeight: FontWeight.bold),
               )),
         subtitle: Container(child:new Row(children: <Widget>[

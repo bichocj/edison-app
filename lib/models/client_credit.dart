@@ -1,4 +1,5 @@
 import 'package:date_format/date_format.dart';
+import 'package:flutterapp/utils/util.dart';
 
 class Credit {
   int _id;
@@ -44,9 +45,9 @@ class Credit {
     this._time = obj["time"];
     this._rate = obj["rate"];
     this._amount = obj["amount"];
-    this._start_at = formatDate(DateTime.parse(obj["start_at"]), [dd, ' ', M, ', del ', yyyy ] );
-    this._deliver_at = formatDate(DateTime.parse(obj["deliver_at"]), [dd, ' ', M, ', del ', yyyy ] );
-    this._due_date = formatDate(DateTime.parse(obj["due_date"]), [dd, ' ', M, ', del ', yyyy ] );
+    this._start_at = toEsp(formatDate(DateTime.parse(obj["start_at"]), [dd, ' ', M, ', del ', yyyy ] ));
+    this._deliver_at = toEsp(formatDate(DateTime.parse(obj["deliver_at"]), [dd, ' ', M, ', del ', yyyy ] ));
+    this._due_date = toEsp(formatDate(DateTime.parse(obj["due_date"]), [dd, ' ', M, ', del ', yyyy ] ));
     this._client = obj["client"];
     this._quotes_quantity = obj["quotes_quantity"];
     //this._amount_payed = obj["amount_payed"];
