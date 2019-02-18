@@ -49,12 +49,15 @@ class _TotalChargeState extends State<TotalCharge>
 
   @override
   void onFeesSuccess(List<Fee> fee) {
-    /*
+    
     List<Fee> tmpFees = [];
     for(var i = 0; i < fee.length; i++){
       int k = -1 ;
       for(int j = 0; j < tmpFees.length; j++){
-         if(tmpFees[j].owner == fee[i].owner){
+        print(tmpFees[j].credit_id);
+        print(fee[i].credit_id);
+        print('-...................');
+         if(tmpFees[j].credit_id == fee[i].credit_id){
           k = j;
           break;
         }
@@ -65,13 +68,13 @@ class _TotalChargeState extends State<TotalCharge>
       }else{
         tmpFees[k].addToTotal(fee[i].amount_received_total);
       }
-    }*/
+    }
 
     setState(() {
       _success = true;  
-      _fees = fee;
+      _fees = tmpFees;
     });
-    //_sumAmount();
+    _sumAmount();
   }
 
   @override
@@ -90,12 +93,12 @@ class _TotalChargeState extends State<TotalCharge>
     final ThemeData themeData = Theme.of(context);
     return
         new Scaffold(
-          /* appBar: new AppBar(
+          appBar: new AppBar(
             automaticallyImplyLeading: false,
             title: _success ? new Text("Al ${_date}: S/. ${_sum} ") : new LinearProgressIndicator(),
             centerTitle: true,
             titleSpacing: 10.0,
-          ),*/
+          ),
          body: new Container(
         padding: new EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
         child:
@@ -130,7 +133,8 @@ class ChargeItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new ListTile(
-        title: new Text(this._fee.owner),
-        trailing: new Text("S/. ${double.parse(this._fee.amount_received) + double.parse(this._fee.arrears)}"));
+        title: new Text(this._fee.owner + "-" + this._fee.credit_info),
+        trailing: new Text("S/. ${this._fee.amount_received_total}")
+      );
   }
 }
